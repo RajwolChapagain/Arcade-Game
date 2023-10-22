@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var ACCELERATION = 1000 #Per second. Multiply by delta
 @export var DECELERATION = 800 #Per second. Multiply by delta
 @export var ROTATION_SPEED = 270 #Degrees per second. Multiply by delta
+@export var SHIP_SPRITE : Texture2D = preload("res://ship/ship_sprite.png")
 @export var hp = 100
 var current_speed = 0
 var thrust_direction = transform.x
@@ -12,6 +13,9 @@ var BULLET_SCENE = preload("res://bullet/bullet.tscn")
 
 signal bullet_fired(bullet, direction, location)
 
+func _ready():
+	$Sprite2D.texture = SHIP_SPRITE
+	
 func _physics_process(delta):
 	get_input(delta)
 	velocity = thrust_direction * current_speed
