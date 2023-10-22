@@ -1,13 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://dsgskm8hx8n3"]
+[gd_scene load_steps=4 format=3 uid="uid://dsgskm8hx8n3"]
 
+[ext_resource type="Script" path="res://ship.gd" id="1_87my3"]
 [ext_resource type="Texture2D" uid="uid://b0n774p4wqiic" path="res://ship_sprite.png" id="1_b08rl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_18nrc"]
-size = Vector2(122, 192)
+size = Vector2(190, 122)
 
 [node name="Ship" type="CharacterBody2D"]
+script = ExtResource("1_87my3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
 scale = Vector2(0.10091, 0.10091)
 texture = ExtResource("1_b08rl")
 
