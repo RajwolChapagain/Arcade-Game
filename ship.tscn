@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsgskm8hx8n3"]
+
+[ext_resource type="Texture2D" uid="uid://b0n774p4wqiic" path="res://ship_sprite.png" id="1_b08rl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_18nrc"]
+size = Vector2(122, 192)
+
+[node name="Ship" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.10091, 0.10091)
+texture = ExtResource("1_b08rl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_18nrc")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
