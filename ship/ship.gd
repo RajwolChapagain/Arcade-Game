@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var ACCELERATION = 1000 #Per second. Multiply by delta
 @export var DECELERATION = 800 #Per second. Multiply by delta
 @export var ROTATION_SPEED = 270 #Degrees per second. Multiply by delta
+@export var hp = 100
 var current_speed = 0
 var thrust_direction = transform.x
 
@@ -34,3 +35,11 @@ func get_input(delta):
 	var rotation_direction = Input.get_axis("rotate_anticlockwise", "rotate_clockwise")
 	rotation_degrees += rotation_direction * ROTATION_SPEED * delta
 	
+func on_hit(damage):
+	hp -= damage
+	
+	if hp <= 0:
+		die()
+		
+func die():
+	queue_free()
