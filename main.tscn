@@ -14,11 +14,14 @@ metadata/_edit_group_ = true
 [node name="Ship2" parent="." instance=ExtResource("2_rmhn6")]
 position = Vector2(1400, 0)
 rotation = 3.14159
+collision_layer = 2
+collision_mask = 2
 SHIP_SPRITE = ExtResource("3_hlk5c")
-thrust_string = "p2_thrust"
-rotate_clockwise_string = "p2_rotate_clockwise"
-rotate_anticlockwise_string = "p2_rotate_anticlockwise"
-fire_string = "p2_fire"
+THRUST_STRING = "p2_thrust"
+ROTATE_CLOCKWISE_STRING = "p2_rotate_clockwise"
+ROTATE_ANTICLOCKWISE_STRING = "p2_rotate_anticlockwise"
+FIRE_STRING = "p2_fire"
+BULLET_LAYER = 1
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
