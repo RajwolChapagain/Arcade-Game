@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://0uuiimj7834t"]
+
+[ext_resource type="PackedScene" uid="uid://l4c7xcvflq5r" path="res://UI/health_bar.tscn" id="1_65ybp"]
+[ext_resource type="Script" path="res://UI/hud.gd" id="1_wib3k"]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+script = ExtResource("1_wib3k")
+
+[node name="HealthBar" parent="." instance=ExtResource("1_65ybp")]
+layout_mode = 1
+offset_left = 100.0
+offset_top = 100.0
+offset_right = 608.0
+offset_bottom = 173.0
+
+[node name="HealthBar2" parent="." instance=ExtResource("1_65ybp")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -658.0
+offset_top = 100.0
+offset_right = -150.0
+offset_bottom = 173.0
+grow_horizontal = 0

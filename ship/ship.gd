@@ -18,6 +18,7 @@ var thrust_direction = transform.x
 var BULLET_SCENE = preload("res://bullet/bullet.tscn")
 
 signal bullet_fired(bullet, direction, location, bullet_layer)
+signal hit(damage)
 
 func _ready():
 	$Sprite2D.texture = SHIP_SPRITE
@@ -47,7 +48,7 @@ func get_input(delta):
 	
 func on_hit(damage):
 	hp -= damage
-	
+	hit.emit(damage)
 	if hp <= 0:
 		die()
 		
