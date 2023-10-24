@@ -11,6 +11,7 @@ extends CharacterBody2D
 @export var ROTATE_ANTICLOCKWISE_STRING = "p1_rotate_anticlockwise"
 @export var FIRE_STRING = "p1_fire"
 @export var BULLET_LAYER = 2
+@export var SPEED_DECREASE_ON_FIRE = 250
 
 var current_speed = 0
 var thrust_direction = transform.x
@@ -31,6 +32,7 @@ func _physics_process(delta):
 func _input(event):
 	if event.is_action_pressed(FIRE_STRING):
 		bullet_fired.emit(BULLET_SCENE, transform.x, global_position, BULLET_LAYER)
+		current_speed -= SPEED_DECREASE_ON_FIRE
 	
 func get_input(delta):
 	#-----------Thrust-------------------
