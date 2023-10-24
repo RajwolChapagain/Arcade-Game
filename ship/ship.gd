@@ -6,6 +6,11 @@ extends CharacterBody2D
 @export var ROTATION_SPEED = 270 #Degrees per second. Multiply by delta
 @export var SHIP_SPRITE : Texture2D = preload("res://ship/ship_sprite.png")
 @export var hp = 100
+@export var thrust_string = "p1_thrust"
+@export var rotate_clockwise_string = "p1_rotate_clockwise"
+@export var rotate_anticlockwise_string = "p1_rotate_anticlockwise"
+@export var fire_string = "p1_fire"
+
 var current_speed = 0
 var thrust_direction = transform.x
 
@@ -22,12 +27,12 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _input(event):
-	if event.is_action_pressed("fire"):
+	if event.is_action_pressed(fire_string):
 		bullet_fired.emit(BULLET_SCENE, transform.x, global_position)
 	
 func get_input(delta):
 	#-----------Thrust-------------------
-	if Input.is_action_pressed("thrust"):
+	if Input.is_action_pressed(thrust_string):
 		current_speed += ACCELERATION * delta
 		thrust_direction = transform.x
 	else:
@@ -36,7 +41,7 @@ func get_input(delta):
 	current_speed = clamp(current_speed, 0, TOP_SPEED)
 	
 	#------------Rotation-----------------
-	var rotation_direction = Input.get_axis("rotate_anticlockwise", "rotate_clockwise")
+	var rotation_direction = Input.get_axis(rotate_anticlockwise_string, rotate_clockwise_string)
 	rotation_degrees += rotation_direction * ROTATION_SPEED * delta
 	
 func on_hit(damage):

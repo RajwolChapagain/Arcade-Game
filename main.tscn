@@ -15,6 +15,10 @@ metadata/_edit_group_ = true
 position = Vector2(1400, 0)
 rotation = 3.14159
 SHIP_SPRITE = ExtResource("3_hlk5c")
+thrust_string = "p2_thrust"
+rotate_clockwise_string = "p2_rotate_clockwise"
+rotate_anticlockwise_string = "p2_rotate_anticlockwise"
+fire_string = "p2_fire"
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
