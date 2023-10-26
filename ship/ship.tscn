@@ -18,3 +18,8 @@ texture = ExtResource("2_qaab8")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_18nrc")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="SuperTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="SuperTimer" to="." method="_on_super_timer_timeout"]

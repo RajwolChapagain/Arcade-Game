@@ -22,6 +22,7 @@ THRUST_STRING = "p2_thrust"
 ROTATE_CLOCKWISE_STRING = "p2_rotate_clockwise"
 ROTATE_ANTICLOCKWISE_STRING = "p2_rotate_anticlockwise"
 FIRE_STRING = "p2_fire"
+SUPER_STRING = "p2_super"
 BULLET_LAYER = 1
 metadata/_edit_group_ = true
 
