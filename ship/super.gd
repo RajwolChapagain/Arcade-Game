@@ -7,4 +7,9 @@ func _on_body_entered(body):
 		body.on_hit(DAMAGE)
 	
 	if body.has_method("freeze"):
-		body.freeze();
+		body.freeze()
+
+
+func _on_body_exited(body):
+	if body.has_method("unfreeze"):
+		body.unfreeze()
