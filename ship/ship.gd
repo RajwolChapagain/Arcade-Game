@@ -85,4 +85,3 @@ func freeze():
 
 func unfreeze():
 	frozen = false
-	print(self.name + "CAN MOVE")
