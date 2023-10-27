@@ -33,6 +33,7 @@ var SUPER_SCENE = preload("res://ship/super.tscn")
 signal bullet_fired(bullet, direction, location, bullet_layer)
 signal hit(damage)
 signal super_percentage_changed(new_super_percentage)
+signal player_died()
 
 func _ready():
 	$Sprite2D.texture = SHIP_SPRITE
@@ -85,6 +86,7 @@ func on_hit(damage):
 		die()
 		
 func die():
+	player_died.emit()
 	queue_free()
 
 func _on_super_timer_timeout():
