@@ -14,7 +14,13 @@ extends CharacterBody2D
 @export var BULLET_LAYER = 2
 @export var SPEED_DECREASE_ON_FIRE = 250
 @export var SUPER_DURATION = 1
-@export var super_percentage = 0
+@export var super_percentage = 0:
+	get:
+		return super_percentage
+	set(value):
+		super_percentage = value
+		super_percentage_changed.emit(super_percentage)
+		
 @export var TIME_TO_FILL_SUPER = 5
 
 var current_speed = 0
@@ -27,8 +33,6 @@ var SUPER_SCENE = preload("res://ship/super.tscn")
 signal bullet_fired(bullet, direction, location, bullet_layer)
 signal hit(damage)
 signal super_percentage_changed(new_super_percentage)
-
-#!!!!!!!!!!!!!Implement super time in line 68 well
 
 func _ready():
 	$Sprite2D.texture = SHIP_SPRITE
@@ -47,7 +51,8 @@ func _input(event):
 		bullet_fired.emit(BULLET_SCENE, transform.x, global_position, BULLET_LAYER)
 		current_speed -= SPEED_DECREASE_ON_FIRE
 	
-	if event.is_action_pressed(SUPER_STRING):
+	if event.is_action_pressed(SUPER_STRING) and super_percentage == 100:
+		super_percentage = 0
 		var super_instance = SUPER_SCENE.instantiate()
 		add_child(super_instance)
 		super_instance.collision_layer = BULLET_LAYER
@@ -65,7 +70,6 @@ func get_input(delta):
 		current_speed -= DECELERATION * delta
 		super_percentage += 100 * delta / TIME_TO_FILL_SUPER #Where 100 is max percentage
 		super_percentage = clamp(super_percentage, 0, 100)
-		super_percentage_changed.emit(super_percentage)
 		
 	current_speed = clamp(current_speed, 0, TOP_SPEED)
 	
