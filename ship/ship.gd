@@ -63,7 +63,7 @@ func get_input(delta):
 		thrust_direction = transform.x
 	else:
 		current_speed -= DECELERATION * delta
-		super_percentage += TIME_TO_FILL_SUPER * delta
+		super_percentage += 100 * delta / TIME_TO_FILL_SUPER #Where 100 is max percentage
 		super_percentage = clamp(super_percentage, 0, 100)
 		super_percentage_changed.emit(super_percentage)
 		
