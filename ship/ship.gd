@@ -33,7 +33,9 @@ var SUPER_SCENE = preload("res://ship/super.tscn")
 signal bullet_fired(bullet, direction, location, bullet_layer)
 signal hit(damage)
 signal super_percentage_changed(new_super_percentage)
-signal player_died()
+signal player_died
+signal player_exited_screen
+signal player_entered_screen
 
 func _ready():
 	$Sprite2D.texture = SHIP_SPRITE
@@ -98,3 +100,11 @@ func freeze():
 
 func unfreeze():
 	frozen = false
+
+
+func _on_visibility_notifier_screen_exited():
+	player_exited_screen.emit()
+
+
+func _on_visibility_notifier_screen_entered():
+	player_entered_screen.emit()
