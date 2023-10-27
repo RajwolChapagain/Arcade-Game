@@ -14,6 +14,8 @@ extends CharacterBody2D
 @export var BULLET_LAYER = 2
 @export var SPEED_DECREASE_ON_FIRE = 250
 @export var SUPER_DURATION = 1
+@export var super_percentage = 0
+@export var TIME_TO_FILL_SUPER = 5
 
 var current_speed = 0
 var thrust_direction = transform.x
@@ -24,6 +26,9 @@ var SUPER_SCENE = preload("res://ship/super.tscn")
 
 signal bullet_fired(bullet, direction, location, bullet_layer)
 signal hit(damage)
+signal super_percentage_changed(new_super_percentage)
+
+#!!!!!!!!!!!!!Implement super time in line 68 well
 
 func _ready():
 	$Sprite2D.texture = SHIP_SPRITE
@@ -51,21 +56,23 @@ func _input(event):
 		freeze()
 	
 func get_input(delta):
-	if frozen:
-		return
-		
+
 	#-----------Thrust-------------------
-	if Input.is_action_pressed(THRUST_STRING):
+	if Input.is_action_pressed(THRUST_STRING) and not frozen:
 		current_speed += ACCELERATION * delta
 		thrust_direction = transform.x
 	else:
 		current_speed -= DECELERATION * delta
+		super_percentage += TIME_TO_FILL_SUPER * delta
+		super_percentage = clamp(super_percentage, 0, 100)
+		super_percentage_changed.emit(super_percentage)
 		
 	current_speed = clamp(current_speed, 0, TOP_SPEED)
 	
 	#------------Rotation-----------------
-	var rotation_direction = Input.get_axis(ROTATE_ANTICLOCKWISE_STRING, ROTATE_CLOCKWISE_STRING)
-	rotation_degrees += rotation_direction * ROTATION_SPEED * delta
+	if not frozen:
+		var rotation_direction = Input.get_axis(ROTATE_ANTICLOCKWISE_STRING, ROTATE_CLOCKWISE_STRING)
+		rotation_degrees += rotation_direction * ROTATION_SPEED * delta
 	
 func on_hit(damage):
 	hp -= damage
