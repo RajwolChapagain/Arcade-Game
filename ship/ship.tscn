@@ -23,6 +23,7 @@ debug_color = Color(0, 0.6, 0.701961, 0.419608)
 one_shot = true
 
 [node name="VisibilityNotifier" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(9.7, 6.1)
 
 [connection signal="timeout" from="SuperTimer" to="." method="_on_super_timer_timeout"]
 [connection signal="screen_entered" from="VisibilityNotifier" to="." method="_on_visibility_notifier_screen_entered"]
