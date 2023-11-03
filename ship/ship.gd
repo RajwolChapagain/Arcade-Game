@@ -69,6 +69,8 @@ func get_input(delta):
 		
 	if input_direction.length() != 0:
 		velocity += input_direction * THRUST_FORCE * delta
+		super_percentage += delta * 100 / TIME_TO_FILL_SUPER
+		super_percentage = clamp(super_percentage, 0, 100)
 	else:
 		velocity += -velocity.normalized() * RETARDING_FORCE * delta
 	
