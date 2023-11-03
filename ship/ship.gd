@@ -1,14 +1,14 @@
 extends CharacterBody2D
-
-@export var TOP_SPEED = 1500
-@export var ACCELERATION = 1000 #Per second. Multiply by delta
-@export var DECELERATION = 800 #Per second. Multiply by delta
-@export var ROTATION_SPEED = 270 #Degrees per second. Multiply by delta
+ 
+@export var THRUST_FORCE = 1000 #Takes 3 seconds to reach max velocity w/ MAX_VELOCITY_MAGNITUDE = 3000
+@export var MAX_VELOCITY_MAGNITUDE = 3000
+@export var RETARDING_FORCE = 750 #Takes 4 seconds to reach min from a MAX_VELOCITY_MAGNITUDE of 3000
 @export var SHIP_SPRITE : Texture2D = preload("res://ship/ship_sprite.png")
 @export var hp = 100
-@export var THRUST_STRING = "p1_thrust"
-@export var ROTATE_CLOCKWISE_STRING = "p1_rotate_clockwise"
-@export var ROTATE_ANTICLOCKWISE_STRING = "p1_rotate_anticlockwise"
+@export var LEFT_STRING = "p1_left"
+@export var RIGHT_STRING = "p1_right"
+@export var UP_STRING = "p1_up"
+@export var DOWN_STRING = "p1_down"
 @export var FIRE_STRING = "p1_fire"
 @export var SUPER_STRING = "p1_super"
 @export var BULLET_LAYER = 2
@@ -20,11 +20,9 @@ extends CharacterBody2D
 	set(value):
 		super_percentage = value
 		super_percentage_changed.emit(super_percentage)
-		
 @export var TIME_TO_FILL_SUPER = 5
 
-var current_speed = 0
-var thrust_direction = transform.x
+var thrust_speed = 0
 var frozen = false
 
 var BULLET_SCENE = preload("res://bullet/bullet.tscn")
@@ -41,9 +39,8 @@ func _ready():
 	$Sprite2D.texture = SHIP_SPRITE
 	$SuperTimer.wait_time = SUPER_DURATION
 	
-func _physics_process(delta):
+func _process(delta):
 	get_input(delta)
-	velocity = thrust_direction * current_speed
 	move_and_slide()
 
 func _input(event):
@@ -52,7 +49,7 @@ func _input(event):
 		
 	if event.is_action_pressed(FIRE_STRING):
 		bullet_fired.emit(BULLET_SCENE, transform.x, global_position, BULLET_LAYER)
-		current_speed -= SPEED_DECREASE_ON_FIRE
+		thrust_speed -= SPEED_DECREASE_ON_FIRE
 	
 	if event.is_action_pressed(SUPER_STRING) and super_percentage == 100:
 		super_percentage = 0
@@ -64,22 +61,19 @@ func _input(event):
 		freeze()
 	
 func get_input(delta):
+	var input_direction = Input.get_vector(LEFT_STRING, RIGHT_STRING, UP_STRING, DOWN_STRING)
 
-	#-----------Thrust-------------------
-	if Input.is_action_pressed(THRUST_STRING) and not frozen:
-		current_speed += ACCELERATION * delta
-		thrust_direction = transform.x
-	else:
-		current_speed -= DECELERATION * delta
-		super_percentage += 100 * delta / TIME_TO_FILL_SUPER #Where 100 is max percentage
-		super_percentage = clamp(super_percentage, 0, 100)
+	if input_direction.length() != 0:
+		var tween = get_tree().create_tween()
+		tween.tween_property(self, "rotation", input_direction.angle(), 1)
 		
-	current_speed = clamp(current_speed, 0, TOP_SPEED)
+	if input_direction.length() != 0:
+		velocity += input_direction * THRUST_FORCE * delta
+	else:
+		velocity += -velocity.normalized() * RETARDING_FORCE * delta
 	
-	#------------Rotation-----------------
-	if not frozen:
-		var rotation_direction = Input.get_axis(ROTATE_ANTICLOCKWISE_STRING, ROTATE_CLOCKWISE_STRING)
-		rotation_degrees += rotation_direction * ROTATION_SPEED * delta
+	velocity = clamp(velocity, Vector2.ZERO, velocity.limit_length(MAX_VELOCITY_MAGNITUDE))
+
 	
 func on_hit(damage):
 	hp -= damage
