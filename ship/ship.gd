@@ -99,8 +99,9 @@ func unfreeze():
 
 
 func _on_visibility_notifier_screen_exited():
-	player_exited_screen.emit()
-
-
+	#player_exited_screen.emit()
+	position = -position
+	
 func _on_visibility_notifier_screen_entered():
-	player_entered_screen.emit()
+	#player_entered_screen.emit()
+	pass
