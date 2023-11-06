@@ -20,7 +20,7 @@ extends CharacterBody2D
 	set(value):
 		super_percentage = value
 		super_percentage_changed.emit(super_percentage)
-@export var TIME_TO_FILL_SUPER = 5
+@export var TIME_TO_FILL_SUPER = 10
 
 var thrust_speed = 0
 var frozen = false
@@ -40,6 +40,8 @@ func _ready():
 	$SuperTimer.wait_time = SUPER_DURATION
 	
 func _process(delta):
+	super_percentage += delta * 100 / TIME_TO_FILL_SUPER
+	super_percentage = clamp(super_percentage, 0, 100)
 	get_input(delta)
 	move_and_slide()
 
@@ -69,14 +71,11 @@ func get_input(delta):
 		
 	if input_direction.length() != 0:
 		velocity += input_direction * THRUST_FORCE * delta
-		super_percentage += delta * 100 / TIME_TO_FILL_SUPER
-		super_percentage = clamp(super_percentage, 0, 100)
 	else:
 		velocity += -velocity.normalized() * RETARDING_FORCE * delta
 	
 	velocity = clamp(velocity, Vector2.ZERO, velocity.limit_length(MAX_VELOCITY_MAGNITUDE))
 
-	
 func on_hit(damage):
 	hp -= damage
 	hit.emit(damage)
@@ -96,7 +95,6 @@ func freeze():
 
 func unfreeze():
 	frozen = false
-
 
 func _on_visibility_notifier_screen_exited():
 	#player_exited_screen.emit()
