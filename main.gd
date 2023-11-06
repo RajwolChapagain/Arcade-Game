@@ -68,9 +68,11 @@ func on_player2_entered_screen():
 	$HUD.make_p2_offscreen_timer_invisible()
 	
 func on_player1_died():
+	$HUD.decrease_p1_health(100)
 	on_game_over("Player2")
 
 func on_player2_died():
+	$HUD.decrease_p2_health(100)	
 	on_game_over("Player1")
 
 func on_game_over(winner):
