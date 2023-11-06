@@ -19,6 +19,8 @@ extends CharacterBody2D
 		return super_percentage
 	set(value):
 		super_percentage = value
+		super_percentage = clamp(super_percentage, 0, 100)
+		print(super_percentage)
 		super_percentage_changed.emit(super_percentage)
 @export var TIME_TO_FILL_SUPER = 10
 
@@ -41,7 +43,6 @@ func _ready():
 	
 func _process(delta):
 	super_percentage += delta * 100 / TIME_TO_FILL_SUPER
-	super_percentage = clamp(super_percentage, 0, 100)
 	get_input(delta)
 	move_and_slide()
 
@@ -79,6 +80,7 @@ func get_input(delta):
 func on_hit(damage):
 	hp -= damage
 	hit.emit(damage)
+	super_percentage += 10
 	if hp <= 0:
 		die()
 		
