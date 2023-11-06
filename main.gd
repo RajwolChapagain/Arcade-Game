@@ -31,11 +31,11 @@ func on_player_fired_bullet(bullet_scene, direction, location, bullet_layer):
 
 func on_player1_hit(damage):
 	$HUD.decrease_p1_health(damage)
-	$Ship2.super_percentage += 5
+	$Ship2.super_percentage += damage / 2
 	
 func on_player2_hit(damage):
 	$HUD.decrease_p2_health(damage)
-	$Ship.super_percentage += 5	
+	$Ship.super_percentage += damage / 2
 
 func on_player1_super_percentage_changed(new_super_percentage):
 	$HUD.update_p1_super_bar(new_super_percentage)

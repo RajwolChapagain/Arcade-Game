@@ -20,7 +20,6 @@ extends CharacterBody2D
 	set(value):
 		super_percentage = value
 		super_percentage = clamp(super_percentage, 0, 100)
-		print(super_percentage)
 		super_percentage_changed.emit(super_percentage)
 @export var TIME_TO_FILL_SUPER = 10
 
@@ -80,7 +79,7 @@ func get_input(delta):
 func on_hit(damage):
 	hp -= damage
 	hit.emit(damage)
-	super_percentage += 10
+	super_percentage += damage
 	if hp <= 0:
 		die()
 		
