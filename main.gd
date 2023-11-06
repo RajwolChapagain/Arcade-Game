@@ -13,6 +13,14 @@ func _ready():
 	$Ship.player_entered_screen.connect(on_player1_entered_screen)
 	$Ship2.player_exited_screen.connect(on_player2_exited_screen)
 	$Ship2.player_entered_screen.connect(on_player2_entered_screen)
+
+	randomize()
+	var randX = randi_range(0, 100)
+	var randY = randi_range(-1000, 1000)
+	$Ship.position += Vector2(randX, randY)
+	randX = randi_range(0, -1000)
+	randY = randi_range(-1000, 1000)
+	$Ship2.position += Vector2(randX, randY)
 	
 func _physics_process(delta):
 	if not $P1OffscreenTimer.is_stopped():
