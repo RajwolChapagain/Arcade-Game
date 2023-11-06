@@ -31,9 +31,11 @@ func on_player_fired_bullet(bullet_scene, direction, location, bullet_layer):
 
 func on_player1_hit(damage):
 	$HUD.decrease_p1_health(damage)
+	$Ship2.super_percentage += damage / 2
 	
 func on_player2_hit(damage):
 	$HUD.decrease_p2_health(damage)
+	$Ship.super_percentage += damage / 2
 
 func on_player1_super_percentage_changed(new_super_percentage):
 	$HUD.update_p1_super_bar(new_super_percentage)
@@ -73,8 +75,3 @@ func _on_p_1_offscreen_timer_timeout():
 func _on_p_2_offscreen_timer_timeout():
 	$HUD.update_p2_offscreen_timer(0)	
 	$Ship2.on_hit(100)
-	#🛑 Create two branches of the project where 5 second rule saps or zaps
-	#the health. 3 scenarios:
-	#1) At the end of 5 seconds, zap
-	#2) At the end of 5 seconds, sap
-	#3) Start sapping immediately after exiting

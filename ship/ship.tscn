@@ -1,13 +1,30 @@
-[gd_scene load_steps=4 format=3 uid="uid://dsgskm8hx8n3"]
+[gd_scene load_steps=6 format=3 uid="uid://dsgskm8hx8n3"]
 
 [ext_resource type="Script" path="res://ship/ship.gd" id="1_5xbcq"]
 [ext_resource type="Texture2D" uid="uid://b0n774p4wqiic" path="res://ship/ship_sprite.png" id="2_qaab8"]
+[ext_resource type="Texture2D" uid="uid://ci8d2ridgh8a6" path="res://ship/shield.png" id="3_j0chd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jmyd8"]
+radius = 136.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_18nrc"]
 size = Vector2(190, 122)
 
 [node name="Ship" type="CharacterBody2D"]
 script = ExtResource("1_5xbcq")
+
+[node name="Shield" type="Area2D" parent="."]
+visible = false
+collision_layer = 4
+collision_mask = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Shield"]
+scale = Vector2(1.29524, 1.29524)
+texture = ExtResource("3_j0chd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shield"]
+shape = SubResource("CircleShape2D_jmyd8")
+debug_color = Color(0.658824, 0.509804, 0.235294, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
@@ -25,6 +42,10 @@ one_shot = true
 [node name="VisibilityNotifier" type="VisibleOnScreenNotifier2D" parent="."]
 scale = Vector2(9.7, 6.1)
 
+[node name="ShieldTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="SuperTimer" to="." method="_on_super_timer_timeout"]
 [connection signal="screen_entered" from="VisibilityNotifier" to="." method="_on_visibility_notifier_screen_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier" to="." method="_on_visibility_notifier_screen_exited"]
+[connection signal="timeout" from="ShieldTimer" to="." method="_on_shield_timer_timeout"]
