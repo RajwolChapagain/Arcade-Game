@@ -24,6 +24,7 @@ UP_STRING = "p2_up"
 DOWN_STRING = "p2_down"
 FIRE_STRING = "p2_fire"
 SUPER_STRING = "p2_super"
+SHIELD_STRING = "p2_shield"
 BULLET_LAYER = 1
 metadata/_edit_group_ = true
 

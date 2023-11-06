@@ -87,6 +87,8 @@ func get_input(delta):
 	velocity = clamp(velocity, Vector2.ZERO, velocity.limit_length(MAX_VELOCITY_MAGNITUDE))
 
 func on_hit(damage):
+	if shield_is_active:
+		return
 	hp -= damage
 	hit.emit(damage)
 	super_percentage += damage
