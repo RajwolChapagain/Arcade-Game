@@ -25,7 +25,6 @@ extends CharacterBody2D
 		super_percentage_changed.emit(super_percentage)
 @export var TIME_TO_FILL_SUPER = 10
 
-var thrust_speed = 0
 var frozen = false#might be obsolete
 var shield_button_is_pressed = false
 var shield_is_active = false
@@ -56,7 +55,6 @@ func _input(event):
 		
 	if event.is_action_pressed(FIRE_STRING):
 		bullet_fired.emit(BULLET_SCENE, transform.x, global_position, BULLET_LAYER)
-		thrust_speed -= SPEED_DECREASE_ON_FIRE
 	
 	if event.is_action_pressed(SUPER_STRING) and super_percentage == 100:
 		super_percentage = 0
@@ -77,14 +75,20 @@ func get_input(delta):
 
 	if input_direction.length() != 0:
 		var tween = get_tree().create_tween()
-		tween.tween_property(self, "rotation", input_direction.angle(), 1)
+		tween.tween_property(self, "rotation", input_direction.angle(), 0.5)
 		
 	if input_direction.length() != 0:
 		velocity += input_direction * THRUST_FORCE * delta
 	else:
 		velocity += -velocity.normalized() * RETARDING_FORCE * delta
+			
+	velocity = clamp(velocity, Vector2.ZERO, velocity.limit_length(MAX_VELOCITY_MAGNITUDE))	
 	
-	velocity = clamp(velocity, Vector2.ZERO, velocity.limit_length(MAX_VELOCITY_MAGNITUDE))
+	
+	if velocity.length() < 10 and input_direction.length() == 0:
+		velocity = Vector2.ZERO
+	
+	print(velocity)
 
 func on_hit(damage):
 	if shield_is_active:
