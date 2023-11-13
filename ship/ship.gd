@@ -83,12 +83,10 @@ func get_input(delta):
 		velocity += -velocity.normalized() * RETARDING_FORCE * delta
 			
 	velocity = clamp(velocity, Vector2.ZERO, velocity.limit_length(MAX_VELOCITY_MAGNITUDE))	
-	
-	
+		
 	if velocity.length() < 10 and input_direction.length() == 0:
 		velocity = Vector2.ZERO
 	
-	print(velocity)
 
 func on_hit(damage):
 	if shield_is_active:
