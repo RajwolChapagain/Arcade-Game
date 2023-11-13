@@ -36,14 +36,3 @@ offset_left = -2000.0
 offset_top = -1500.0
 offset_right = 2000.0
 offset_bottom = 1500.0
-
-[node name="P1OffscreenTimer" type="Timer" parent="."]
-wait_time = 5.0
-one_shot = true
-
-[node name="P2OffscreenTimer" type="Timer" parent="."]
-wait_time = 5.0
-one_shot = true
-
-[connection signal="timeout" from="P1OffscreenTimer" to="." method="_on_p_1_offscreen_timer_timeout"]
-[connection signal="timeout" from="P2OffscreenTimer" to="." method="_on_p_2_offscreen_timer_timeout"]

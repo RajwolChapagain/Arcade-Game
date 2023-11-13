@@ -46,6 +46,5 @@ scale = Vector2(9.7, 6.1)
 one_shot = true
 
 [connection signal="timeout" from="SuperTimer" to="." method="_on_super_timer_timeout"]
-[connection signal="screen_entered" from="VisibilityNotifier" to="." method="_on_visibility_notifier_screen_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier" to="." method="_on_visibility_notifier_screen_exited"]
 [connection signal="timeout" from="ShieldTimer" to="." method="_on_shield_timer_timeout"]

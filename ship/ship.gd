@@ -36,8 +36,6 @@ signal bullet_fired(bullet, direction, location, bullet_layer)
 signal hit(damage)
 signal super_percentage_changed(new_super_percentage)
 signal player_died
-signal player_exited_screen
-signal player_entered_screen
 
 func _ready():
 	$Sprite2D.texture = SHIP_SPRITE
@@ -115,12 +113,7 @@ func unfreeze():
 	frozen = false
 
 func _on_visibility_notifier_screen_exited():
-	#player_exited_screen.emit()
 	position = -position
-	
-func _on_visibility_notifier_screen_entered():
-	#player_entered_screen.emit()
-	pass
 	
 func activate_shield():
 	$Shield.visible = true
@@ -130,6 +123,5 @@ func deactivate_shield():
 	$Shield.visible = false
 	shield_is_active = false
 	
-
 func _on_shield_timer_timeout():
 	deactivate_shield()
