@@ -25,9 +25,11 @@ extends CharacterBody2D
 		super_percentage_changed.emit(super_percentage)
 @export var TIME_TO_FILL_SUPER = 10
 
-var frozen = false#might be obsolete
 var shield_button_is_pressed = false
 var shield_is_active = false
+var dash_time = 0.1
+var dash_distance = 200
+var is_dashing = false
 
 var BULLET_SCENE = preload("res://bullet/bullet.tscn")
 var SUPER_SCENE = preload("res://ship/super.tscn")
@@ -46,12 +48,12 @@ func _process(delta):
 	get_input(delta)
 	move_and_slide()
 
-func _input(event):
-	if frozen:
-		return
-		
+func _input(event):		
 	if event.is_action_pressed(FIRE_STRING):
-		bullet_fired.emit(BULLET_SCENE, transform.x, global_position, BULLET_LAYER)
+		if shield_button_is_pressed:
+			dash()
+		else:
+			bullet_fired.emit(BULLET_SCENE, transform.x, global_position, BULLET_LAYER)
 	
 	if event.is_action_pressed(SUPER_STRING) and super_percentage == 100:
 		super_percentage = 0
@@ -64,8 +66,7 @@ func _input(event):
 			add_child(super_instance)
 			super_instance.collision_layer = BULLET_LAYER
 			super_instance.collision_mask = BULLET_LAYER
-			freeze()
-	
+			
 func get_input(delta):
 	shield_button_is_pressed = Input.is_action_pressed(SHIELD_STRING)
 	var input_direction = Input.get_vector(LEFT_STRING, RIGHT_STRING, UP_STRING, DOWN_STRING)
@@ -88,7 +89,6 @@ func get_input(delta):
 	if velocity.length() < 10 and input_direction.length() == 0:
 		velocity = Vector2.ZERO
 	
-
 func on_hit(damage):
 	if shield_is_active:
 		return
@@ -104,13 +104,6 @@ func die():
 
 func _on_super_timer_timeout():
 	remove_child($Super)
-	unfreeze()
-	
-func freeze():
-	frozen = true
-
-func unfreeze():
-	frozen = false
 
 func _on_visibility_notifier_screen_exited():
 	position = -position
@@ -125,3 +118,6 @@ func deactivate_shield():
 	
 func _on_shield_timer_timeout():
 	deactivate_shield()
+
+func dash():
+	pass
