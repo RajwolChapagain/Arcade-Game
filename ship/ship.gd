@@ -16,6 +16,7 @@ extends CharacterBody2D
 @export var SPEED_DECREASE_ON_FIRE = 250
 @export var SUPER_DURATION = 1
 @export var SHIELD_DURATION = 2
+@export var TIME_TO_FILL_SUPER = 5
 @export var super_percentage = 0:
 	get:
 		return super_percentage
@@ -23,7 +24,6 @@ extends CharacterBody2D
 		super_percentage = value
 		super_percentage = clamp(super_percentage, 0, 100)
 		super_percentage_changed.emit(super_percentage)
-@export var TIME_TO_FILL_SUPER = 10
 
 var shield_button_is_pressed = false
 var shield_is_active = false
