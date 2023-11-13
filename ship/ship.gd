@@ -45,7 +45,6 @@ func _ready():
 	$ShieldTimer.wait_time = SHIELD_DURATION
 	
 func _process(delta):
-	super_percentage += delta * 100 / TIME_TO_FILL_SUPER
 	get_input(delta)
 	move_and_slide()
 
@@ -73,17 +72,21 @@ func get_input(delta):
 	shield_button_is_pressed = Input.is_action_pressed(SHIELD_STRING)
 	var input_direction = Input.get_vector(LEFT_STRING, RIGHT_STRING, UP_STRING, DOWN_STRING)
 
+	#---------------Rotation---------------
 	if input_direction.length() != 0:
 		var tween = get_tree().create_tween()
 		tween.tween_property(self, "rotation", input_direction.angle(), 0.5)
-		
+	
+	#-------------Acceleration and Deceleration-------------
 	if input_direction.length() != 0:
 		velocity += input_direction * THRUST_FORCE * delta
 	else:
+		super_percentage += delta * 100 / TIME_TO_FILL_SUPER
 		velocity += -velocity.normalized() * RETARDING_FORCE * delta
 			
 	velocity = clamp(velocity, Vector2.ZERO, velocity.limit_length(MAX_VELOCITY_MAGNITUDE))	
 		
+	#--------------Set velocity to 0 if it is very small-----------
 	if velocity.length() < 10 and input_direction.length() == 0:
 		velocity = Vector2.ZERO
 	
