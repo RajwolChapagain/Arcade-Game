@@ -1,7 +1,7 @@
 extends CharacterBody2D
  
 @export var THRUST_FORCE = 1000 #Takes 3 seconds to reach max velocity w/ MAX_VELOCITY_MAGNITUDE = 3000
-@export var MAX_VELOCITY_MAGNITUDE = 3000
+@export var MAX_VELOCITY_MAGNITUDE = 1500 #3000
 @export var RETARDING_FORCE = 750 #Takes 4 seconds to reach min from a MAX_VELOCITY_MAGNITUDE of 3000
 @export var SHIP_SPRITE : Texture2D = preload("res://ship/ship_sprite.png")
 @export var hp = 100
