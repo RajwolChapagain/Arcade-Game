@@ -28,7 +28,8 @@ extends CharacterBody2D
 var shield_button_is_pressed = false
 var shield_is_active = false
 var dash_time = 0.1
-var dash_distance = 200
+var dash_distance = 400
+var dash_speed = dash_distance /  dash_time
 var is_dashing = false
 
 var BULLET_SCENE = preload("res://bullet/bullet.tscn")
@@ -49,6 +50,9 @@ func _process(delta):
 	move_and_slide()
 
 func _input(event):		
+	if is_dashing:
+		return
+		
 	if event.is_action_pressed(FIRE_STRING):
 		if shield_button_is_pressed:
 			dash()
@@ -68,6 +72,9 @@ func _input(event):
 			super_instance.collision_mask = BULLET_LAYER
 			
 func get_input(delta):
+	if is_dashing:
+		return
+		
 	shield_button_is_pressed = Input.is_action_pressed(SHIELD_STRING)
 	var input_direction = Input.get_vector(LEFT_STRING, RIGHT_STRING, UP_STRING, DOWN_STRING)
 
@@ -120,4 +127,8 @@ func _on_shield_timer_timeout():
 	deactivate_shield()
 
 func dash():
-	pass
+	velocity = transform.x * dash_speed
+	is_dashing = true
+	await get_tree().create_timer(dash_time).timeout
+	is_dashing = false
+	velocity = Vector2.ZERO
