@@ -48,6 +48,9 @@ func _ready():
 func _process(delta):
 	get_input(delta)
 	move_and_slide()
+	
+	if velocity.length() < MAX_VELOCITY_MAGNITUDE - 5: #Subtracting by 5 because length is not always exactly equal to 1500
+		super_percentage += delta * 100 / TIME_TO_FILL_SUPER		
 
 func _input(event):		
 	if is_dashing:
@@ -87,7 +90,7 @@ func get_input(delta):
 	if input_direction.length() != 0:
 		velocity += input_direction * THRUST_FORCE * delta
 	else:
-		super_percentage += delta * 100 / TIME_TO_FILL_SUPER
+#		super_percentage += delta * 100 / TIME_TO_FILL_SUPER
 		velocity += -velocity.normalized() * RETARDING_FORCE * delta
 			
 	velocity = clamp(velocity, Vector2.ZERO, velocity.limit_length(MAX_VELOCITY_MAGNITUDE))	
