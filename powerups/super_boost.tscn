@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7d7l820r8ga4"]
+
+[ext_resource type="Texture2D" uid="uid://7a7no351hqif" path="res://powerups/super_boost.svg" id="1_sghil"]
+[ext_resource type="Script" path="res://powerups/super_boost.gd" id="1_sk75v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lmouy"]
+size = Vector2(112, 112)
+
+[node name="SuperBoost" type="Area2D"]
+script = ExtResource("1_sk75v")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_sghil")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_lmouy")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

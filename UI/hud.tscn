@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://0uuiimj7834t"]
 
-[ext_resource type="PackedScene" uid="uid://l4c7xcvflq5r" path="res://UI/health_bar.tscn" id="1_65ybp"]
-[ext_resource type="Script" path="res://UI/hud.gd" id="1_wib3k"]
+[ext_resource type="Script" path="res://ui/hud.gd" id="1_2eusb"]
+[ext_resource type="PackedScene" uid="uid://l4c7xcvflq5r" path="res://UI/health_bar.tscn" id="2_7d51a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eqrp0"]
 bg_color = Color(0.670588, 0.603922, 0.266667, 1)
@@ -14,16 +14,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 0
-script = ExtResource("1_wib3k")
+script = ExtResource("1_2eusb")
 
-[node name="HealthBar" parent="." instance=ExtResource("1_65ybp")]
+[node name="HealthBar" parent="." instance=ExtResource("2_7d51a")]
 layout_mode = 1
 offset_left = 100.0
 offset_top = 100.0
 offset_right = 608.0
 offset_bottom = 173.0
 
-[node name="HealthBar2" parent="." instance=ExtResource("1_65ybp")]
+[node name="HealthBar2" parent="." instance=ExtResource("2_7d51a")]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -34,7 +34,7 @@ offset_right = -150.0
 offset_bottom = 173.0
 grow_horizontal = 0
 
-[node name="SuperBar" parent="." instance=ExtResource("1_65ybp")]
+[node name="SuperBar" parent="." instance=ExtResource("2_7d51a")]
 layout_mode = 1
 offset_left = 100.0
 offset_top = 213.0
@@ -43,7 +43,7 @@ offset_bottom = 260.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_eqrp0")
 value = 0.0
 
-[node name="SuperBar2" parent="." instance=ExtResource("1_65ybp")]
+[node name="SuperBar2" parent="." instance=ExtResource("2_7d51a")]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
