@@ -60,7 +60,7 @@ func _input(event):
 		if shield_button_is_pressed:
 			dash()
 		else:
-			bullet_fired.emit(BULLET_SCENE, transform.x, global_position, BULLET_LAYER)
+			bullet_fired.emit(BULLET_SCENE, transform.x, $BulletOrigin.global_position, BULLET_LAYER)
 	
 	if event.is_action_pressed(SUPER_STRING) and super_percentage == 100:
 		super_percentage = 0
