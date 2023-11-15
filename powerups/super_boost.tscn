@@ -3,16 +3,17 @@
 [ext_resource type="Texture2D" uid="uid://7a7no351hqif" path="res://powerups/super_boost.svg" id="1_sghil"]
 [ext_resource type="Script" path="res://powerups/super_boost.gd" id="1_sk75v"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lmouy"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u4hkp"]
 size = Vector2(112, 112)
 
 [node name="SuperBoost" type="Area2D"]
+collision_mask = 3
 script = ExtResource("1_sk75v")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_sghil")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_lmouy")
+shape = SubResource("RectangleShape2D_u4hkp")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

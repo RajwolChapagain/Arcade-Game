@@ -10,9 +10,7 @@ radius = 136.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_18nrc"]
 size = Vector2(190, 122)
 
-[node name="Ship" type="CharacterBody2D"]
-collision_layer = 5
-collision_mask = 5
+[node name="Ship" type="CharacterBody2D" groups=["ship"]]
 script = ExtResource("1_5xbcq")
 
 [node name="Shield" type="Area2D" parent="."]

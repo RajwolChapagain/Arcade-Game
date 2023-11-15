@@ -135,3 +135,4 @@ func dash():
 	await get_tree().create_timer(dash_time).timeout
 	is_dashing = false
 	velocity = Vector2.ZERO
+

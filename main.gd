@@ -20,8 +20,8 @@ func _ready():
 		
 func on_player_fired_bullet(bullet_scene, direction, location, bullet_layer):
 	var bullet = bullet_scene.instantiate()
-	add_child(bullet)
 	bullet.global_position = location
+	add_child(bullet)
 	bullet.set_direction(direction) 
 	bullet.set_collision_layer(bullet_layer)
 	bullet.set_collision_mask(bullet_layer)
@@ -50,3 +50,9 @@ func on_player2_died():
 
 func on_game_over(winner):
 	print(winner + " wins!")
+
+func _on_super_boost_super_boost_collected(player, super_gain):
+	if player == 1:
+		$Ship.super_percentage += super_gain
+	else:
+		$Ship2.super_percentage += super_gain
