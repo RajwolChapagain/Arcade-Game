@@ -3,6 +3,8 @@ extends Area2D
 const super_gain = 50
 signal super_boost_collected(player, super_gain)
 
+var collected = super_boost_collected
+
 func _on_body_entered(body):
 	if body.is_in_group("ship"):
 		if body.get_collision_layer_value(1):

@@ -56,3 +56,7 @@ func _on_super_boost_super_boost_collected(player, super_gain):
 		$Ship.super_percentage += super_gain
 	else:
 		$Ship2.super_percentage += super_gain
+
+func _on_spawner_powerup_spawned(powerup):
+	if powerup.name == "SuperBoost":
+		powerup.collected.connect(_on_super_boost_super_boost_collected)
