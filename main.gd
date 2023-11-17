@@ -9,6 +9,9 @@ func _ready():
 	$Ship2.super_percentage_changed.connect(on_player2_super_percentage_changed)
 	$Ship.player_died.connect(on_player1_died)
 	$Ship2.player_died.connect(on_player2_died)
+	
+	var offset = 80
+	$Spawner.set_path_points(Vector2(-2000 - offset, -1500 - offset), Vector2(2000 + offset, -1500 - offset), Vector2(2000 + offset, 1500 + offset), Vector2(-2000 - offset, 1500 + offset))
 
 	randomize()
 	var randX = randi_range(0, 100)

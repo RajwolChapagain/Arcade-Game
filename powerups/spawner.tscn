@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://d4gsdtgxa50oe"]
+[gd_scene load_steps=3 format=3 uid="uid://d4gsdtgxa50oe"]
 
 [ext_resource type="Script" path="res://powerups/spawner.gd" id="1_ck1x4"]
+
+[sub_resource type="Curve2D" id="Curve2D_favat"]
 
 [node name="Spawner" type="Node2D"]
 script = ExtResource("1_ck1x4")
@@ -8,5 +10,12 @@ script = ExtResource("1_ck1x4")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0
 autostart = true
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_favat")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-64, 16)
+rotation = -0.404892
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
