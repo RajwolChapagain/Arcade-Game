@@ -54,12 +54,12 @@ func on_player2_died():
 func on_game_over(winner):
 	print(winner + " wins!")
 
-func _on_super_boost_super_boost_collected(player, super_gain):
+func _on_super_boost_collected(player, values):
 	if player == 1:
-		$Ship.super_percentage += super_gain
+		$Ship.super_percentage += values[0]
 	else:
-		$Ship2.super_percentage += super_gain
+		$Ship2.super_percentage +=  values[0]
 
 func _on_spawner_powerup_spawned(powerup):
 	if powerup.is_in_group("super_boost"):
-		powerup.collected.connect(_on_super_boost_super_boost_collected)
+		powerup.collected.connect(_on_super_boost_collected)
