@@ -8,6 +8,14 @@ func _on_timer_timeout():
 	var power_up = super_boost.instantiate()
 	$Path2D/PathFollow2D.progress_ratio = randf()
 	power_up.global_position = $Path2D/PathFollow2D.position
+
+	var direction = $Path2D/PathFollow2D.rotation + PI / 2
+	direction += randf_range(- PI / 4, PI / 4)
+	power_up.rotation = direction
+	
+	var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
+	power_up.linear_velocity = velocity.rotated(direction)
+	
 	add_child(power_up)
 	powerup_spawned.emit(power_up)
 

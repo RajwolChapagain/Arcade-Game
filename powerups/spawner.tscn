@@ -15,7 +15,7 @@ autostart = true
 curve = SubResource("Curve2D_favat")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(-64, 16)
-rotation = -0.404892
+position = Vector2(-1712, 1472)
+rotation = -1.61288
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

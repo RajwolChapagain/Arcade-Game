@@ -4,7 +4,11 @@ const super_gain = 50
 signal super_boost_collected(player, super_gain)
 
 var collected = super_boost_collected
+var linear_velocity = 0
 
+func _physics_process(delta):
+	position += linear_velocity * delta
+	
 func _on_body_entered(body):
 	if body.is_in_group("ship"):
 		if body.get_collision_layer_value(1):
