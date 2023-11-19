@@ -39,3 +39,5 @@ offset_right = 2000.0
 offset_bottom = 1500.0
 
 [node name="Spawner" parent="." instance=ExtResource("5_0xksv")]
+
+[connection signal="powerup_spawned" from="Spawner" to="." method="_on_spawner_powerup_spawned"]

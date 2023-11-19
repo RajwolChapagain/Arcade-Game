@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u4hkp"]
 size = Vector2(112, 112)
 
-[node name="SuperBoost" type="Area2D"]
+[node name="SuperBoost" type="Area2D" groups=["super_boost"]]
 collision_mask = 3
 script = ExtResource("1_sk75v")
 
