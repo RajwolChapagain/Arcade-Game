@@ -65,6 +65,8 @@ func _on_spawner_powerup_spawned(powerup):
 		powerup.collected.connect(_on_super_boost_collected)
 	elif powerup.is_in_group("hp_boost"):
 		powerup.collected.connect(_on_hp_boost_collected)
+	elif powerup.is_in_group("acceleration_boost"):
+		powerup.collected.connect(_on_accleration_boost_collected)
 	
 func _on_super_boost_collected(player, values):
 	if player == 1:
@@ -77,3 +79,13 @@ func _on_hp_boost_collected(player, values):
 		$Ship.hp += values[0]
 	else:
 		$Ship2.hp += values[0]
+
+func _on_accleration_boost_collected(player, values):
+	if player == 1:
+		$Ship.THRUST_FORCE += values[0]
+		await get_tree().create_timer(values[1]).timeout
+		$Ship.THRUST_FORCE -= values[0]
+	else:
+		$Ship2.THRUST_FORCE += values[0]
+		await get_tree().create_timer(values[1]).timeout
+		$Ship2.THRUST_FORCE -= values[0]

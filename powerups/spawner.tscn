@@ -1,14 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://d4gsdtgxa50oe"]
+[gd_scene load_steps=6 format=3 uid="uid://d4gsdtgxa50oe"]
 
 [ext_resource type="Script" path="res://powerups/spawner.gd" id="1_ck1x4"]
 [ext_resource type="PackedScene" uid="uid://c0sitt3o03ayv" path="res://powerups/hp_boost.tscn" id="2_e3ppi"]
 [ext_resource type="PackedScene" uid="uid://c7d7l820r8ga4" path="res://powerups/super_boost.tscn" id="2_qvy86"]
+[ext_resource type="PackedScene" uid="uid://c6rjuq2m3juqb" path="res://powerups/acceleration_boost.tscn" id="4_0yvf8"]
 
 [sub_resource type="Curve2D" id="Curve2D_favat"]
 
 [node name="Spawner" type="Node2D"]
 script = ExtResource("1_ck1x4")
-powerups = [ExtResource("2_qvy86"), ExtResource("2_e3ppi")]
+powerups = [ExtResource("2_qvy86"), ExtResource("2_e3ppi"), ExtResource("4_0yvf8")]
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6rjuq2m3juqb"]
+
+[ext_resource type="PackedScene" uid="uid://8le43nudq3ms" path="res://powerups/powerup_component.tscn" id="1_l2yol"]
+[ext_resource type="Texture2D" uid="uid://b4r8jba0dl0te" path="res://powerups/acceleration_boost.png" id="2_8j8n2"]
+
+[node name="AccelerationBoost" groups=["acceleration_boost"] instance=ExtResource("1_l2yol")]
+emitted_values = [1000, 5]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_8j8n2")
+
+[node name="CollisionShape2D" parent="." index="1" groups=["acceleration_boost"]]
