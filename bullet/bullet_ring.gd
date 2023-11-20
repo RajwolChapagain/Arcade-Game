@@ -1,6 +1,6 @@
 extends Node2D
 
-const RADIUS = 100
+const RADIUS = 200
 const angular_velocity = 360
 
 func _ready():
@@ -13,5 +13,10 @@ func _ready():
 		child.is_in_ring = true
 		current_angle += angle
 
+func set_bullets_layer(layer):
+	for child in get_children():
+		child.set_collision_layer(layer)
+		child.set_collision_mask(layer)
+		
 func _physics_process(delta):
 	rotation_degrees += angular_velocity * delta

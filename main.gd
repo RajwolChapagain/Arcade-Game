@@ -11,6 +11,8 @@ func _ready():
 	$Ship2.super_percentage_changed.connect(on_player2_super_percentage_changed)
 	$Ship.player_died.connect(on_player1_died)
 	$Ship2.player_died.connect(on_player2_died)
+	$Ship.bullet_ring_activated.connect(on_player1_bullet_ring_activated)
+	$Ship2.bullet_ring_activated.connect(on_player2_bullet_ring_activated)
 	
 	var offset = 80
 	$Spawner.set_path_points(Vector2(-2000 - offset, -1500 - offset), Vector2(2000 + offset, -1500 - offset), Vector2(2000 + offset, 1500 + offset), Vector2(-2000 - offset, 1500 + offset))
@@ -48,6 +50,18 @@ func on_player1_super_percentage_changed(new_super_percentage):
 
 func on_player2_super_percentage_changed(new_super_percentage):
 	$HUD.update_p2_super_bar(new_super_percentage)
+	
+func on_player1_bullet_ring_activated(bullet_ring_scene, bullet_layer):
+	var bullet_ring = bullet_ring_scene.instantiate()
+	bullet_ring.global_position = $Ship.global_position
+	bullet_ring.set_bullets_layer(bullet_layer)
+	add_child(bullet_ring)
+
+func on_player2_bullet_ring_activated(bullet_ring_scene, bullet_layer):
+	var bullet_ring = bullet_ring_scene.instantiate()
+	bullet_ring.global_position = $Ship2.global_position
+	bullet_ring.set_bullets_layer(bullet_layer)
+	add_child(bullet_ring)
 	
 func on_player1_died():
 	$HUD.set_p1_health(0)

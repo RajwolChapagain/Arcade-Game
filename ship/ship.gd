@@ -41,9 +41,11 @@ var dash_speed = dash_distance /  dash_time
 var is_dashing = false
 
 var BULLET_SCENE = preload("res://bullet/bullet.tscn")
+var BULLET_RING_SCENE = preload("res://bullet/bullet_ring.tscn")
 var SUPER_SCENE = preload("res://ship/super.tscn")
 
 signal bullet_fired(bullet, direction, location, bullet_layer)
+signal bullet_ring_activated(BULLET_RING_SCENE, position, bullet_layer)
 signal hit(damage)
 signal super_percentage_changed(new_super_percentage)
 signal hp_changed(new_hp)
@@ -74,8 +76,11 @@ func _input(event):
 	if event.is_action_pressed(SUPER_STRING) and super_percentage == 100:
 		super_percentage = 0
 		if shield_button_is_pressed:
-			$ShieldTimer.start()
-			activate_shield()
+			if fire_button_is_pressed:
+				bullet_ring_activated.emit(BULLET_RING_SCENE, BULLET_LAYER)
+			else:
+				$ShieldTimer.start()
+				activate_shield()
 		elif fire_button_is_pressed:
 			fire_stream_of_bullets()
 		else:
@@ -152,3 +157,4 @@ func fire_stream_of_bullets():
 	for i in range(10):
 		bullet_fired.emit(BULLET_SCENE, transform.x, $BulletOrigin.global_position, BULLET_LAYER)
 		await get_tree().create_timer(0.05).timeout
+
