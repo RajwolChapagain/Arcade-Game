@@ -1,10 +1,10 @@
 extends Control
 
-func decrease_p1_health(damage):
-	$HealthBar.value -= damage
+func set_p1_health(hp):
+	$HealthBar.value = hp
 	
-func decrease_p2_health(damage):
-	$HealthBar2.value -= damage
+func set_p2_health(hp):
+	$HealthBar2.value = hp
 
 func update_p1_super_bar(new_percentage):
 	$SuperBar.value = new_percentage

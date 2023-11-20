@@ -4,7 +4,14 @@ extends CharacterBody2D
 @export var MAX_VELOCITY_MAGNITUDE = 1500 #3000
 @export var RETARDING_FORCE = 750 #Takes 4 seconds to reach min from a MAX_VELOCITY_MAGNITUDE of 3000
 @export var SHIP_SPRITE : Texture2D = preload("res://ship/ship_sprite.png")
-@export var hp = 100
+@export var hp = 100:
+	get:
+		return hp
+	set(value):
+		hp = value
+		hp = clamp(hp, 0, 100)
+		hp_changed.emit(hp)
+		
 @export var LEFT_STRING = "p1_left"
 @export var RIGHT_STRING = "p1_right"
 @export var UP_STRING = "p1_up"
@@ -38,6 +45,7 @@ var SUPER_SCENE = preload("res://ship/super.tscn")
 signal bullet_fired(bullet, direction, location, bullet_layer)
 signal hit(damage)
 signal super_percentage_changed(new_super_percentage)
+signal hp_changed(new_hp)
 signal player_died
 
 func _ready():

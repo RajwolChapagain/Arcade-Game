@@ -5,6 +5,8 @@ func _ready():
 	$Ship2.bullet_fired.connect(on_player_fired_bullet)
 	$Ship.hit.connect(on_player1_hit)
 	$Ship2.hit.connect(on_player2_hit)
+	$Ship.hp_changed.connect(on_player1_hp_changed)
+	$Ship2.hp_changed.connect(on_player2_hp_changed)
 	$Ship.super_percentage_changed.connect(on_player1_super_percentage_changed)	
 	$Ship2.super_percentage_changed.connect(on_player2_super_percentage_changed)
 	$Ship.player_died.connect(on_player1_died)
@@ -30,13 +32,17 @@ func on_player_fired_bullet(bullet_scene, direction, location, bullet_layer):
 	bullet.set_collision_mask(bullet_layer)
 
 func on_player1_hit(damage):
-	$HUD.decrease_p1_health(damage)
 	$Ship2.super_percentage += damage / 2
 	
 func on_player2_hit(damage):
-	$HUD.decrease_p2_health(damage)
 	$Ship.super_percentage += damage / 2
 
+func on_player1_hp_changed(new_hp):
+	$HUD.set_p1_health(new_hp)
+
+func on_player2_hp_changed(new_hp):
+	$HUD.set_p2_health(new_hp)
+	
 func on_player1_super_percentage_changed(new_super_percentage):
 	$HUD.update_p1_super_bar(new_super_percentage)
 
@@ -54,12 +60,20 @@ func on_player2_died():
 func on_game_over(winner):
 	print(winner + " wins!")
 
+func _on_spawner_powerup_spawned(powerup):
+	if powerup.is_in_group("super_boost"):
+		powerup.collected.connect(_on_super_boost_collected)
+	elif powerup.is_in_group("hp_boost"):
+		powerup.collected.connect(_on_hp_boost_collected)
+	
 func _on_super_boost_collected(player, values):
 	if player == 1:
 		$Ship.super_percentage += values[0]
 	else:
 		$Ship2.super_percentage +=  values[0]
-
-func _on_spawner_powerup_spawned(powerup):
-	if powerup.is_in_group("super_boost"):
-		powerup.collected.connect(_on_super_boost_collected)
+	
+func _on_hp_boost_collected(player, values):
+	if player == 1:
+		$Ship.hp += values[0]
+	else:
+		$Ship2.hp += values[0]

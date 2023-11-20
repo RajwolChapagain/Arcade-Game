@@ -1,11 +1,11 @@
 extends Node2D
 
-var super_boost = preload("res://powerups/super_boost.tscn")
+@export var powerups = []
 
 signal powerup_spawned(power_up)
 
 func _on_timer_timeout():
-	var power_up = super_boost.instantiate()
+	var power_up = powerups.pick_random().instantiate()
 	$Path2D/PathFollow2D.progress_ratio = randf()
 	power_up.global_position = $Path2D/PathFollow2D.position
 
