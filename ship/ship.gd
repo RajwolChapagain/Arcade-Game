@@ -102,7 +102,9 @@ func get_input(delta):
 	#---------------Rotation---------------
 	if input_direction.length() != 0:
 		var tween = get_tree().create_tween()
-		tween.tween_property(self, "rotation", input_direction.angle(), 0.5)
+		
+		var rotation_angle = transform.x.angle_to(input_direction)
+		tween.tween_property(self, "rotation", rotation + rotation_angle, 0.5)
 	
 	#-------------Acceleration and Deceleration-------------
 	if input_direction.length() != 0:
