@@ -33,6 +33,7 @@ extends CharacterBody2D
 		super_percentage_changed.emit(super_percentage)
 
 var shield_button_is_pressed = false
+var fire_button_is_pressed = false
 var shield_is_active = false
 var dash_time = 0.1
 var dash_distance = 400
@@ -75,6 +76,8 @@ func _input(event):
 		if shield_button_is_pressed:
 			$ShieldTimer.start()
 			activate_shield()
+		elif fire_button_is_pressed:
+			fire_stream_of_bullets()
 		else:
 			$SuperTimer.start()
 			var super_instance = SUPER_SCENE.instantiate()
@@ -87,8 +90,10 @@ func get_input(delta):
 		return
 		
 	shield_button_is_pressed = Input.is_action_pressed(SHIELD_STRING)
+	fire_button_is_pressed = Input.is_action_pressed(FIRE_STRING)
+	
 	var input_direction = Input.get_vector(LEFT_STRING, RIGHT_STRING, UP_STRING, DOWN_STRING)
-
+	
 	#---------------Rotation---------------
 	if input_direction.length() != 0:
 		var tween = get_tree().create_tween()
@@ -98,7 +103,6 @@ func get_input(delta):
 	if input_direction.length() != 0:
 		velocity += input_direction * THRUST_FORCE * delta
 	else:
-#		super_percentage += delta * 100 / TIME_TO_FILL_SUPER
 		velocity += -velocity.normalized() * RETARDING_FORCE * delta
 			
 	velocity = clamp(velocity, Vector2.ZERO, velocity.limit_length(MAX_VELOCITY_MAGNITUDE))	
@@ -144,3 +148,7 @@ func dash():
 	is_dashing = false
 	velocity = Vector2.ZERO
 
+func fire_stream_of_bullets():
+	for i in range(10):
+		bullet_fired.emit(BULLET_SCENE, transform.x, $BulletOrigin.global_position, BULLET_LAYER)
+		await get_tree().create_timer(0.05).timeout
