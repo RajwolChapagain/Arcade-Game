@@ -24,7 +24,10 @@ func _ready():
 	randX = randi_range(0, -1000)
 	randY = randi_range(-1000, 1000)
 	$Ship2.position += Vector2(randX, randY)
-		
+	
+func _physics_process(_delta):
+	update_bullet_ring_position()
+	
 func on_player_fired_bullet(bullet_scene, direction, location, bullet_layer):
 	var bullet = bullet_scene.instantiate()
 	bullet.global_position = location
@@ -34,10 +37,12 @@ func on_player_fired_bullet(bullet_scene, direction, location, bullet_layer):
 	bullet.set_collision_mask(bullet_layer)
 
 func on_player1_hit(damage):
-	$Ship2.super_percentage += damage / 2
+	if get_node_or_null("Ship2") != null: #Can happen if bullet hits player after other player has died
+		$Ship2.super_percentage += damage / 2
 	
 func on_player2_hit(damage):
-	$Ship.super_percentage += damage / 2
+	if get_node_or_null("Ship") != null:
+		$Ship.super_percentage += damage / 2
 
 func on_player1_hp_changed(new_hp):
 	$HUD.set_p1_health(new_hp)
@@ -55,20 +60,24 @@ func on_player1_bullet_ring_activated(bullet_ring_scene, bullet_layer):
 	var bullet_ring = bullet_ring_scene.instantiate()
 	bullet_ring.global_position = $Ship.global_position
 	bullet_ring.set_bullets_layer(bullet_layer)
+	bullet_ring.owner_player = 1
 	add_child(bullet_ring)
 
 func on_player2_bullet_ring_activated(bullet_ring_scene, bullet_layer):
 	var bullet_ring = bullet_ring_scene.instantiate()
 	bullet_ring.global_position = $Ship2.global_position
 	bullet_ring.set_bullets_layer(bullet_layer)
+	bullet_ring.owner_player = 2
 	add_child(bullet_ring)
 	
 func on_player1_died():
 	$HUD.set_p1_health(0)
+	delete_bullet_rings(1)
 	on_game_over("Player2")
 
 func on_player2_died():
-	$HUD.set_p2_health(0)	
+	$HUD.set_p2_health(0)
+	delete_bullet_rings(2)
 	on_game_over("Player1")
 
 func on_game_over(winner):
@@ -103,3 +112,18 @@ func _on_accleration_boost_collected(player, values):
 		$Ship2.THRUST_FORCE += values[0]
 		await get_tree().create_timer(values[1]).timeout
 		$Ship2.THRUST_FORCE -= values[0]
+
+func update_bullet_ring_position():
+	for ring in get_tree().get_nodes_in_group("bullet_ring"):
+		if ring.owner_player == 1:
+			if get_node_or_null("Ship") != null:
+				ring.global_position = $Ship.position
+		else:
+			if get_node_or_null("Ship2") != null:
+				ring.global_position = $Ship2.position
+
+func delete_bullet_rings(player):
+	for ring in get_tree().get_nodes_in_group("bullet_ring"):
+		if ring.owner_player == player:
+			ring.queue_free()
+		

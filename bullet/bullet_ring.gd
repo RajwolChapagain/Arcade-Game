@@ -2,6 +2,7 @@ extends Node2D
 
 const RADIUS = 200
 const angular_velocity = 360
+var owner_player = 1
 
 func _ready():
 	var angle = 2 * PI / get_child_count()

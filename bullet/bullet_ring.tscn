@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://bullet/bullet_ring.gd" id="1_3xnj3"]
 [ext_resource type="PackedScene" uid="uid://clheje8yd88pn" path="res://bullet/bullet.tscn" id="2_cy8x2"]
 
-[node name="BulletRing" type="Node2D"]
+[node name="BulletRing" type="Node2D" groups=["bullet_ring"]]
 script = ExtResource("1_3xnj3")
 
 [node name="Bullet" parent="." instance=ExtResource("2_cy8x2")]
