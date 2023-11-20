@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var DAMAGE = 10
 
 var direction = transform.x
+var is_in_ring = false
 
 func _physics_process(delta):
 	var collision = move_and_collide(direction * SPEED * delta)
@@ -17,4 +18,7 @@ func set_direction(new_direction):
 	direction = new_direction
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
+	if is_in_ring:
+		return
+		
 	queue_free()

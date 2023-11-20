@@ -10,6 +10,7 @@ func _ready():
 	
 	for child in get_children():
 		child.position = distance_vector.rotated(current_angle)
+		child.is_in_ring = true
 		current_angle += angle
 
 func _physics_process(delta):
