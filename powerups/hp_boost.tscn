@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://nw60aqglp3p0" path="res://powerups/hp_boost.svg" id="2_p25kq"]
 
 [node name="HPBoost" groups=["hp_boost"] instance=ExtResource("1_pxg01")]
-sprite = ExtResource("2_p25kq")
 emitted_values = [20]
 
 [node name="Sprite2D" parent="." index="0"]

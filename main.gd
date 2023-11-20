@@ -50,11 +50,11 @@ func on_player2_super_percentage_changed(new_super_percentage):
 	$HUD.update_p2_super_bar(new_super_percentage)
 	
 func on_player1_died():
-	$HUD.decrease_p1_health(100)
+	$HUD.set_p1_health(0)
 	on_game_over("Player2")
 
 func on_player2_died():
-	$HUD.decrease_p2_health(100)	
+	$HUD.set_p2_health(0)	
 	on_game_over("Player1")
 
 func on_game_over(winner):

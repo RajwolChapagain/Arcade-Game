@@ -4,5 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://8le43nudq3ms" path="res://powerups/powerup_component.tscn" id="1_txhty"]
 
 [node name="SuperBoost" groups=["super_boost"] instance=ExtResource("1_txhty")]
-sprite = ExtResource("1_sghil")
 emitted_values = [50]
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(1.17308, 1.17308)
+texture = ExtResource("1_sghil")

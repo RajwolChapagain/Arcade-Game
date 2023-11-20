@@ -1,16 +1,11 @@
 extends Area2D
 
-@export var sprite : Texture2D
 @export var emitted_values = []
 var linear_velocity = 0
 var angular_velocity = 0
 
 signal collected(player, emitted_values)
 
-func _ready():
-	if sprite != null:
-		$Sprite2D.texture = sprite
-		
 func _physics_process(delta):
 	position += linear_velocity * delta
 	rotation_degrees += angular_velocity * delta
