@@ -21,10 +21,10 @@ func _ready():
 	randomize()
 	var randX = randi_range(0, 100)
 	var randY = randi_range(-1000, 1000)
-	#$Ship.position += Vector2(randX, randY)
+	$Ship.position += Vector2(randX, randY)
 	randX = randi_range(0, -1000)
 	randY = randi_range(-1000, 1000)
-	#$Ship2.position += Vector2(randX, randY)
+	$Ship2.position += Vector2(randX, randY)
 	
 func _physics_process(_delta):
 	update_bullet_ring_position()
