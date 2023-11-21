@@ -4,6 +4,8 @@ const RADIUS = 200
 const angular_velocity = 360
 var owner_player = 1
 
+signal destroyed
+
 func _ready():
 	var angle = 2 * PI / get_child_count()
 	var distance_vector = Vector2(RADIUS, 0)
@@ -23,4 +25,5 @@ func _physics_process(delta):
 	rotation_degrees += angular_velocity * delta
 	
 	if get_child_count() == 0:
+		destroyed.emit()
 		queue_free()

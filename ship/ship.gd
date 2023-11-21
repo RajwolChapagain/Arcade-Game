@@ -39,6 +39,7 @@ var dash_time = 0.1
 var dash_distance = 400
 var dash_speed = dash_distance /  dash_time
 var is_dashing = false
+var bullet_rings_owned = 0
 
 var BULLET_SCENE = preload("res://bullet/bullet.tscn")
 var BULLET_RING_SCENE = preload("res://bullet/bullet_ring.tscn")
@@ -160,3 +161,5 @@ func fire_stream_of_bullets():
 		bullet_fired.emit(BULLET_SCENE, transform.x, $BulletOrigin.global_position, BULLET_LAYER)
 		await get_tree().create_timer(0.05).timeout
 
+func on_bullet_ring_destroyed():
+	bullet_rings_owned -= 1
