@@ -21,3 +21,6 @@ func set_bullets_layer(layer):
 		
 func _physics_process(delta):
 	rotation_degrees += angular_velocity * delta
+	
+	if get_child_count() == 0:
+		queue_free()
