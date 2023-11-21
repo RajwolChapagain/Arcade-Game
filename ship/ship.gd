@@ -95,10 +95,9 @@ func _input(event):
 			var super_instance = SUPER_SCENE.instantiate()
 			super_instance.set_collision_mask_value(BULLET_LAYER_MASK, true)
 			
-			if owner_player == 1:
-				super_instance.set_collision_mask_value(ONLY_SHIP2_BULLET_LAYER, true)
-			else:
-				super_instance.set_collision_mask_value(ONLY_SHIP1_BULLET_LAYER, true)				
+			super_instance.set_collision_mask_value(ONLY_SHIP2_BULLET_LAYER, true)
+			super_instance.set_collision_mask_value(ONLY_SHIP1_BULLET_LAYER, true)
+		
 			add_child(super_instance)
 			
 func get_input(delta):
