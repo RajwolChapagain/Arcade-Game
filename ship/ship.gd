@@ -91,8 +91,7 @@ func _input(event):
 			$SuperTimer.start()
 			var super_instance = SUPER_SCENE.instantiate()
 			add_child(super_instance)
-			super_instance.collision_layer = BULLET_LAYER_MASK
-			super_instance.collision_mask = BULLET_LAYER_MASK
+			super_instance.set_collision_mask_value(BULLET_LAYER_MASK, true)
 			
 func get_input(delta):
 	if is_dashing:
