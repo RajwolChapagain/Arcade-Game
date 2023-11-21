@@ -1,7 +1,7 @@
 extends Node2D
 
 var radius = 200
-const angular_velocity = 360
+const angular_velocity = 180
 var owner_player = 1
 
 signal destroyed
