@@ -1,6 +1,6 @@
 extends Node2D
 
-const RADIUS = 200
+var radius = 200
 const angular_velocity = 360
 var owner_player = 1
 
@@ -8,7 +8,7 @@ signal destroyed
 
 func _ready():
 	var angle = 2 * PI / get_child_count()
-	var distance_vector = Vector2(RADIUS, 0)
+	var distance_vector = Vector2(radius, 0)
 	var current_angle = 0
 	
 	for child in get_children():

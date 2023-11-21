@@ -61,9 +61,9 @@ func on_player1_bullet_ring_activated(bullet_ring_scene, bullet_layer):
 	bullet_ring.global_position = $Ship.global_position
 	bullet_ring.set_bullets_layer(bullet_layer)
 	bullet_ring.owner_player = 1
-	$Ship.bullet_rings_owned += 1
-	
 	bullet_ring.destroyed.connect($Ship.on_bullet_ring_destroyed)	
+	bullet_ring.radius += 100 * $Ship.bullet_rings_owned	
+	$Ship.bullet_rings_owned += 1
 	add_child(bullet_ring)
 
 func on_player2_bullet_ring_activated(bullet_ring_scene, bullet_layer):
@@ -71,8 +71,9 @@ func on_player2_bullet_ring_activated(bullet_ring_scene, bullet_layer):
 	bullet_ring.global_position = $Ship2.global_position
 	bullet_ring.set_bullets_layer(bullet_layer)
 	bullet_ring.owner_player = 2
-	$Ship2.bullet_rings_owned += 1	
 	bullet_ring.destroyed.connect($Ship2.on_bullet_ring_destroyed)
+	bullet_ring.radius += 100 * $Ship2.bullet_rings_owned
+	$Ship2.bullet_rings_owned += 1	
 	add_child(bullet_ring)
 	
 func on_player1_died():
