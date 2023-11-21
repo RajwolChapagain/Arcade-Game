@@ -34,6 +34,7 @@ func on_player1_fired_bullet(bullet_scene, direction, location, bullet_layer_mas
 	bullet.global_position = location
 	bullet.set_direction(direction) 
 	bullet.set_collision_layer_value(shared_bullet_layer, true)
+	bullet.set_collision_layer_value($Ship.ONLY_SHIP1_BULLET_LAYER, true)
 	bullet.set_collision_mask_value(bullet_layer_mask, true)
 	bullet.owner_player = 1
 	add_child(bullet)
@@ -42,6 +43,7 @@ func on_player2_fired_bullet(bullet_scene, direction, location, bullet_layer_mas
 	var bullet = bullet_scene.instantiate()
 	bullet.global_position = location
 	bullet.set_direction(direction) 
+	bullet.set_collision_layer_value($Ship2.ONLY_SHIP2_BULLET_LAYER, true)	
 	bullet.set_collision_mask_value(bullet_layer_mask, true)
 	bullet.set_collision_mask_value(shared_bullet_layer, true)
 	bullet.owner_player = 2	
@@ -71,16 +73,18 @@ func on_player1_bullet_ring_activated(bullet_ring_scene, bullet_layer_mask, shar
 	var bullet_ring = bullet_ring_scene.instantiate()
 	bullet_ring.global_position = $Ship.global_position
 	bullet_ring.set_bullets_layer(shared_bullet_layer)
+	bullet_ring.set_bullets_layer($Ship.ONLY_SHIP1_BULLET_LAYER)	
 	bullet_ring.set_bullets_layer_mask(bullet_layer_mask)
 	bullet_ring.owner_player = 1
 	bullet_ring.destroyed.connect($Ship.on_bullet_ring_destroyed)	
-	bullet_ring.radius += 100 * $Ship.bullet_rings_owned	
+	bullet_ring.radius += 100 * $Ship.bullet_rings_owned		
 	$Ship.bullet_rings_owned += 1
 	add_child(bullet_ring)
 
 func on_player2_bullet_ring_activated(bullet_ring_scene, bullet_layer_mask, shared_bullet_layer):
 	var bullet_ring = bullet_ring_scene.instantiate()
 	bullet_ring.global_position = $Ship2.global_position
+	bullet_ring.set_bullets_layer($Ship2.ONLY_SHIP2_BULLET_LAYER)	
 	bullet_ring.set_bullets_layer_mask(bullet_layer_mask)
 	bullet_ring.set_bullets_layer_mask(shared_bullet_layer)
 	bullet_ring.owner_player = 2

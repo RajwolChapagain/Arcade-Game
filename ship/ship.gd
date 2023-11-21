@@ -31,6 +31,9 @@ extends CharacterBody2D
 		super_percentage = value
 		super_percentage = clamp(super_percentage, 0, 100)
 		super_percentage_changed.emit(super_percentage)
+	
+const ONLY_SHIP1_BULLET_LAYER = 4
+const ONLY_SHIP2_BULLET_LAYER = 5
 
 const SHARED_BULLET_LAYER = 3
 
@@ -90,8 +93,13 @@ func _input(event):
 		else:
 			$SuperTimer.start()
 			var super_instance = SUPER_SCENE.instantiate()
-			add_child(super_instance)
 			super_instance.set_collision_mask_value(BULLET_LAYER_MASK, true)
+			
+			if owner_player == 1:
+				super_instance.set_collision_mask_value(ONLY_SHIP2_BULLET_LAYER, true)
+			else:
+				super_instance.set_collision_mask_value(ONLY_SHIP1_BULLET_LAYER, true)				
+			add_child(super_instance)
 			
 func get_input(delta):
 	if is_dashing:
