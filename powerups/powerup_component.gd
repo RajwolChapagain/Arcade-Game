@@ -11,15 +11,9 @@ func _physics_process(delta):
 	rotation_degrees += angular_velocity * delta
 
 func _on_body_entered(body):
-	if body.is_in_group("ship"):
-		if body.get_collision_layer_value(1):
+	if body.is_in_group("ship") or body.is_in_group("bullet"):
+		if body.owner_player == 1:
 			collected.emit(1, emitted_values)
 		else:
 			collected.emit(2, emitted_values)
-		queue_free()
-	elif body.is_in_group("bullet"):
-		if body.get_collision_layer_value(2):
-			collected.emit(1, emitted_values)
-		else:
-			collected.emit(2, emitted_values)	
 		queue_free()

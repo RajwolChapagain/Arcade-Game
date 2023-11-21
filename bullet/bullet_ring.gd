@@ -16,11 +16,14 @@ func _ready():
 		child.is_in_ring = true
 		current_angle += angle
 
+func set_bullets_layer_mask(layer_mask):
+	for child in get_children():
+		child.set_collision_mask_value(layer_mask, true)
+
 func set_bullets_layer(layer):
 	for child in get_children():
-		child.set_collision_layer(layer)
-		child.set_collision_mask(layer)
-		
+		child.set_collision_layer_value(layer, true)
+			
 func _physics_process(delta):
 	rotation_degrees += angular_velocity * delta
 	

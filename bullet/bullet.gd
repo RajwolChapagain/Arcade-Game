@@ -5,6 +5,7 @@ extends CharacterBody2D
 
 var direction = transform.x
 var is_in_ring = false
+var owner_player = 1
 
 func _physics_process(delta):
 	var collision = move_and_collide(direction * SPEED * delta)
@@ -21,4 +22,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 	if is_in_ring:
 		return
 		
+	queue_free()
+
+func on_hit(damage):
 	queue_free()

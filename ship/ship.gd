@@ -19,8 +19,8 @@ extends CharacterBody2D
 @export var FIRE_STRING = "p1_fire"
 @export var SUPER_STRING = "p1_super"
 @export var SHIELD_STRING = "p1_shield"
-@export var BULLET_LAYER = 2
 @export var SPEED_DECREASE_ON_FIRE = 250
+@export var BULLET_LAYER_MASK = 2
 @export var SUPER_DURATION = 1
 @export var SHIELD_DURATION = 2
 @export var TIME_TO_FILL_SUPER = 5
@@ -32,6 +32,8 @@ extends CharacterBody2D
 		super_percentage = clamp(super_percentage, 0, 100)
 		super_percentage_changed.emit(super_percentage)
 
+const SHARED_BULLET_LAYER = 3
+
 var shield_button_is_pressed = false
 var fire_button_is_pressed = false
 var shield_is_active = false
@@ -40,13 +42,14 @@ var dash_distance = 400
 var dash_speed = dash_distance /  dash_time
 var is_dashing = false
 var bullet_rings_owned = 0
+var owner_player = 1
 
 var BULLET_SCENE = preload("res://bullet/bullet.tscn")
 var BULLET_RING_SCENE = preload("res://bullet/bullet_ring.tscn")
 var SUPER_SCENE = preload("res://ship/super.tscn")
 
-signal bullet_fired(bullet, direction, location, bullet_layer)
-signal bullet_ring_activated(BULLET_RING_SCENE, position, bullet_layer)
+signal bullet_fired(bullet, direction, location, bullet_layer_mask)
+signal bullet_ring_activated(BULLET_RING_SCENE, position, bullet_layer_mask)
 signal hit(damage)
 signal super_percentage_changed(new_super_percentage)
 signal hp_changed(new_hp)
@@ -72,13 +75,13 @@ func _input(event):
 		if shield_button_is_pressed:
 			dash()
 		else:
-			bullet_fired.emit(BULLET_SCENE, transform.x, $BulletOrigin.global_position, BULLET_LAYER)
+			bullet_fired.emit(BULLET_SCENE, transform.x, $BulletOrigin.global_position, BULLET_LAYER_MASK, SHARED_BULLET_LAYER)
 	
 	if event.is_action_pressed(SUPER_STRING) and super_percentage == 100:
 		super_percentage = 0
 		if shield_button_is_pressed:
 			if fire_button_is_pressed:
-				bullet_ring_activated.emit(BULLET_RING_SCENE, BULLET_LAYER)
+				bullet_ring_activated.emit(BULLET_RING_SCENE, BULLET_LAYER_MASK, SHARED_BULLET_LAYER)
 			else:
 				$ShieldTimer.start()
 				activate_shield()
@@ -88,8 +91,8 @@ func _input(event):
 			$SuperTimer.start()
 			var super_instance = SUPER_SCENE.instantiate()
 			add_child(super_instance)
-			super_instance.collision_layer = BULLET_LAYER
-			super_instance.collision_mask = BULLET_LAYER
+			super_instance.collision_layer = BULLET_LAYER_MASK
+			super_instance.collision_mask = BULLET_LAYER_MASK
 			
 func get_input(delta):
 	if is_dashing:
@@ -158,7 +161,7 @@ func dash():
 
 func fire_stream_of_bullets():
 	for i in range(10):
-		bullet_fired.emit(BULLET_SCENE, transform.x, $BulletOrigin.global_position, BULLET_LAYER)
+		bullet_fired.emit(BULLET_SCENE, transform.x, $BulletOrigin.global_position, BULLET_LAYER_MASK, SHARED_BULLET_LAYER)
 		await get_tree().create_timer(0.05).timeout
 
 func on_bullet_ring_destroyed():

@@ -1,8 +1,8 @@
 extends Node2D
 
 func _ready():
-	$Ship.bullet_fired.connect(on_player_fired_bullet)
-	$Ship2.bullet_fired.connect(on_player_fired_bullet)
+	$Ship.bullet_fired.connect(on_player1_fired_bullet)
+	$Ship2.bullet_fired.connect(on_player2_fired_bullet)
 	$Ship.hit.connect(on_player1_hit)
 	$Ship2.hit.connect(on_player2_hit)
 	$Ship.hp_changed.connect(on_player1_hp_changed)
@@ -13,6 +13,7 @@ func _ready():
 	$Ship2.player_died.connect(on_player2_died)
 	$Ship.bullet_ring_activated.connect(on_player1_bullet_ring_activated)
 	$Ship2.bullet_ring_activated.connect(on_player2_bullet_ring_activated)
+	$Ship2.owner_player = 2
 	
 	var offset = 80
 	$Spawner.set_path_points(Vector2(-2000 - offset, -1500 - offset), Vector2(2000 + offset, -1500 - offset), Vector2(2000 + offset, 1500 + offset), Vector2(-2000 - offset, 1500 + offset))
@@ -20,22 +21,32 @@ func _ready():
 	randomize()
 	var randX = randi_range(0, 100)
 	var randY = randi_range(-1000, 1000)
-	$Ship.position += Vector2(randX, randY)
+	#$Ship.position += Vector2(randX, randY)
 	randX = randi_range(0, -1000)
 	randY = randi_range(-1000, 1000)
-	$Ship2.position += Vector2(randX, randY)
+	#$Ship2.position += Vector2(randX, randY)
 	
 func _physics_process(_delta):
 	update_bullet_ring_position()
 	
-func on_player_fired_bullet(bullet_scene, direction, location, bullet_layer):
+func on_player1_fired_bullet(bullet_scene, direction, location, bullet_layer_mask, shared_bullet_layer):
 	var bullet = bullet_scene.instantiate()
 	bullet.global_position = location
-	add_child(bullet)
 	bullet.set_direction(direction) 
-	bullet.set_collision_layer(bullet_layer)
-	bullet.set_collision_mask(bullet_layer)
+	bullet.set_collision_layer_value(shared_bullet_layer, true)
+	bullet.set_collision_mask_value(bullet_layer_mask, true)
+	bullet.owner_player = 1
+	add_child(bullet)
 
+func on_player2_fired_bullet(bullet_scene, direction, location, bullet_layer_mask, shared_bullet_layer):
+	var bullet = bullet_scene.instantiate()
+	bullet.global_position = location
+	bullet.set_direction(direction) 
+	bullet.set_collision_mask_value(bullet_layer_mask, true)
+	bullet.set_collision_mask_value(shared_bullet_layer, true)
+	bullet.owner_player = 2	
+	add_child(bullet)
+	
 func on_player1_hit(damage):
 	if get_node_or_null("Ship2") != null: #Can happen if bullet hits player after other player has died
 		$Ship2.super_percentage += damage / 2
@@ -56,20 +67,22 @@ func on_player1_super_percentage_changed(new_super_percentage):
 func on_player2_super_percentage_changed(new_super_percentage):
 	$HUD.update_p2_super_bar(new_super_percentage)
 	
-func on_player1_bullet_ring_activated(bullet_ring_scene, bullet_layer):
+func on_player1_bullet_ring_activated(bullet_ring_scene, bullet_layer_mask, shared_bullet_layer):
 	var bullet_ring = bullet_ring_scene.instantiate()
 	bullet_ring.global_position = $Ship.global_position
-	bullet_ring.set_bullets_layer(bullet_layer)
+	bullet_ring.set_bullets_layer(shared_bullet_layer)
+	bullet_ring.set_bullets_layer_mask(bullet_layer_mask)
 	bullet_ring.owner_player = 1
 	bullet_ring.destroyed.connect($Ship.on_bullet_ring_destroyed)	
 	bullet_ring.radius += 100 * $Ship.bullet_rings_owned	
 	$Ship.bullet_rings_owned += 1
 	add_child(bullet_ring)
 
-func on_player2_bullet_ring_activated(bullet_ring_scene, bullet_layer):
+func on_player2_bullet_ring_activated(bullet_ring_scene, bullet_layer_mask, shared_bullet_layer):
 	var bullet_ring = bullet_ring_scene.instantiate()
 	bullet_ring.global_position = $Ship2.global_position
-	bullet_ring.set_bullets_layer(bullet_layer)
+	bullet_ring.set_bullets_layer_mask(bullet_layer_mask)
+	bullet_ring.set_bullets_layer_mask(shared_bullet_layer)
 	bullet_ring.owner_player = 2
 	bullet_ring.destroyed.connect($Ship2.on_bullet_ring_destroyed)
 	bullet_ring.radius += 100 * $Ship2.bullet_rings_owned
