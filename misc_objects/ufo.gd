@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var linear_velocity = 0
+var linear_velocity = Vector2.ZERO
 var angular_velocity = 0
 var hp = 100:
 	get:
@@ -8,7 +8,12 @@ var hp = 100:
 	set(value):
 		hp = value
 		hp = clamp(hp, 0, 100)
-		#hp_changed.emit(hp)
+	
+var bullet_scene = preload("res://bullet/bullet.tscn")
+var bullet_layers = [1, 2] 
+var bullet_layer_masks = [1, 2]
+
+signal bullet_fired(bullet_scene, bullet_position, bullet_direction, bullet_layers : Array, bullet_layer_masks : Array)
 
 func _ready():
 	velocity = linear_velocity
@@ -25,5 +30,10 @@ func on_hit(damage):
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
 
-func _on_fire_timer_timeout():
-	pass #Fire stream of bullets from all markers
+func _on_fire_timer_timeout():	
+	for child in get_children():
+		if child.is_class("Marker2D"):
+			bullet_fired.emit(bullet_scene, child.global_position, child.position, bullet_layers, bullet_layer_masks)
+			
+
+	

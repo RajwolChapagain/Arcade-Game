@@ -1,7 +1,7 @@
 extends Area2D
 
 @export var emitted_values = []
-var linear_velocity = 0
+var linear_velocity = Vector2.ZERO
 var angular_velocity = 0
 
 signal collected(player, emitted_values)

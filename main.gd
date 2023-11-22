@@ -113,7 +113,9 @@ func _on_spawner_powerup_spawned(powerup):
 		powerup.collected.connect(_on_hp_boost_collected)
 	elif powerup.is_in_group("acceleration_boost"):
 		powerup.collected.connect(_on_accleration_boost_collected)
-	
+	elif powerup.is_in_group("ufo"):
+		powerup.bullet_fired.connect(_on_ufo_fired_bullet)
+		
 func _on_super_boost_collected(player, values):
 	if player == 1:
 		$Ship.super_percentage += values[0]
@@ -136,6 +138,19 @@ func _on_accleration_boost_collected(player, values):
 		await get_tree().create_timer(values[1]).timeout
 		$Ship2.THRUST_FORCE -= values[0]
 
+func _on_ufo_fired_bullet(bullet_scene, pos, dir, layers, layer_masks):
+	var bullet = bullet_scene.instantiate()
+	bullet.global_position = pos
+	bullet.set_direction(dir)
+	
+	for layer in layers:
+		bullet.set_collision_layer_value(layer, true)
+	
+	for mask in layer_masks:
+		bullet.set_collision_mask_value(mask, true)
+		
+	add_child(bullet)
+		
 func update_bullet_ring_position():
 	for ring in get_tree().get_nodes_in_group("bullet_ring"):
 		if ring.owner_player == 1:

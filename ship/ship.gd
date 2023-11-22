@@ -91,15 +91,8 @@ func _input(event):
 		elif fire_button_is_pressed:
 			fire_stream_of_bullets()
 		else:
-			$SuperTimer.start()
-			var super_instance = SUPER_SCENE.instantiate()
-			super_instance.set_collision_mask_value(BULLET_LAYER_MASK, true)
-			
-			super_instance.set_collision_mask_value(ONLY_SHIP2_BULLET_LAYER, true)
-			super_instance.set_collision_mask_value(ONLY_SHIP1_BULLET_LAYER, true)
-		
-			add_child(super_instance)
-			
+			fire_super()
+	
 func get_input(delta):
 	if is_dashing:
 		return
@@ -172,3 +165,11 @@ func fire_stream_of_bullets():
 
 func on_bullet_ring_destroyed():
 	bullet_rings_owned -= 1
+
+func fire_super():
+	$SuperTimer.start()
+	var super_instance = SUPER_SCENE.instantiate()
+	super_instance.set_collision_mask_value(BULLET_LAYER_MASK, true)
+	super_instance.set_collision_mask_value(ONLY_SHIP2_BULLET_LAYER, true)
+	super_instance.set_collision_mask_value(ONLY_SHIP1_BULLET_LAYER, true)
+	add_child(super_instance)
