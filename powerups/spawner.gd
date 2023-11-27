@@ -15,6 +15,7 @@ func _on_timer_timeout():
 	var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
 	object.angular_velocity = velocity.x / 2
 	object.linear_velocity = velocity.rotated(direction)
+	object.rotation = direction
 	add_child(object)
 	object_spawned.emit(object)
 
