@@ -35,7 +35,7 @@ extends CharacterBody2D
 const ONLY_SHIP1_BULLET_LAYER = 4
 const ONLY_SHIP2_BULLET_LAYER = 5
 const SHARED_BULLET_LAYER = 3
-
+const SHIP_COLLISION_DAMAGE = 20
 
 var shield_button_is_pressed = false
 var fire_button_is_pressed = false
@@ -181,3 +181,4 @@ func fire_super():
 func _on_force_field_area_entered(area):
 	if area.name == "ForceField":
 		velocity = -velocity
+	on_hit(SHIP_COLLISION_DAMAGE)
