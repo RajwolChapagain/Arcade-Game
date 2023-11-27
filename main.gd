@@ -133,7 +133,7 @@ func _on_accleration_boost_collected(player, values):
 		$Ship.THRUST_FORCE += values[0]
 		await get_tree().create_timer(values[1]).timeout
 		$Ship.THRUST_FORCE -= values[0]
-	else:
+	elif player == 2:
 		$Ship2.THRUST_FORCE += values[0]
 		await get_tree().create_timer(values[1]).timeout
 		$Ship2.THRUST_FORCE -= values[0]

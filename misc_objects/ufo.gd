@@ -31,9 +31,10 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
 
 func _on_fire_timer_timeout():	
-	for child in get_children():
-		if child.is_class("Marker2D"):
-			bullet_fired.emit(bullet_scene, child.global_position, child.position.normalized(), bullet_layers, bullet_layer_masks)
-			
-
+	for i in range(5):
+		for child in get_children():
+			if child.is_class("Marker2D"):
+				bullet_fired.emit(bullet_scene, child.global_position, child.position.normalized(), bullet_layers, bullet_layer_masks)
+				await get_tree().create_timer(0.01).timeout
+		
 	
