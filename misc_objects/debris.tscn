@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://btvw2434op8uu"]
+
+[ext_resource type="Texture2D" uid="uid://d0fjrmrahvr5s" path="res://misc_objects/debris.png" id="1_sydvs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ft2oy"]
+size = Vector2(630, 50)
+
+[node name="Debris" type="Area2D"]
+position = Vector2(0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_sydvs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ft2oy")
