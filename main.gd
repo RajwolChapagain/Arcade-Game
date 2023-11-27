@@ -106,15 +106,15 @@ func on_player2_died():
 func on_game_over(winner):
 	print(winner + " wins!")
 
-func _on_spawner_powerup_spawned(powerup):
-	if powerup.is_in_group("super_boost"):
-		powerup.collected.connect(_on_super_boost_collected)
-	elif powerup.is_in_group("hp_boost"):
-		powerup.collected.connect(_on_hp_boost_collected)
-	elif powerup.is_in_group("acceleration_boost"):
-		powerup.collected.connect(_on_accleration_boost_collected)
-	elif powerup.is_in_group("ufo"):
-		powerup.bullet_fired.connect(_on_ufo_fired_bullet)
+func _on_spawner_object_spawned(object):
+	if object.is_in_group("super_boost"):
+		object.collected.connect(_on_super_boost_collected)
+	elif object.is_in_group("hp_boost"):
+		object.collected.connect(_on_hp_boost_collected)
+	elif object.is_in_group("acceleration_boost"):
+		object.collected.connect(_on_accleration_boost_collected)
+	elif object.is_in_group("ufo"):
+		object.bullet_fired.connect(_on_ufo_fired_bullet)
 		
 func _on_super_boost_collected(player, values):
 	if player == 1:
@@ -132,10 +132,13 @@ func _on_accleration_boost_collected(player, values):
 	if player == 1:
 		$Ship.THRUST_FORCE += values[0]
 		await get_tree().create_timer(values[1]).timeout
-		$Ship.THRUST_FORCE -= values[0]
+		if get_node_or_null("Ship") != null: #Can return null and crash if ship dies before timeout
+			$Ship.THRUST_FORCE -= values[0]
 	elif player == 2:
 		$Ship2.THRUST_FORCE += values[0]
 		await get_tree().create_timer(values[1]).timeout
+		if get_node_or_null("Ship2") != null:
+			$Ship.THRUST_FORCE -= values[0]
 		$Ship2.THRUST_FORCE -= values[0]
 
 func _on_ufo_fired_bullet(bullet_scene, pos, dir, layers, layer_masks):

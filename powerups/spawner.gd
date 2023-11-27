@@ -1,22 +1,22 @@
 extends Node2D
 
-@export var powerups = []
+@export var objects = [] 
 
-signal powerup_spawned(power_up)
+signal object_spawned(object)
 
 func _on_timer_timeout():
-	var power_up = powerups.pick_random().instantiate()
+	var object = objects.pick_random().instantiate()
 	$Path2D/PathFollow2D.progress_ratio = randf()
-	power_up.global_position = $Path2D/PathFollow2D.position
+	object.global_position = $Path2D/PathFollow2D.position
 
 	var direction = $Path2D/PathFollow2D.rotation + PI / 2
 	direction += randf_range(- PI / 4, PI / 4)
 	
 	var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
-	power_up.angular_velocity = velocity.x / 2
-	power_up.linear_velocity = velocity.rotated(direction)
-	add_child(power_up)
-	powerup_spawned.emit(power_up)
+	object.angular_velocity = velocity.x / 2
+	object.linear_velocity = velocity.rotated(direction)
+	add_child(object)
+	object_spawned.emit(object)
 
 func set_path_points(point1, point2, point3, point4):
 	$Path2D.curve.add_point(point1)
