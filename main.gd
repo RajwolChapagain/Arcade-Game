@@ -145,7 +145,7 @@ func _on_ufo_fired_bullet(bullet_scene, pos, dir, layers, layer_masks):
 	
 	for layer in layers:
 		bullet.set_collision_layer_value(layer, true)
-	
+
 	for mask in layer_masks:
 		bullet.set_collision_mask_value(mask, true)
 		
