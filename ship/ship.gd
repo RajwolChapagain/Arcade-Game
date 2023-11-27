@@ -34,8 +34,8 @@ extends CharacterBody2D
 	
 const ONLY_SHIP1_BULLET_LAYER = 4
 const ONLY_SHIP2_BULLET_LAYER = 5
-
 const SHARED_BULLET_LAYER = 3
+
 
 var shield_button_is_pressed = false
 var fire_button_is_pressed = false
@@ -68,7 +68,11 @@ func _process(delta):
 	move_and_slide()
 	
 	if velocity.length() < MAX_VELOCITY_MAGNITUDE - 5: #Subtracting by 5 because length is not always exactly equal to 1500
-		super_percentage += delta * 100 / TIME_TO_FILL_SUPER		
+		super_percentage += delta * 100 / TIME_TO_FILL_SUPER
+		
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		print(collision.get_collider().name)
 
 func _input(event):		
 	if is_dashing:
@@ -173,3 +177,7 @@ func fire_super():
 	super_instance.set_collision_mask_value(ONLY_SHIP2_BULLET_LAYER, true)
 	super_instance.set_collision_mask_value(ONLY_SHIP1_BULLET_LAYER, true)
 	add_child(super_instance)
+
+func _on_force_field_area_entered(area):
+	if area.name == "ForceField":
+		velocity = -velocity
