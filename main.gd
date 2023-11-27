@@ -33,9 +33,9 @@ func on_player1_fired_bullet(bullet_scene, direction, location, bullet_layer_mas
 	var bullet = bullet_scene.instantiate()
 	bullet.global_position = location
 	bullet.set_direction(direction) 
-	bullet.set_collision_layer_value(shared_bullet_layer, true)
-	bullet.set_collision_layer_value($Ship.ONLY_SHIP1_BULLET_LAYER, true)
-	bullet.set_collision_mask_value(bullet_layer_mask, true)
+#	bullet.set_collision_layer_value(shared_bullet_layer, true)
+#	bullet.set_collision_layer_value($Ship.ONLY_SHIP1_BULLET_LAYER, true)
+#	bullet.set_collision_mask_value(bullet_layer_mask, true)
 	bullet.owner_player = 1
 	add_child(bullet)
 
@@ -43,9 +43,9 @@ func on_player2_fired_bullet(bullet_scene, direction, location, bullet_layer_mas
 	var bullet = bullet_scene.instantiate()
 	bullet.global_position = location
 	bullet.set_direction(direction) 
-	bullet.set_collision_layer_value($Ship2.ONLY_SHIP2_BULLET_LAYER, true)	
-	bullet.set_collision_mask_value(bullet_layer_mask, true)
-	bullet.set_collision_mask_value(shared_bullet_layer, true)
+#	bullet.set_collision_layer_value($Ship2.ONLY_SHIP2_BULLET_LAYER, true)	
+#	bullet.set_collision_mask_value(bullet_layer_mask, true)
+#	bullet.set_collision_mask_value(shared_bullet_layer, true)
 	bullet.owner_player = 2	
 	add_child(bullet)
 	
