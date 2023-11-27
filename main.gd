@@ -119,13 +119,13 @@ func _on_spawner_powerup_spawned(powerup):
 func _on_super_boost_collected(player, values):
 	if player == 1:
 		$Ship.super_percentage += values[0]
-	else:
+	elif player == 2:
 		$Ship2.super_percentage +=  values[0]
 	
 func _on_hp_boost_collected(player, values):
 	if player == 1:
 		$Ship.hp += values[0]
-	else:
+	elif player == 2:
 		$Ship2.hp += values[0]
 
 func _on_accleration_boost_collected(player, values):
@@ -149,6 +149,7 @@ func _on_ufo_fired_bullet(bullet_scene, pos, dir, layers, layer_masks):
 	for mask in layer_masks:
 		bullet.set_collision_mask_value(mask, true)
 		
+	bullet.owner_player = 3
 	add_child(bullet)
 		
 func update_bullet_ring_position():

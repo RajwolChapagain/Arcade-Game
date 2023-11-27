@@ -14,8 +14,10 @@ func _on_body_entered(body):
 	if body.is_in_group("ship") or body.is_in_group("bullet"):
 		if body.owner_player == 1:
 			collected.emit(1, emitted_values)
-		else:
+		elif body.owner_player == 2:
 			collected.emit(2, emitted_values)
+		else:
+			pass #collected by ufo
 		queue_free()
 
 
