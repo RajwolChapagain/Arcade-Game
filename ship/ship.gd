@@ -51,7 +51,7 @@ var BULLET_SCENE = preload("res://bullet/bullet.tscn")
 var BULLET_RING_SCENE = preload("res://bullet/bullet_ring.tscn")
 var SUPER_SCENE = preload("res://ship/super.tscn")
 
-signal bullet_fired(bullet, direction, location, bullet_layer_mask)
+signal bullet_fired(bullet, direction, location)
 signal bullet_ring_activated(BULLET_RING_SCENE, position, bullet_layer_mask)
 signal hit(damage)
 signal super_percentage_changed(new_super_percentage)
@@ -69,10 +69,6 @@ func _process(delta):
 	
 	if velocity.length() < MAX_VELOCITY_MAGNITUDE - 5: #Subtracting by 5 because length is not always exactly equal to 1500
 		super_percentage += delta * 100 / TIME_TO_FILL_SUPER
-		
-	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
-		print(collision.get_collider().name)
 
 func _input(event):		
 	if is_dashing:
@@ -82,7 +78,7 @@ func _input(event):
 		if shield_button_is_pressed:
 			dash()
 		else:
-			bullet_fired.emit(BULLET_SCENE, transform.x, $BulletOrigin.global_position, BULLET_LAYER_MASK, SHARED_BULLET_LAYER)
+			bullet_fired.emit(BULLET_SCENE, transform.x, $BulletOrigin.global_position)
 	
 	if event.is_action_pressed(SUPER_STRING) and super_percentage == 100:
 		super_percentage = 0
@@ -164,7 +160,7 @@ func dash():
 
 func fire_stream_of_bullets():
 	for i in range(10):
-		bullet_fired.emit(BULLET_SCENE, transform.x, $BulletOrigin.global_position, BULLET_LAYER_MASK, SHARED_BULLET_LAYER)
+		bullet_fired.emit(BULLET_SCENE, transform.x, $BulletOrigin.global_position)
 		await get_tree().create_timer(0.05).timeout
 
 func on_bullet_ring_destroyed():

@@ -7,7 +7,6 @@
 size = Vector2(176, 176)
 
 [node name="UFO" type="CharacterBody2D" groups=["ufo"]]
-collision_layer = 3
 collision_mask = 0
 script = ExtResource("1_nkpty")
 

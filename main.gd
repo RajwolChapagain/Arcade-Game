@@ -29,14 +29,14 @@ func _ready():
 func _physics_process(_delta):
 	update_bullet_ring_position()
 	
-func on_player1_fired_bullet(bullet_scene, direction, location, bullet_layer_mask, shared_bullet_layer):
+func on_player1_fired_bullet(bullet_scene, direction, location):
 	var bullet = bullet_scene.instantiate()
 	bullet.global_position = location
 	bullet.set_direction(direction) 
 	bullet.owner_player = 1
 	add_child(bullet)
 
-func on_player2_fired_bullet(bullet_scene, direction, location, bullet_layer_mask, shared_bullet_layer):
+func on_player2_fired_bullet(bullet_scene, direction, location):
 	var bullet = bullet_scene.instantiate()
 	bullet.global_position = location
 	bullet.set_direction(direction) 
