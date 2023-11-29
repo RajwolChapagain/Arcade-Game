@@ -5,7 +5,7 @@ extends Node2D
 signal object_spawned(object)
 
 func _on_timer_timeout():
-	var object = objects.pick_random().instantiate()
+	var object = objects[4].instantiate()
 	$Path2D/PathFollow2D.progress_ratio = randf()
 	object.global_position = $Path2D/PathFollow2D.position
 

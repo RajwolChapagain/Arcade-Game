@@ -65,11 +65,9 @@ func _ready():
 	
 func _process(delta):
 	get_input(delta)
-	move_and_slide()
+	move_and_slide()	
+	refill_super(delta)
 	
-	if velocity.length() < MAX_VELOCITY_MAGNITUDE - 5: #Subtracting by 5 because length is not always exactly equal to 1500
-		super_percentage += delta * 100 / TIME_TO_FILL_SUPER
-
 func _input(event):		
 	if is_dashing:
 		return
@@ -172,7 +170,6 @@ func fire_super():
 	super_instance.position = $BulletOrigin.position
 	add_child(super_instance)
 
-func _on_force_field_area_entered(area):
-	if area.name == "ForceField":
-		velocity = -velocity
-	on_hit(SHIP_COLLISION_DAMAGE)
+func refill_super(delta):
+	if velocity.length() < MAX_VELOCITY_MAGNITUDE - 5: #Subtracting by 5 because length is not always exactly equal to 1500
+		super_percentage += delta * 100 / TIME_TO_FILL_SUPER
