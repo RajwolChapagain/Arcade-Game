@@ -18,13 +18,13 @@ func _ready():
 	var offset = 80
 	$Spawner.set_path_points(Vector2(-2000 - offset, -1500 - offset), Vector2(2000 + offset, -1500 - offset), Vector2(2000 + offset, 1500 + offset), Vector2(-2000 - offset, 1500 + offset))
 
-	randomize()
-	var randX = randi_range(0, 100)
-	var randY = randi_range(-1000, 1000)
-	$Ship.position += Vector2(randX, randY)
-	randX = randi_range(0, -1000)
-	randY = randi_range(-1000, 1000)
-	$Ship2.position += Vector2(randX, randY)
+#	randomize()
+#	var randX = randi_range(0, 100)
+#	var randY = randi_range(-1000, 1000)
+#	$Ship.position += Vector2(randX, randY)
+#	randX = randi_range(0, -1000)
+#	randY = randi_range(-1000, 1000)
+#	$Ship2.position += Vector2(randX, randY)
 	
 func _physics_process(_delta):
 	update_bullet_ring_position()
@@ -33,9 +33,6 @@ func on_player1_fired_bullet(bullet_scene, direction, location, bullet_layer_mas
 	var bullet = bullet_scene.instantiate()
 	bullet.global_position = location
 	bullet.set_direction(direction) 
-#	bullet.set_collision_layer_value(shared_bullet_layer, true)
-#	bullet.set_collision_layer_value($Ship.ONLY_SHIP1_BULLET_LAYER, true)
-#	bullet.set_collision_mask_value(bullet_layer_mask, true)
 	bullet.owner_player = 1
 	add_child(bullet)
 
@@ -43,9 +40,6 @@ func on_player2_fired_bullet(bullet_scene, direction, location, bullet_layer_mas
 	var bullet = bullet_scene.instantiate()
 	bullet.global_position = location
 	bullet.set_direction(direction) 
-#	bullet.set_collision_layer_value($Ship2.ONLY_SHIP2_BULLET_LAYER, true)	
-#	bullet.set_collision_mask_value(bullet_layer_mask, true)
-#	bullet.set_collision_mask_value(shared_bullet_layer, true)
 	bullet.owner_player = 2	
 	add_child(bullet)
 	
