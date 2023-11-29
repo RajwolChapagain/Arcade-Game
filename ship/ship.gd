@@ -173,9 +173,7 @@ func on_bullet_ring_destroyed():
 func fire_super():
 	$SuperTimer.start()
 	var super_instance = SUPER_SCENE.instantiate()
-	super_instance.set_collision_mask_value(BULLET_LAYER_MASK, true)
-	super_instance.set_collision_mask_value(ONLY_SHIP2_BULLET_LAYER, true)
-	super_instance.set_collision_mask_value(ONLY_SHIP1_BULLET_LAYER, true)
+	super_instance.position = $BulletOrigin.position
 	add_child(super_instance)
 
 func _on_force_field_area_entered(area):
