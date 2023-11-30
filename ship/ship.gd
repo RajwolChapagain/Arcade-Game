@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var THRUST_FORCE = 1000 #Takes 3 seconds to reach max velocity w/ MAX_VELOCITY_MAGNITUDE = 3000
 @export var MAX_VELOCITY_MAGNITUDE = 1500 #3000
 @export var RETARDING_FORCE = 750 #Takes 4 seconds to reach min from a MAX_VELOCITY_MAGNITUDE of 3000
-@export var SHIP_SPRITE : Texture2D = preload("res://ship/ship_sprite.png")
+#@export var SHIP_SPRITE : Texture2D = preload("res://ship/ship_sprite.png")
 @export var max_hp = 100
 @onready var hp = max_hp:
 	get:
@@ -60,7 +60,7 @@ signal hp_changed(new_hp)
 signal player_died
 
 func _ready():
-	$Sprite2D.texture = SHIP_SPRITE
+#	$Sprite2D.texture = SHIP_SPRITE
 	$SuperTimer.wait_time = SUPER_DURATION
 	$ShieldTimer.wait_time = SHIELD_DURATION
 	
