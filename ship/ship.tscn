@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dsgskm8hx8n3"]
+[gd_scene load_steps=6 format=3 uid="uid://dsgskm8hx8n3"]
 
 [ext_resource type="Script" path="res://ship/ship.gd" id="1_5xbcq"]
 [ext_resource type="Texture2D" uid="uid://b0n774p4wqiic" path="res://ship/ship_sprite.png" id="2_qaab8"]
@@ -9,9 +9,6 @@ radius = 136.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_18nrc"]
 size = Vector2(190, 122)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_38jh8"]
-radius = 99.1262
 
 [node name="Ship" type="CharacterBody2D" groups=["ship"]]
 script = ExtResource("1_5xbcq")
@@ -49,17 +46,8 @@ scale = Vector2(9.7, 6.1)
 one_shot = true
 
 [node name="BulletOrigin" type="Marker2D" parent="."]
-position = Vector2(96, 0)
-
-[node name="ForceField" type="Area2D" parent="."]
-collision_layer = 128
-collision_mask = 128
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ForceField"]
-shape = SubResource("CircleShape2D_38jh8")
-debug_color = Color(0.890196, 0.227451, 0.588235, 0.419608)
+position = Vector2(123, 0)
 
 [connection signal="timeout" from="SuperTimer" to="." method="_on_super_timer_timeout"]
 [connection signal="screen_exited" from="VisibilityNotifier" to="." method="_on_visibility_notifier_screen_exited"]
 [connection signal="timeout" from="ShieldTimer" to="." method="_on_shield_timer_timeout"]
-[connection signal="area_entered" from="ForceField" to="." method="_on_force_field_area_entered"]

@@ -51,7 +51,7 @@ var BULLET_SCENE = preload("res://bullet/bullet.tscn")
 var BULLET_RING_SCENE = preload("res://bullet/bullet_ring.tscn")
 var SUPER_SCENE = preload("res://ship/super.tscn")
 
-signal bullet_fired(bullet, direction, location, bullet_layer_mask)
+signal bullet_fired(bullet, direction, location)
 signal bullet_ring_activated(BULLET_RING_SCENE, position, bullet_layer_mask)
 signal hit(damage)
 signal super_percentage_changed(new_super_percentage)
@@ -65,15 +65,9 @@ func _ready():
 	
 func _process(delta):
 	get_input(delta)
-	move_and_slide()
+	move_and_slide()	
+	refill_super(delta)
 	
-	if velocity.length() < MAX_VELOCITY_MAGNITUDE - 5: #Subtracting by 5 because length is not always exactly equal to 1500
-		super_percentage += delta * 100 / TIME_TO_FILL_SUPER
-		
-	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
-		print(collision.get_collider().name)
-
 func _input(event):		
 	if is_dashing:
 		return
@@ -82,7 +76,7 @@ func _input(event):
 		if shield_button_is_pressed:
 			dash()
 		else:
-			bullet_fired.emit(BULLET_SCENE, transform.x, $BulletOrigin.global_position, BULLET_LAYER_MASK, SHARED_BULLET_LAYER)
+			bullet_fired.emit(BULLET_SCENE, transform.x, $BulletOrigin.global_position)
 	
 	if event.is_action_pressed(SUPER_STRING) and super_percentage == 100:
 		super_percentage = 0
@@ -164,7 +158,7 @@ func dash():
 
 func fire_stream_of_bullets():
 	for i in range(10):
-		bullet_fired.emit(BULLET_SCENE, transform.x, $BulletOrigin.global_position, BULLET_LAYER_MASK, SHARED_BULLET_LAYER)
+		bullet_fired.emit(BULLET_SCENE, transform.x, $BulletOrigin.global_position)
 		await get_tree().create_timer(0.05).timeout
 
 func on_bullet_ring_destroyed():
@@ -173,12 +167,9 @@ func on_bullet_ring_destroyed():
 func fire_super():
 	$SuperTimer.start()
 	var super_instance = SUPER_SCENE.instantiate()
-	super_instance.set_collision_mask_value(BULLET_LAYER_MASK, true)
-	super_instance.set_collision_mask_value(ONLY_SHIP2_BULLET_LAYER, true)
-	super_instance.set_collision_mask_value(ONLY_SHIP1_BULLET_LAYER, true)
+	super_instance.position = $BulletOrigin.position
 	add_child(super_instance)
 
-func _on_force_field_area_entered(area):
-	if area.name == "ForceField":
-		velocity = -velocity
-	on_hit(SHIP_COLLISION_DAMAGE)
+func refill_super(delta):
+	if velocity.length() < MAX_VELOCITY_MAGNITUDE - 5: #Subtracting by 5 because length is not always exactly equal to 1500
+		super_percentage += delta * 100 / TIME_TO_FILL_SUPER
