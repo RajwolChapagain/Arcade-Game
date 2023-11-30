@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var RETARDING_FORCE = 750 #Takes 4 seconds to reach min from a MAX_VELOCITY_MAGNITUDE of 3000
 #@export var SHIP_SPRITE : Texture2D = preload("res://ship/ship_sprite.png")
 @export var max_hp = 100
+@export var bullet_damage = 10
 @onready var hp = max_hp:
 	get:
 		return hp
@@ -52,7 +53,7 @@ var BULLET_SCENE = preload("res://bullet/bullet.tscn")
 var BULLET_RING_SCENE = preload("res://bullet/bullet_ring.tscn")
 var SUPER_SCENE = preload("res://ship/super.tscn")
 
-signal bullet_fired(bullet, direction, location)
+signal bullet_fired(bullet, bullet_damage, direction, location)
 signal bullet_ring_activated(BULLET_RING_SCENE, position, bullet_layer_mask)
 signal hit(damage)
 signal super_percentage_changed(new_super_percentage)
@@ -77,7 +78,7 @@ func _input(event):
 		if shield_button_is_pressed:
 			dash()
 		else:
-			bullet_fired.emit(BULLET_SCENE, transform.x, $BulletOrigin.global_position)
+			bullet_fired.emit(BULLET_SCENE, bullet_damage, transform.x, $BulletOrigin.global_position)
 	
 	if event.is_action_pressed(SUPER_STRING) and super_percentage == 100:
 		super_percentage = 0
@@ -159,7 +160,7 @@ func dash():
 
 func fire_stream_of_bullets():
 	for i in range(10):
-		bullet_fired.emit(BULLET_SCENE, transform.x, $BulletOrigin.global_position)
+		bullet_fired.emit(BULLET_SCENE, bullet_damage, transform.x, $BulletOrigin.global_position)
 		await get_tree().create_timer(0.05).timeout
 
 func on_bullet_ring_destroyed():
