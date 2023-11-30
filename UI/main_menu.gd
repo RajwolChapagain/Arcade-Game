@@ -5,7 +5,7 @@ var left_pointer = 1
 var right_pointer = 1
 
 func _ready():
-	pass
+	pass #▶Initialize sprite based on pointers
 
 func _input(event):
 	if event.is_action_pressed("p1_left"):
