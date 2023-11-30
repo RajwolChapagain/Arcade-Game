@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxrj6hhnkc3xu"]
+
+[ext_resource type="PackedScene" uid="uid://dsgskm8hx8n3" path="res://ship/stock_ship.tscn" id="1_egwrg"]
+[ext_resource type="Texture2D" uid="uid://d3etsdxr15cwe" path="res://ship/scout_ship.png" id="2_35g52"]
+
+[node name="Ship" instance=ExtResource("1_egwrg")]
+MAX_VELOCITY_MAGNITUDE = 2000
+max_hp = 70
+TIME_TO_FILL_SUPER = 4
+
+[node name="Sprite2D" parent="." index="1"]
+rotation = 0.0
+scale = Vector2(1, 1)
+texture = ExtResource("2_35g52")
