@@ -4,12 +4,13 @@ extends CharacterBody2D
 @export var MAX_VELOCITY_MAGNITUDE = 1500 #3000
 @export var RETARDING_FORCE = 750 #Takes 4 seconds to reach min from a MAX_VELOCITY_MAGNITUDE of 3000
 @export var SHIP_SPRITE : Texture2D = preload("res://ship/ship_sprite.png")
-@export var hp = 100:
+@export var max_hp = 100
+@onready var hp = max_hp:
 	get:
 		return hp
 	set(value):
 		hp = value
-		hp = clamp(hp, 0, 100)
+		hp = clamp(hp, 0, max_hp)
 		hp_changed.emit(hp)
 		
 @export var LEFT_STRING = "p1_left"
