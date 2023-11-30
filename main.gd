@@ -18,6 +18,9 @@ func _ready():
 	var offset = 80
 	$Spawner.set_path_points(Vector2(-2000 - offset, -1500 - offset), Vector2(2000 + offset, -1500 - offset), Vector2(2000 + offset, 1500 + offset), Vector2(-2000 - offset, 1500 + offset))
 
+	$HUD.initialize_max_hp_bar(1, $Ship.max_hp)
+	$HUD.initialize_max_hp_bar(2, $Ship2.max_hp)
+	
 #	randomize()
 #	var randX = randi_range(0, 100)
 #	var randY = randi_range(-1000, 1000)
