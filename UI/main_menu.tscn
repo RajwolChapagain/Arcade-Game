@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://mf26dw6pyc04"]
+[gd_scene load_steps=7 format=3 uid="uid://mf26dw6pyc04"]
 
 [ext_resource type="Texture2D" uid="uid://c87ojw4yeuuud" path="res://UI/right_arrow.svg" id="1_5rmpm"]
 [ext_resource type="Texture2D" uid="uid://dvoiqv1dp1eab" path="res://ship/stock_ship.svg" id="1_835c4"]
+[ext_resource type="Script" path="res://UI/main_menu.gd" id="1_qtlmi"]
+[ext_resource type="PackedScene" uid="uid://dxrj6hhnkc3xu" path="res://ship/scout_ship.tscn" id="2_v6241"]
+[ext_resource type="PackedScene" uid="uid://dsgskm8hx8n3" path="res://ship/stock_ship.tscn" id="3_i0x4h"]
+[ext_resource type="PackedScene" uid="uid://dkg36k7t483lp" path="res://ship/tank_ship.tscn" id="4_gah56"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -11,6 +15,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 4
+script = ExtResource("1_qtlmi")
+ships = [ExtResource("2_v6241"), ExtResource("3_i0x4h"), ExtResource("4_gah56")]
 
 [node name="Prompt" type="HBoxContainer" parent="."]
 layout_mode = 1
