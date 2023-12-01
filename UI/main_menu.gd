@@ -21,16 +21,16 @@ var player2_ready = false
 
 func _input(event):
 	if event.is_action_pressed("p1_left"):
-		if player1_inserted_coin:
+		if player1_inserted_coin and !player1_ready:
 			left_pointer -= 1
 	if event.is_action_pressed("p1_right"):
-		if player1_inserted_coin:
+		if player1_inserted_coin and !player1_ready:
 			left_pointer += 1
 	if event.is_action_pressed("p2_left"):	
-		if player2_inserted_coin:
+		if player2_inserted_coin and !player2_ready:
 			right_pointer -= 1
 	if event.is_action_pressed("p2_right"):
-		if player2_inserted_coin:
+		if player2_inserted_coin and !player2_ready:
 			right_pointer += 1
 	
 	if event.is_action_pressed("p1_insert_coin"):
@@ -39,8 +39,11 @@ func _input(event):
 		on_player_insert_coin(2)
 	
 	if event.is_action_pressed("p1_fire"):
-		if !player1_inserted_coin:
-			return
+		if player1_inserted_coin:
+			make_player_ready(1)
+	if event.is_action_pressed("p2_fire"):
+		if player2_inserted_coin:
+			make_player_ready(2)
 		
 func set_sprite(player, sprite : Texture2D):
 	var ship_sprite = $Selection/LeftItems/LeftShip if player == 1 else $Selection/RightItems/RightShip
@@ -49,12 +52,18 @@ func set_sprite(player, sprite : Texture2D):
 func on_player_insert_coin(player):
 	if player == 1:
 		player1_inserted_coin = true
+		player1_ready = false
 	elif player == 2:
 		player2_inserted_coin = true
+		player2_ready = false
 		
 	set_prompt(player, "SELECT SHIP")
 	
 func make_player_ready(player):
+	if player == 1:
+		player1_ready = true
+	elif player == 2:
+		player1_ready = true
 	set_prompt(player, "READY!")
 	
 func set_prompt(player, text):
