@@ -13,20 +13,50 @@ var right_pointer = 1:
 	set(value):
 		right_pointer = clamp(value, 0, ships_sprites.size() - 1)
 		set_sprite(2, ships_sprites[right_pointer])		
-
-func _ready():
-	pass #▶Initialize sprite based on pointers
+		
+var player1_inserted_coin = false
+var player2_inserted_coin = false
+var player1_ready = false
+var player2_ready = false
 
 func _input(event):
 	if event.is_action_pressed("p1_left"):
-		left_pointer -= 1
+		if player1_inserted_coin:
+			left_pointer -= 1
 	if event.is_action_pressed("p1_right"):
-		left_pointer += 1
+		if player1_inserted_coin:
+			left_pointer += 1
 	if event.is_action_pressed("p2_left"):	
-		right_pointer -= 1
+		if player2_inserted_coin:
+			right_pointer -= 1
 	if event.is_action_pressed("p2_right"):
-		right_pointer += 1
+		if player2_inserted_coin:
+			right_pointer += 1
 	
+	if event.is_action_pressed("p1_insert_coin"):
+		on_player_insert_coin(1)
+	if event.is_action_pressed("p2_insert_coin"):
+		on_player_insert_coin(2)
+	
+	if event.is_action_pressed("p1_fire"):
+		if !player1_inserted_coin:
+			return
+		
 func set_sprite(player, sprite : Texture2D):
 	var ship_sprite = $Selection/LeftItems/LeftShip if player == 1 else $Selection/RightItems/RightShip
 	ship_sprite.texture = sprite
+
+func on_player_insert_coin(player):
+	if player == 1:
+		player1_inserted_coin = true
+	elif player == 2:
+		player2_inserted_coin = true
+		
+	set_prompt(player, "SELECT SHIP")
+	
+func make_player_ready(player):
+	set_prompt(player, "READY!")
+	
+func set_prompt(player, text):
+	var label = $Prompt/Label if player == 1 else $Prompt/Label2
+	label.text = text
