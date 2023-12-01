@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var ships : Array[PackedScene] ##Has to be in the same order as ship_sprites in Main Menu
+
 func _ready():
 	$Player1.bullet_fired.connect(on_player1_fired_bullet)
 	$Player2.bullet_fired.connect(on_player2_fired_bullet)
@@ -168,3 +170,14 @@ func delete_bullet_rings(player):
 		if ring.owner_player == player:
 			ring.queue_free()
 		
+
+func _on_main_menu_both_players_ready(p1_ship, p2_ship):
+	print("Both players are ready")
+	var player1_ship = ships[p1_ship].instantiate()
+	player1_ship.position = Vector2(1000, 750)
+	player1_ship.name = "Player1"
+	add_child(player1_ship)
+	var player2_ship = ships[p2_ship].instantiate()
+	player2_ship.position = Vector2(2000, 750)
+	add_child(player2_ship)
+	#Initialize ship2 after spawning

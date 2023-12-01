@@ -19,6 +19,8 @@ var player2_inserted_coin = false
 var player1_ready = false
 var player2_ready = false
 
+signal both_players_ready(p1_ship, p2_ship)
+
 func _input(event):
 	if event.is_action_pressed("p1_left"):
 		if player1_inserted_coin and !player1_ready:
@@ -62,10 +64,17 @@ func on_player_insert_coin(player):
 func make_player_ready(player):
 	if player == 1:
 		player1_ready = true
+		if player2_ready:
+			start_game()
 	elif player == 2:
-		player1_ready = true
+		player2_ready = true
+		if player1_ready:
+			start_game()
 	set_prompt(player, "READY!")
 	
 func set_prompt(player, text):
 	var label = $Prompt/Label if player == 1 else $Prompt/Label2
 	label.text = text
+
+func start_game():
+	both_players_ready.emit(left_pointer, right_pointer)
