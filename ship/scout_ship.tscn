@@ -10,6 +10,4 @@ bullet_damage = 15
 TIME_TO_FILL_SUPER = 4
 
 [node name="Sprite2D" parent="." index="1"]
-rotation = 0.0
-scale = Vector2(1, 1)
 texture = ExtResource("2_35g52")
