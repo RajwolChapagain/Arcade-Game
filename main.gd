@@ -3,26 +3,8 @@ extends Node2D
 @export var ships : Array[PackedScene] ##Has to be in the same order as ship_sprites in Main Menu
 
 func _ready():
-	$Player1.bullet_fired.connect(on_player1_fired_bullet)
-	$Player2.bullet_fired.connect(on_player2_fired_bullet)
-	$Player1.hit.connect(on_player1_hit)
-	$Player2.hit.connect(on_player2_hit)
-	$Player1.hp_changed.connect(on_player1_hp_changed)
-	$Player2.hp_changed.connect(on_player2_hp_changed)
-	$Player1.super_percentage_changed.connect(on_player1_super_percentage_changed)	
-	$Player2.super_percentage_changed.connect(on_player2_super_percentage_changed)
-	$Player1.player_died.connect(on_player1_died)
-	$Player2.player_died.connect(on_player2_died)
-	$Player1.bullet_ring_activated.connect(on_player1_bullet_ring_activated)
-	$Player2.bullet_ring_activated.connect(on_player2_bullet_ring_activated)
-	$Player2.owner_player = 2
-	
 	var offset = 80
 	$Spawner.set_path_points(Vector2(-2000 - offset, -1500 - offset), Vector2(2000 + offset, -1500 - offset), Vector2(2000 + offset, 1500 + offset), Vector2(-2000 - offset, 1500 + offset))
-
-	$HUD.initialize_max_hp_bar(1, $Player1.max_hp)
-	$HUD.initialize_max_hp_bar(2, $Player2.max_hp)
-	
 #	randomize()
 #	var randX = randi_range(0, 100)
 #	var randY = randi_range(-1000, 1000)
@@ -172,12 +154,41 @@ func delete_bullet_rings(player):
 		
 
 func _on_main_menu_both_players_ready(p1_ship, p2_ship):
-	print("Both players are ready")
 	var player1_ship = ships[p1_ship].instantiate()
-	player1_ship.position = Vector2(1000, 750)
 	player1_ship.name = "Player1"
 	add_child(player1_ship)
 	var player2_ship = ships[p2_ship].instantiate()
-	player2_ship.position = Vector2(2000, 750)
+	player2_ship.name = "Player2"
 	add_child(player2_ship)
-	#Initialize ship2 after spawning
+	initialize_players(player1_ship, player2_ship)
+	$MainMenu.visible = false
+	$HUD.visible = true
+
+func initialize_players(p1_ship_node, p2_ship_node):
+	p1_ship_node.bullet_fired.connect(on_player1_fired_bullet)
+	p2_ship_node.bullet_fired.connect(on_player2_fired_bullet)
+	p1_ship_node.hit.connect(on_player1_hit)
+	p2_ship_node.hit.connect(on_player2_hit)
+	p1_ship_node.hp_changed.connect(on_player1_hp_changed)
+	p2_ship_node.hp_changed.connect(on_player2_hp_changed)
+	p1_ship_node.super_percentage_changed.connect(on_player1_super_percentage_changed)	
+	p2_ship_node.super_percentage_changed.connect(on_player2_super_percentage_changed)
+	p1_ship_node.player_died.connect(on_player1_died)
+	p2_ship_node.player_died.connect(on_player2_died)
+	p1_ship_node.bullet_ring_activated.connect(on_player1_bullet_ring_activated)
+	p2_ship_node.bullet_ring_activated.connect(on_player2_bullet_ring_activated)
+	p2_ship_node.owner_player = 2
+	p1_ship_node.global_position = Vector2($Camera2D.get_screen_center_position().x - 200, $Camera2D.get_screen_center_position().y)
+	p1_ship_node.global_position = Vector2($Camera2D.get_screen_center_position().x + 200, $Camera2D.get_screen_center_position().y)
+	
+	p2_ship_node.LEFT_STRING = "p2_left"
+	p2_ship_node.RIGHT_STRING = "p2_right"
+	p2_ship_node.UP_STRING = "p2_up"
+	p2_ship_node.DOWN_STRING = "p2_down"
+	p2_ship_node.FIRE_STRING = "p2_fire"
+	p2_ship_node.SUPER_STRING = "p2_super"
+	p2_ship_node.SHIELD_STRING = "p2_shield"
+	
+	$HUD.initialize_max_hp_bar(1, p1_ship_node.max_hp)
+	$HUD.initialize_max_hp_bar(2, p2_ship_node.max_hp)
+	

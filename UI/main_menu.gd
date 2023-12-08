@@ -18,10 +18,14 @@ var player1_inserted_coin = false
 var player2_inserted_coin = false
 var player1_ready = false
 var player2_ready = false
+var game_started = false
 
 signal both_players_ready(p1_ship, p2_ship)
 
 func _input(event):
+	if game_started:
+		return
+		
 	if event.is_action_pressed("p1_left"):
 		if player1_inserted_coin and !player1_ready:
 			left_pointer -= 1
@@ -78,3 +82,4 @@ func set_prompt(player, text):
 
 func start_game():
 	both_players_ready.emit(left_pointer, right_pointer)
+	game_started = true
