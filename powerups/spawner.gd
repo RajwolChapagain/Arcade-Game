@@ -25,3 +25,6 @@ func set_path_points(point1, point2, point3, point4):
 	$Path2D.curve.add_point(point3)
 	$Path2D.curve.add_point(point4)
 	$Path2D.curve.add_point(point1)
+
+func start_spawn_timer():
+	$Timer.start()

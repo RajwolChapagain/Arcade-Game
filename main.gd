@@ -163,6 +163,7 @@ func _on_main_menu_both_players_ready(p1_ship, p2_ship):
 	initialize_players(player1_ship, player2_ship)
 	$MainMenu.visible = false
 	$HUD.visible = true
+	$Spawner.start_spawn_timer()
 
 func initialize_players(p1_ship_node, p2_ship_node):
 	p1_ship_node.bullet_fired.connect(on_player1_fired_bullet)

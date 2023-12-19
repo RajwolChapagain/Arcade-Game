@@ -15,7 +15,6 @@ objects = [ExtResource("4_0yvf8"), ExtResource("2_e3ppi"), ExtResource("2_qvy86"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0
-autostart = true
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_favat")
