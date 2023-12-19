@@ -178,8 +178,9 @@ func initialize_players(p1_ship_node, p2_ship_node):
 	p1_ship_node.bullet_ring_activated.connect(on_player1_bullet_ring_activated)
 	p2_ship_node.bullet_ring_activated.connect(on_player2_bullet_ring_activated)
 	p2_ship_node.owner_player = 2
-	p1_ship_node.global_position = Vector2($Camera2D.get_screen_center_position().x - 200, $Camera2D.get_screen_center_position().y)
-	p1_ship_node.global_position = Vector2($Camera2D.get_screen_center_position().x + 200, $Camera2D.get_screen_center_position().y)
+	p1_ship_node.global_position = Vector2($Camera2D.get_screen_center_position().x - 1000, $Camera2D.get_screen_center_position().y)
+	p2_ship_node.global_position = Vector2($Camera2D.get_screen_center_position().x + 1000, $Camera2D.get_screen_center_position().y)
+	p2_ship_node.rotation += PI
 	
 	p2_ship_node.LEFT_STRING = "p2_left"
 	p2_ship_node.RIGHT_STRING = "p2_right"
@@ -188,7 +189,7 @@ func initialize_players(p1_ship_node, p2_ship_node):
 	p2_ship_node.FIRE_STRING = "p2_fire"
 	p2_ship_node.SUPER_STRING = "p2_super"
 	p2_ship_node.SHIELD_STRING = "p2_shield"
-	
+
 	$HUD.initialize_max_hp_bar(1, p1_ship_node.max_hp)
 	$HUD.initialize_max_hp_bar(2, p2_ship_node.max_hp)
 	
