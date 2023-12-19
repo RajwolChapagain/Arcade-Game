@@ -22,3 +22,16 @@ func update_p1_super_bar(new_percentage):
 	
 func update_p2_super_bar(new_percentage):
 	$SuperBar2.value = new_percentage
+
+func announce_winner(player):
+	print(player)
+	var player_name
+	
+	if player == 1:
+		player_name = "Player 1"
+	elif player == 2:
+		player_name = "Player 2"
+		
+	var announcement = player_name + " WINS!!!"
+	$WinnerAnnouncementText.set_visible(true)
+	$WinnerAnnouncementText.set_text(announcement)

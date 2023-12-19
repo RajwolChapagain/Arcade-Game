@@ -77,18 +77,23 @@ func on_player2_bullet_ring_activated(bullet_ring_scene, bullet_layer_mask, shar
 	add_child(bullet_ring)
 	
 func on_player1_died():
-	$HUD.set_p1_health(0)
-	delete_bullet_rings(1)
-	on_game_over("Player2")
+	on_game_over(2)
 
 func on_player2_died():
-	$HUD.set_p2_health(0)
-	delete_bullet_rings(2)
-	on_game_over("Player1")
+	on_game_over(1)
 
 func on_game_over(winner):
-	print(winner + " wins!")
-
+	if winner == 1:
+		$HUD.set_p1_health(0)
+		delete_bullet_rings(1)
+	elif winner == 2:
+		$HUD.set_p2_health(0)
+		delete_bullet_rings(1)
+		
+	$HUD.announce_winner(winner)
+	await get_tree().create_timer(5).timeout
+	get_tree().reload_current_scene()
+	
 func _on_spawner_object_spawned(object):
 	if object.is_in_group("super_boost"):
 		object.collected.connect(_on_super_boost_collected)
