@@ -24,7 +24,6 @@ func update_p2_super_bar(new_percentage):
 	$SuperBar2.value = new_percentage
 
 func announce_winner(player):
-	print(player)
 	var player_name
 	
 	if player == 1:

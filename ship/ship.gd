@@ -46,7 +46,8 @@ var dash_time = 0.1
 var dash_distance = 400
 var dash_speed = dash_distance /  dash_time
 var is_dashing = false
-var bullet_rings_owned = 0
+var is_bullet_ring_active = false
+var current_bullet_ring
 var owner_player = 1
 
 var BULLET_SCENE = preload("res://bullet/bullet.tscn")
@@ -70,6 +71,9 @@ func _process(delta):
 	move_and_slide()	
 	refill_super(delta)
 	
+	if is_bullet_ring_active:
+		make_bullet_ring_follow_ship()
+		
 func _input(event):		
 	if is_dashing:
 		return
@@ -83,8 +87,12 @@ func _input(event):
 	if event.is_action_pressed(SUPER_STRING) and super_percentage == 100:
 		super_percentage = 0
 		if shield_button_is_pressed:
-			if fire_button_is_pressed:
-				bullet_ring_activated.emit(BULLET_RING_SCENE, BULLET_LAYER_MASK, SHARED_BULLET_LAYER)
+			if fire_button_is_pressed and not is_bullet_ring_active:
+				current_bullet_ring = BULLET_RING_SCENE.instantiate()
+				current_bullet_ring.destroyed.connect(on_bullet_ring_destroyed)
+				current_bullet_ring.global_position = global_position
+				add_sibling(current_bullet_ring)
+				is_bullet_ring_active = true
 			else:
 				$ShieldTimer.start()
 				activate_shield()
@@ -164,7 +172,7 @@ func fire_stream_of_bullets():
 		await get_tree().create_timer(0.05).timeout
 
 func on_bullet_ring_destroyed():
-	bullet_rings_owned -= 1
+	is_bullet_ring_active = false
 
 func fire_super():
 	$SuperTimer.start()
@@ -175,3 +183,6 @@ func fire_super():
 func refill_super(delta):
 	if velocity.length() < MAX_VELOCITY_MAGNITUDE - 5: #Subtracting by 5 because length is not always exactly equal to 1500
 		super_percentage += delta * 100 / TIME_TO_FILL_SUPER
+
+func make_bullet_ring_follow_ship():
+	current_bullet_ring.global_position = global_position

@@ -13,9 +13,6 @@ func _ready():
 #	randY = randi_range(-1000, 1000)
 #	$Player2.position += Vector2(randX, randY)
 	
-func _physics_process(_delta):
-	update_bullet_ring_position()
-	
 func on_player1_fired_bullet(bullet_scene, damage, direction, location):
 	var bullet = bullet_scene.instantiate()
 	bullet.global_position = location
@@ -51,30 +48,6 @@ func on_player1_super_percentage_changed(new_super_percentage):
 
 func on_player2_super_percentage_changed(new_super_percentage):
 	$HUD.update_p2_super_bar(new_super_percentage)
-	
-func on_player1_bullet_ring_activated(bullet_ring_scene, bullet_layer_mask, shared_bullet_layer):
-	var bullet_ring = bullet_ring_scene.instantiate()
-	bullet_ring.global_position = $Player1.global_position
-	bullet_ring.set_bullets_layer(shared_bullet_layer)
-	bullet_ring.set_bullets_layer($Player1.ONLY_SHIP1_BULLET_LAYER)	
-	bullet_ring.set_bullets_layer_mask(bullet_layer_mask)
-	bullet_ring.owner_player = 1
-	bullet_ring.destroyed.connect($Player1.on_bullet_ring_destroyed)	
-	bullet_ring.radius += 100 * $Player1.bullet_rings_owned		
-	$Player1.bullet_rings_owned += 1
-	add_child(bullet_ring)
-
-func on_player2_bullet_ring_activated(bullet_ring_scene, bullet_layer_mask, shared_bullet_layer):
-	var bullet_ring = bullet_ring_scene.instantiate()
-	bullet_ring.global_position = $Player2.global_position
-	bullet_ring.set_bullets_layer($Player2.ONLY_SHIP2_BULLET_LAYER)	
-	bullet_ring.set_bullets_layer_mask(bullet_layer_mask)
-	bullet_ring.set_bullets_layer_mask(shared_bullet_layer)
-	bullet_ring.owner_player = 2
-	bullet_ring.destroyed.connect($Player2.on_bullet_ring_destroyed)
-	bullet_ring.radius += 100 * $Player2.bullet_rings_owned
-	$Player2.bullet_rings_owned += 1	
-	add_child(bullet_ring)
 	
 func on_player1_died():
 	on_game_over(2)
@@ -142,15 +115,6 @@ func _on_ufo_fired_bullet(bullet_scene, pos, dir, layers, layer_masks):
 		
 	bullet.owner_player = 3
 	add_child(bullet)
-		
-func update_bullet_ring_position():
-	for ring in get_tree().get_nodes_in_group("bullet_ring"):
-		if ring.owner_player == 1:
-			if get_node_or_null("Player1") != null:
-				ring.global_position = $Player1.position
-		else:
-			if get_node_or_null("Player2") != null:
-				ring.global_position = $Player2.position
 
 func delete_bullet_rings(player):
 	for ring in get_tree().get_nodes_in_group("bullet_ring"):
@@ -181,8 +145,6 @@ func initialize_players(p1_ship_node, p2_ship_node):
 	p2_ship_node.super_percentage_changed.connect(on_player2_super_percentage_changed)
 	p1_ship_node.player_died.connect(on_player1_died)
 	p2_ship_node.player_died.connect(on_player2_died)
-	p1_ship_node.bullet_ring_activated.connect(on_player1_bullet_ring_activated)
-	p2_ship_node.bullet_ring_activated.connect(on_player2_bullet_ring_activated)
 	p2_ship_node.owner_player = 2
 	p1_ship_node.global_position = Vector2($Camera2D.get_screen_center_position().x - 1000, $Camera2D.get_screen_center_position().y)
 	p2_ship_node.global_position = Vector2($Camera2D.get_screen_center_position().x + 1000, $Camera2D.get_screen_center_position().y)

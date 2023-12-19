@@ -12,25 +12,6 @@
 script = ExtResource("1_uyiea")
 ships = Array[PackedScene]([ExtResource("2_xweoy"), ExtResource("2_rmhn6"), ExtResource("4_sx32l")])
 
-[node name="Player1" parent="." instance=ExtResource("2_rmhn6")]
-visible = false
-position = Vector2(-1400, 0)
-metadata/_edit_group_ = true
-
-[node name="Player2" parent="." instance=ExtResource("2_rmhn6")]
-visible = false
-position = Vector2(1400, 0)
-rotation = 3.14159
-LEFT_STRING = "p2_left"
-RIGHT_STRING = "p2_right"
-UP_STRING = "p2_up"
-DOWN_STRING = "p2_down"
-FIRE_STRING = "p2_fire"
-SUPER_STRING = "p2_super"
-SHIELD_STRING = "p2_shield"
-BULLET_LAYER_MASK = 1
-metadata/_edit_group_ = true
-
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.25, 0.25)
 
