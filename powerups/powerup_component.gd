@@ -11,7 +11,7 @@ func _physics_process(delta):
 	rotation_degrees += angular_velocity * delta
 
 func _on_body_entered(body):
-	if body.is_in_group("ship") or body.is_in_group("bullet"):
+	if body.is_in_group("ship"):
 		if body.owner_player == 1:
 			collected.emit(1, emitted_values)
 		elif body.owner_player == 2:
@@ -23,3 +23,14 @@ func _on_body_entered(body):
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
+
+
+func _on_area_entered(area):
+	if area.is_in_group("bullet"):
+		if area.owner_player == 1:
+			collected.emit(1, emitted_values)
+		elif area.owner_player == 2:
+			collected.emit(2, emitted_values)
+		else:
+			pass #collected by ufo
+		queue_free()
