@@ -164,7 +164,7 @@ func dash():
 
 func fire_stream_of_bullets():
 	for i in range(10):
-		bullet_fired.emit(BULLET_SCENE, bullet_damage, transform.x, $BulletOrigin.global_position)
+		bullet_fired.emit(BULLET_SCENE, bullet_damage, transform.x, $BulletOrigin.global_position, owner_player)
 		await get_tree().create_timer(0.05).timeout
 
 func on_bullet_ring_destroyed():
