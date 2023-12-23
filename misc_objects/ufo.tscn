@@ -9,6 +9,7 @@ size = Vector2(176, 176)
 [node name="UFO" type="CharacterBody2D" groups=["ufo"]]
 collision_mask = 0
 script = ExtResource("1_nkpty")
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(1.375, 1.375)

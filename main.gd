@@ -104,17 +104,10 @@ func _on_accleration_boost_collected(player, values):
 			$Player1.THRUST_FORCE -= values[0]
 		$Player2.THRUST_FORCE -= values[0]
 
-func _on_ufo_fired_bullet(bullet_scene, pos, dir, layers, layer_masks):
+func _on_ufo_fired_bullet(bullet_scene, pos, dir):
 	var bullet = bullet_scene.instantiate()
 	bullet.global_position = pos
-	bullet.set_direction(dir)
-	
-	for layer in layers:
-		bullet.set_collision_layer_value(layer, true)
-
-	for mask in layer_masks:
-		bullet.set_collision_mask_value(mask, true)
-		
+	bullet.set_direction(dir)		
 	bullet.owner_player = 3
 	add_child(bullet)
 
