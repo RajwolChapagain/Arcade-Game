@@ -31,6 +31,8 @@ func _on_body_entered(body):
 		
 	queue_free()
 
-
 func _on_area_entered(area): #For collision with powerups and other bullets
+	if area.is_in_group("bullet") and area.owner_player == owner_player:
+		return
+		
 	queue_free()

@@ -82,17 +82,13 @@ func _input(event):
 		if shield_button_is_pressed:
 			dash()
 		else:
-			bullet_fired.emit(BULLET_SCENE, bullet_damage, transform.x, $BulletOrigin.global_position)
+			bullet_fired.emit(BULLET_SCENE, bullet_damage, transform.x, $BulletOrigin.global_position, owner_player)
 	
 	if event.is_action_pressed(SUPER_STRING) and super_percentage == 100:
 		super_percentage = 0
 		if shield_button_is_pressed:
 			if fire_button_is_pressed and not is_bullet_ring_active:
-				current_bullet_ring = BULLET_RING_SCENE.instantiate()
-				current_bullet_ring.destroyed.connect(on_bullet_ring_destroyed)
-				current_bullet_ring.global_position = global_position
-				add_sibling(current_bullet_ring)
-				is_bullet_ring_active = true
+				instantiate_bullet_ring()
 			else:
 				$ShieldTimer.start()
 				activate_shield()
@@ -185,4 +181,14 @@ func refill_super(delta):
 		super_percentage += delta * 100 / TIME_TO_FILL_SUPER
 
 func make_bullet_ring_follow_ship():
+	#☢️FIX ME: Ship can get destroyed when bullet ring is active causing global_position to return previously freed and the game to crash
+	
 	current_bullet_ring.global_position = global_position
+
+func instantiate_bullet_ring():
+	current_bullet_ring = BULLET_RING_SCENE.instantiate()
+	current_bullet_ring.destroyed.connect(on_bullet_ring_destroyed)
+	current_bullet_ring.global_position = global_position
+	current_bullet_ring.owner_player = owner_player
+	add_sibling(current_bullet_ring)
+	is_bullet_ring_active = true

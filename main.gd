@@ -13,20 +13,22 @@ func _ready():
 #	randY = randi_range(-1000, 1000)
 #	$Player2.position += Vector2(randX, randY)
 	
-func on_player1_fired_bullet(bullet_scene, damage, direction, location):
+func on_player1_fired_bullet(bullet_scene, damage, direction, location, owner_player):
 	var bullet = bullet_scene.instantiate()
 	bullet.global_position = location
 	bullet.set_direction(direction) 
 	bullet.owner_player = 1
 	bullet.DAMAGE = damage
+	bullet.owner_player = owner_player
 	add_child(bullet)
 
-func on_player2_fired_bullet(bullet_scene, damage, direction, location):
+func on_player2_fired_bullet(bullet_scene, damage, direction, location, owner_player):
 	var bullet = bullet_scene.instantiate()
 	bullet.global_position = location
 	bullet.set_direction(direction) 
 	bullet.owner_player = 2	
 	bullet.DAMAGE = damage
+	bullet.owner_player = owner_player
 	add_child(bullet)
 	
 func on_player1_hit(damage):

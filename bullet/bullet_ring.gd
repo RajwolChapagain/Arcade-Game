@@ -2,7 +2,13 @@ extends Node2D
 
 var radius = 200
 const angular_velocity = 180
-var owner_player = 1
+var owner_player = 1:
+	get:
+		return owner_player
+	set(value):
+		owner_player = value
+		for child in get_children():
+			child.owner_player = value
 
 signal destroyed
 
