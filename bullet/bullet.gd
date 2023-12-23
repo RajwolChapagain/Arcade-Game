@@ -9,12 +9,6 @@ var owner_player = 1
 
 func _physics_process(delta):
 	position += direction * SPEED * delta
-	
-	#if collision != null:
-		#if collision.get_collider().has_method("on_hit"):
-			#collision.get_collider().on_hit(DAMAGE)
-			#
-		#queue_free()
 
 func set_direction(new_direction):
 	direction = new_direction
@@ -35,4 +29,8 @@ func _on_body_entered(body):
 	if body.has_method("on_hit"):
 		body.on_hit(DAMAGE)
 		
-		queue_free()
+	queue_free()
+
+
+func _on_area_entered(area): #For collision with powerups and other bullets
+	queue_free()
