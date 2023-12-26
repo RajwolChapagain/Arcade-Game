@@ -181,10 +181,9 @@ func refill_super(delta):
 	if velocity.length() < MAX_VELOCITY_MAGNITUDE - 5: #Subtracting by 5 because length is not always exactly equal to 1500
 		super_percentage += delta * 100 / TIME_TO_FILL_SUPER
 
-func make_bullet_ring_follow_ship():
-	#☢️FIX ME: Ship can get destroyed when bullet ring is active causing global_position to return previously freed and the game to crash
-	
-	current_bullet_ring.global_position = global_position
+func make_bullet_ring_follow_ship():	
+	if !is_queued_for_deletion():
+		current_bullet_ring.global_position = global_position
 
 func instantiate_bullet_ring():
 	current_bullet_ring = BULLET_RING_SCENE.instantiate()
