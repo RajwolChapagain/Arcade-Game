@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var ships : Array[PackedScene] ##Has to be in the same order as ship_sprites in Main Menu
+var game_is_over = false
 
 func _ready():
 	var offset = 80
@@ -58,18 +59,21 @@ func on_player2_hit(_damage):
 	shake_camera(0.2, 200)
 	
 func on_player1_died():
-	on_game_over(2)
+	delete_bullet_rings(1)	
+	if not game_is_over:
+		on_game_over(2)
 
 func on_player2_died():
-	on_game_over(1)
+	delete_bullet_rings(2)	
+	if not game_is_over:
+		on_game_over(1)
 
 func on_game_over(winner):
+	game_is_over = true
 	if winner == 1:
 		$HUD.set_p2_health(0)
-		delete_bullet_rings(2)
 	elif winner == 2:
 		$HUD.set_p1_health(0)
-		delete_bullet_rings(1)
 	$HUD.announce_winner(winner)
 	await get_tree().create_timer(5).timeout
 	get_tree().reload_current_scene()
