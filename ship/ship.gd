@@ -60,6 +60,7 @@ signal hit(damage)
 signal super_percentage_changed(new_super_percentage)
 signal hp_changed(new_hp)
 signal player_died
+signal super_fired(super_duration)
 
 func _ready():
 #	$Sprite2D.texture = SHIP_SPRITE
@@ -172,6 +173,7 @@ func on_bullet_ring_destroyed():
 
 func fire_super():
 	$SuperTimer.start()
+	super_fired.emit(SUPER_DURATION)
 	var super_instance = SUPER_SCENE.instantiate()
 	super_instance.position = $BulletOrigin.position
 	super_instance.super_did_damage.connect(on_super_did_damage)

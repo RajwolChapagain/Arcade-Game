@@ -17,12 +17,6 @@ func on_player1_fired_bullet(bullet_scene, damage, direction, location, owner_pl
 	add_child(bullet)
 	shake_camera(0.1, 100)
 
-func on_bullet_did_damage(damaging_player, damage_amount):
-	if damaging_player == 1:
-		$Player1.super_percentage += damage_amount / 2
-	elif damaging_player == 2:
-		$Player2.super_percentage += damage_amount / 2
-		
 func on_player2_fired_bullet(bullet_scene, damage, direction, location, owner_player):
 	var bullet = bullet_scene.instantiate()
 	bullet.global_position = location
@@ -32,7 +26,19 @@ func on_player2_fired_bullet(bullet_scene, damage, direction, location, owner_pl
 	bullet.owner_player = owner_player
 	add_child(bullet)
 	shake_camera(0.1, 100)	
+
+func on_player1_fired_super(super_duration):
+	shake_camera(0.15, super_duration * 1000)
+
+func on_player2_fired_super(super_duration):
+	shake_camera(0.15, super_duration * 1000)
 	
+func on_bullet_did_damage(damaging_player, damage_amount):
+	if damaging_player == 1:
+		$Player1.super_percentage += damage_amount / 2
+	elif damaging_player == 2:
+		$Player2.super_percentage += damage_amount / 2
+		
 func on_player1_hp_changed(new_hp):
 	$HUD.set_p1_health(new_hp)
 
@@ -44,6 +50,12 @@ func on_player1_super_percentage_changed(new_super_percentage):
 
 func on_player2_super_percentage_changed(new_super_percentage):
 	$HUD.update_p2_super_bar(new_super_percentage)
+	
+func on_player1_hit(_damage):
+	shake_camera(0.2, 200)
+
+func on_player2_hit(_damage):
+	shake_camera(0.2, 200)
 	
 func on_player1_died():
 	on_game_over(2)
@@ -124,12 +136,16 @@ func _on_main_menu_both_players_ready(p1_ship, p2_ship):
 func initialize_players(p1_ship_node, p2_ship_node):
 	p1_ship_node.bullet_fired.connect(on_player1_fired_bullet)
 	p2_ship_node.bullet_fired.connect(on_player2_fired_bullet)
+	p1_ship_node.super_fired.connect(on_player1_fired_super)
+	p2_ship_node.super_fired.connect(on_player2_fired_super)	
 	p1_ship_node.hp_changed.connect(on_player1_hp_changed)
 	p2_ship_node.hp_changed.connect(on_player2_hp_changed)
 	p1_ship_node.super_percentage_changed.connect(on_player1_super_percentage_changed)	
 	p2_ship_node.super_percentage_changed.connect(on_player2_super_percentage_changed)
 	p1_ship_node.player_died.connect(on_player1_died)
 	p2_ship_node.player_died.connect(on_player2_died)
+	p1_ship_node.hit.connect(on_player1_hit)
+	p2_ship_node.hit.connect(on_player2_hit)
 	p2_ship_node.owner_player = 2
 	p1_ship_node.global_position = Vector2($Camera2D.get_screen_center_position().x - 1000, $Camera2D.get_screen_center_position().y)
 	p2_ship_node.global_position = Vector2($Camera2D.get_screen_center_position().x + 1000, $Camera2D.get_screen_center_position().y)
