@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jihrs"]
 size = Vector2(10000, 200)
 
-[node name="Super" type="Area2D"]
+[node name="Super" type="Area2D" groups=["super"]]
 script = ExtResource("1_lki54")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

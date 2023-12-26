@@ -27,7 +27,7 @@ func on_hit(_damage): #Useful when super destroys bullet
 func _on_body_entered(body):
 	if body.is_in_group("ship") and body.owner_player == owner_player: #If it is the player that fired the bullet
 		return
-	
+		
 	if body.is_in_group("ufo") or body.is_in_group("ship"):
 		bullet_did_damage.emit(owner_player, DAMAGE)
 		
@@ -40,4 +40,6 @@ func _on_area_entered(area): #For collision with powerups and other bullets
 	if area.is_in_group("bullet") and area.owner_player == owner_player:
 		return
 		
+	if is_in_ring and area.is_in_group("super") and area.owner_player == owner_player:
+		return
 	queue_free()

@@ -175,6 +175,7 @@ func fire_super():
 	var super_instance = SUPER_SCENE.instantiate()
 	super_instance.position = $BulletOrigin.position
 	super_instance.super_did_damage.connect(on_super_did_damage)
+	super_instance.owner_player = owner_player
 	add_child(super_instance)
 
 func refill_super(delta):
