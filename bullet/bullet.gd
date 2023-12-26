@@ -7,6 +7,8 @@ var direction = transform.x
 var is_in_ring = false
 var owner_player = 1
 
+signal bullet_did_damage(owner_player)
+
 func _physics_process(delta):
 	position += direction * SPEED * delta
 
@@ -26,6 +28,9 @@ func _on_body_entered(body):
 	if body.is_in_group("ship") and body.owner_player == owner_player: #If it is the player that fired the bullet
 		return
 	
+	if body.is_in_group("ufo") or body.is_in_group("ship"):
+		bullet_did_damage.emit(owner_player, DAMAGE)
+		
 	if body.has_method("on_hit"):
 		body.on_hit(DAMAGE)
 		

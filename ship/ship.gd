@@ -174,6 +174,7 @@ func fire_super():
 	$SuperTimer.start()
 	var super_instance = SUPER_SCENE.instantiate()
 	super_instance.position = $BulletOrigin.position
+	super_instance.super_did_damage.connect(on_super_did_damage)
 	add_child(super_instance)
 
 func refill_super(delta):
@@ -192,3 +193,6 @@ func instantiate_bullet_ring():
 	current_bullet_ring.owner_player = owner_player
 	add_sibling(current_bullet_ring)
 	is_bullet_ring_active = true
+
+func on_super_did_damage(damage):
+	super_percentage += damage / 2

@@ -20,8 +20,15 @@ func on_player1_fired_bullet(bullet_scene, damage, direction, location, owner_pl
 	bullet.owner_player = 1
 	bullet.DAMAGE = damage
 	bullet.owner_player = owner_player
+	bullet.bullet_did_damage.connect(on_bullet_did_damage)
 	add_child(bullet)
 
+func on_bullet_did_damage(damaging_player, damage_amount):
+	if damaging_player == 1:
+		$Player1.super_percentage += damage_amount / 2
+	elif damaging_player == 2:
+		$Player2.super_percentage += damage_amount / 2
+		
 func on_player2_fired_bullet(bullet_scene, damage, direction, location, owner_player):
 	var bullet = bullet_scene.instantiate()
 	bullet.global_position = location
@@ -31,14 +38,6 @@ func on_player2_fired_bullet(bullet_scene, damage, direction, location, owner_pl
 	bullet.owner_player = owner_player
 	add_child(bullet)
 	
-func on_player1_hit(damage):
-	if get_node_or_null("Player2") != null: #Can happen if bullet hits player after other player has died
-		$Player2.super_percentage += damage / 2
-	
-func on_player2_hit(damage):
-	if get_node_or_null("Player1") != null:
-		$Player1.super_percentage += damage / 2
-
 func on_player1_hp_changed(new_hp):
 	$HUD.set_p1_health(new_hp)
 
@@ -59,12 +58,11 @@ func on_player2_died():
 
 func on_game_over(winner):
 	if winner == 1:
+		$HUD.set_p2_health(0)
+		delete_bullet_rings(2)
+	elif winner == 2:
 		$HUD.set_p1_health(0)
 		delete_bullet_rings(1)
-	elif winner == 2:
-		$HUD.set_p2_health(0)
-		delete_bullet_rings(1)
-		
 	$HUD.announce_winner(winner)
 	await get_tree().create_timer(5).timeout
 	get_tree().reload_current_scene()
@@ -132,8 +130,6 @@ func _on_main_menu_both_players_ready(p1_ship, p2_ship):
 func initialize_players(p1_ship_node, p2_ship_node):
 	p1_ship_node.bullet_fired.connect(on_player1_fired_bullet)
 	p2_ship_node.bullet_fired.connect(on_player2_fired_bullet)
-	p1_ship_node.hit.connect(on_player1_hit)
-	p2_ship_node.hit.connect(on_player2_hit)
 	p1_ship_node.hp_changed.connect(on_player1_hp_changed)
 	p2_ship_node.hp_changed.connect(on_player2_hp_changed)
 	p1_ship_node.super_percentage_changed.connect(on_player1_super_percentage_changed)	
