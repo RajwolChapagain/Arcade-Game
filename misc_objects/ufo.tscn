@@ -50,5 +50,13 @@ autostart = true
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 scale = Vector2(8.8, 8.8)
 
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -82.0
+offset_top = -175.0
+offset_right = 81.0
+offset_bottom = -128.0
+value = 100.0
+show_percentage = false
+
 [connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

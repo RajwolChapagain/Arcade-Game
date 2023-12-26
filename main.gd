@@ -174,7 +174,9 @@ func shake_camera(intensity: float, duration: float):
 	
 	while Time.get_ticks_msec() - start_time  < duration:
 		$Camera2D.offset = Vector2(max_distance * intensity * randf_range(-1, 1), max_distance * intensity * randf_range(-1, 1))
-		await get_tree().process_frame
+		
+		if is_inside_tree():
+			await get_tree().process_frame
 	
 	$Camera2D.offset = Vector2.ZERO
 	

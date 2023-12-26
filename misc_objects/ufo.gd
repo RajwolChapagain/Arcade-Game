@@ -8,6 +8,7 @@ var hp = 100:
 	set(value):
 		hp = value
 		hp = clamp(hp, 0, 100)
+		$HealthBar.value = hp
 	
 var bullet_scene = preload("res://bullet/bullet.tscn")
 
