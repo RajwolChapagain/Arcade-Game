@@ -5,13 +5,6 @@ extends Node2D
 func _ready():
 	var offset = 80
 	$Spawner.set_path_points(Vector2(-2000 - offset, -1500 - offset), Vector2(2000 + offset, -1500 - offset), Vector2(2000 + offset, 1500 + offset), Vector2(-2000 - offset, 1500 + offset))
-#	randomize()
-#	var randX = randi_range(0, 100)
-#	var randY = randi_range(-1000, 1000)
-#	$Player1.position += Vector2(randX, randY)
-#	randX = randi_range(0, -1000)
-#	randY = randi_range(-1000, 1000)
-#	$Player2.position += Vector2(randX, randY)
 	
 func on_player1_fired_bullet(bullet_scene, damage, direction, location, owner_player):
 	var bullet = bullet_scene.instantiate()
@@ -22,6 +15,7 @@ func on_player1_fired_bullet(bullet_scene, damage, direction, location, owner_pl
 	bullet.owner_player = owner_player
 	bullet.bullet_did_damage.connect(on_bullet_did_damage)
 	add_child(bullet)
+	shake_camera(0.1, 100)
 
 func on_bullet_did_damage(damaging_player, damage_amount):
 	if damaging_player == 1:
@@ -37,6 +31,7 @@ func on_player2_fired_bullet(bullet_scene, damage, direction, location, owner_pl
 	bullet.DAMAGE = damage
 	bullet.owner_player = owner_player
 	add_child(bullet)
+	shake_camera(0.1, 100)	
 	
 func on_player1_hp_changed(new_hp):
 	$HUD.set_p1_health(new_hp)
@@ -113,8 +108,7 @@ func delete_bullet_rings(player):
 	for ring in get_tree().get_nodes_in_group("bullet_ring"):
 		if ring.owner_player == player:
 			ring.queue_free()
-		
-
+			
 func _on_main_menu_both_players_ready(p1_ship, p2_ship):
 	var player1_ship = ships[p1_ship].instantiate()
 	player1_ship.name = "Player1"
@@ -151,4 +145,20 @@ func initialize_players(p1_ship_node, p2_ship_node):
 
 	$HUD.initialize_max_hp_bar(1, p1_ship_node.max_hp)
 	$HUD.initialize_max_hp_bar(2, p2_ship_node.max_hp)
+
+func shake_camera(intensity: float, duration: float):
+	intensity = clampf(intensity, 0, 1)
+	var max_distance = 100
+	
+	var start_time = Time.get_ticks_msec()
+	
+	while Time.get_ticks_msec() - start_time  < duration:
+		$Camera2D.offset = Vector2(max_distance * intensity * randf_range(-1, 1), max_distance * intensity * randf_range(-1, 1))
+		await get_tree().process_frame
+	
+	$Camera2D.offset = Vector2.ZERO
+	
+	
+	
+	
 	
