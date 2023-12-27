@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ft2oy"]
 size = Vector2(630, 50)
 
-[node name="Debris" type="CharacterBody2D"]
+[node name="Debris" type="CharacterBody2D" groups=["spawned_objects"]]
 position = Vector2(0, 1)
 script = ExtResource("1_koepk")
 

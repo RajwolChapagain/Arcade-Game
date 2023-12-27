@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://8le43nudq3ms" path="res://powerups/powerup_component.tscn" id="1_pxg01"]
 [ext_resource type="Texture2D" uid="uid://nw60aqglp3p0" path="res://powerups/hp_boost.svg" id="2_p25kq"]
 
-[node name="HPBoost" groups=["hp_boost"] instance=ExtResource("1_pxg01")]
+[node name="HPBoost" groups=["hp_boost", "spawned_objects"] instance=ExtResource("1_pxg01")]
 emitted_values = [20]
 
 [node name="Sprite2D" parent="." index="0"]

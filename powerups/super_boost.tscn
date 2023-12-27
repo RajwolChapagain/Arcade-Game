@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://7a7no351hqif" path="res://powerups/super_boost.svg" id="1_sghil"]
 [ext_resource type="PackedScene" uid="uid://8le43nudq3ms" path="res://powerups/powerup_component.tscn" id="1_txhty"]
 
-[node name="SuperBoost" groups=["super_boost"] instance=ExtResource("1_txhty")]
+[node name="SuperBoost" groups=["spawned_objects", "super_boost"] instance=ExtResource("1_txhty")]
 emitted_values = [50]
 
 [node name="Sprite2D" parent="." index="0"]
