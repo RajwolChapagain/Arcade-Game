@@ -2,12 +2,12 @@ extends CharacterBody2D
 
 var linear_velocity = Vector2.ZERO
 var angular_velocity = 0
-var hp = 100:
+var hp = 50:
 	get:
 		return hp
 	set(value):
 		hp = value
-		hp = clamp(hp, 0, 100)
+		hp = clamp(hp, 0, 50)
 		$HealthBar.value = hp
 	
 var bullet_scene = preload("res://bullet/bullet.tscn")
