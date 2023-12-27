@@ -34,3 +34,6 @@ func announce_winner(player):
 	var announcement = player_name + " WINS!!!"
 	$WinnerAnnouncementText.set_visible(true)
 	$WinnerAnnouncementText.set_text(announcement)
+
+func hide_announcement_text():
+	$WinnerAnnouncementText.set_visible(false)	

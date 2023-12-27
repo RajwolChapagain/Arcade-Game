@@ -1,7 +1,12 @@
 extends Node2D
 
 @export var ships : Array[PackedScene] ##Has to be in the same order as ship_sprites in Main Menu
-var game_is_over = false
+var p1_ship_index = 0
+var p2_ship_index = 0
+var round_is_over = false
+var round_number = 1
+var rounds_won_by_p1 = 0
+var rounds_won_by_p2 = 0
 
 func _ready():
 	var offset = 80
@@ -60,23 +65,30 @@ func on_player2_hit(_damage):
 	
 func on_player1_died():
 	delete_bullet_rings(1)	
-	if not game_is_over:
-		on_game_over(2)
+	if not round_is_over:
+		on_round_over(2)
 
 func on_player2_died():
 	delete_bullet_rings(2)	
-	if not game_is_over:
-		on_game_over(1)
+	if not round_is_over:
+		on_round_over(1)
 
-func on_game_over(winner):
-	game_is_over = true
+func on_round_over(winner):
+	round_is_over = true
 	if winner == 1:
 		$HUD.set_p2_health(0)
+		rounds_won_by_p1 += 1
 	elif winner == 2:
 		$HUD.set_p1_health(0)
+		rounds_won_by_p2 += 1
 	$HUD.announce_winner(winner)
 	await get_tree().create_timer(5).timeout
-	get_tree().reload_current_scene()
+	$HUD.hide_announcement_text()
+
+	if rounds_won_by_p1 == 2 or rounds_won_by_p2 == 2:
+		get_tree().reload_current_scene()
+	else:
+		start_next_round()
 	
 func _on_spawner_object_spawned(object):
 	if object.is_in_group("super_boost"):
@@ -126,10 +138,15 @@ func delete_bullet_rings(player):
 			ring.queue_free()
 			
 func _on_main_menu_both_players_ready(p1_ship, p2_ship):
-	var player1_ship = ships[p1_ship].instantiate()
+	p1_ship_index = p1_ship
+	p2_ship_index = p2_ship
+	instantiate_ships()
+
+func instantiate_ships():
+	var player1_ship = ships[p1_ship_index].instantiate()
 	player1_ship.name = "Player1"
 	add_child(player1_ship)
-	var player2_ship = ships[p2_ship].instantiate()
+	var player2_ship = ships[p2_ship_index].instantiate()
 	player2_ship.name = "Player2"
 	add_child(player2_ship)
 	initialize_players(player1_ship, player2_ship)
@@ -180,7 +197,10 @@ func shake_camera(intensity: float, duration: float):
 	
 	$Camera2D.offset = Vector2.ZERO
 	
-	
-	
+func start_next_round():
+	round_number += 1
+	get_tree().call_group("ship", "free")
+	instantiate_ships()
+	round_is_over = false
 	
 	
