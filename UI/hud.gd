@@ -32,8 +32,11 @@ func announce_winner(player):
 		player_name = "Player 2"
 		
 	var announcement = player_name + " WINS!!!"
-	$WinnerAnnouncementText.set_visible(true)
-	$WinnerAnnouncementText.set_text(announcement)
+	show_announcement_text(announcement)
 
 func hide_announcement_text():
 	$WinnerAnnouncementText.set_visible(false)	
+
+func show_announcement_text(text):
+	$WinnerAnnouncementText.set_text(text)
+	$WinnerAnnouncementText.set_visible(true)	

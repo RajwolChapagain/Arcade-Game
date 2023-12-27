@@ -30,5 +30,10 @@ offset_top = -1500.0
 offset_right = 2000.0
 offset_bottom = 1500.0
 
+[node name="RoundTimer" type="Timer" parent="."]
+wait_time = 90.0
+one_shot = true
+
 [connection signal="object_spawned" from="Spawner" to="." method="_on_spawner_object_spawned"]
 [connection signal="both_players_ready" from="MainMenu" to="." method="_on_main_menu_both_players_ready"]
+[connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]

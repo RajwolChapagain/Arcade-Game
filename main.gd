@@ -40,9 +40,9 @@ func on_player2_fired_super(super_duration):
 	shake_camera(0.15, super_duration * 1000)
 	
 func on_bullet_did_damage(damaging_player, damage_amount):
-	if damaging_player == 1:
+	if damaging_player == 1 and get_node_or_null("Player1") != null:
 		$Player1.super_percentage += damage_amount / 2
-	elif damaging_player == 2:
+	elif damaging_player == 2 and get_node_or_null("Player2") != null:
 		$Player2.super_percentage += damage_amount / 2
 		
 func on_player1_hp_changed(new_hp):
@@ -153,6 +153,7 @@ func instantiate_ships():
 	$MainMenu.visible = false
 	$HUD.visible = true
 	$Spawner.start_spawn_timer()
+	$RoundTimer.start()
 
 func initialize_players(p1_ship_node, p2_ship_node):
 	p1_ship_node.bullet_fired.connect(on_player1_fired_bullet)
@@ -204,5 +205,35 @@ func start_next_round():
 	get_tree().call_group("bullet", "queue_free")
 	instantiate_ships()
 	round_is_over = false
+
+func _on_round_timer_timeout():
+	$HUD.show_announcement_text("TIME OVER")
+	get_tree().paused = true
+	
+	var tween = get_tree().create_tween()
+	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	tween.set_parallel(true)
+	
+	var winner = 1 if ($Player1.hp > $Player2.hp) else 2
+	
+	if winner == 1:
+		tween.tween_property($Player1, "hp", $Player1.hp - $Player2.hp, 1.5)
+		tween.tween_property($Player2, "hp", 0, 1.5)
+	elif winner == 2:
+		tween.tween_property($Player2, "hp", $Player2.hp - $Player1.hp, 1.5)
+		tween.tween_property($Player1, "hp", 0, 1.5)
+	
+	await get_tree().create_timer(1.5, true).timeout
+	on_round_over(winner)
+	
+	if winner == 1:
+		$Player2.queue_free()
+	if winner == 2:
+		$Player1.queue_free()
+		
+	get_tree().paused = false	
+		
+	
+	
 	
 	
