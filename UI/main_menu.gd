@@ -63,7 +63,7 @@ func on_player_insert_coin(player):
 		player2_inserted_coin = true
 		player2_ready = false
 		
-	set_prompt(player, "SELECT SHIP")
+	set_prompt(player, "Select Ship")
 	
 func make_player_ready(player):
 	if player == 1:
@@ -74,7 +74,7 @@ func make_player_ready(player):
 		player2_ready = true
 		if player1_ready:
 			start_game()
-	set_prompt(player, "READY!")
+	set_prompt(player, "Ready!")
 	
 func set_prompt(player, text):
 	var label = $Prompt/Label if player == 1 else $Prompt/Label2

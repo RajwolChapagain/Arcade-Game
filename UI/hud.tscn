@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://0uuiimj7834t"]
+[gd_scene load_steps=5 format=3 uid="uid://0uuiimj7834t"]
 
 [ext_resource type="Script" path="res://ui/hud.gd" id="1_2eusb"]
 [ext_resource type="PackedScene" uid="uid://l4c7xcvflq5r" path="res://UI/health_bar.tscn" id="2_7d51a"]
+[ext_resource type="Theme" uid="uid://bb7f13p2xc05p" path="res://UI/ui_theme.tres" id="3_ainlw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eqrp0"]
 bg_color = Color(0.670588, 0.603922, 0.266667, 1)
@@ -68,4 +69,4 @@ offset_top = 478.0
 offset_right = 755.5
 offset_bottom = 751.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 200
+theme = ExtResource("3_ainlw")

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://mf26dw6pyc04"]
+[gd_scene load_steps=7 format=3 uid="uid://mf26dw6pyc04"]
 
 [ext_resource type="Texture2D" uid="uid://c87ojw4yeuuud" path="res://UI/right_arrow.svg" id="1_5rmpm"]
 [ext_resource type="Texture2D" uid="uid://dvoiqv1dp1eab" path="res://ship/stock_ship.svg" id="1_835c4"]
 [ext_resource type="Script" path="res://UI/main_menu.gd" id="1_qtlmi"]
 [ext_resource type="Texture2D" uid="uid://d3etsdxr15cwe" path="res://ship/scout_ship.png" id="2_1eyi0"]
 [ext_resource type="Texture2D" uid="uid://deb848xhneunh" path="res://ship/tank_ship.svg" id="4_4vnet"]
+[ext_resource type="Theme" uid="uid://bb7f13p2xc05p" path="res://UI/ui_theme.tres" id="5_85q3v"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -32,16 +33,16 @@ alignment = 1
 [node name="Label" type="Label" parent="Prompt"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 80
-text = "INSERT CREDIT TO START"
+theme = ExtResource("5_85q3v")
+text = "Insert Credit to Start"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="Prompt"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 80
-text = "INSERT CREDIT TO START"
+theme = ExtResource("5_85q3v")
+text = "Insert Credit to Start"
 horizontal_alignment = 1
 vertical_alignment = 1
 
