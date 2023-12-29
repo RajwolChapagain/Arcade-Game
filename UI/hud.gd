@@ -1,5 +1,5 @@
 extends Control
-
+	
 func initialize_max_hp_bar(player, max_hp):
 	var health_bar
 	
@@ -40,3 +40,6 @@ func hide_announcement_text():
 func show_announcement_text(text):
 	$WinnerAnnouncementText.set_text(text)
 	$WinnerAnnouncementText.set_visible(true)	
+
+func set_round_time(text):
+	$RoundTime.set_text(str(text))
