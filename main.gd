@@ -78,6 +78,7 @@ func on_player2_died():
 
 func on_round_over(winner):
 	round_is_over = true
+	$RoundTimer.paused = true
 	if winner == 1:
 		$HUD.set_p2_health(0)
 		rounds_won_by_p1 += 1
