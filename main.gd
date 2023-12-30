@@ -209,6 +209,8 @@ func start_next_round():
 	get_tree().call_group("bullet", "queue_free")
 	instantiate_ships()
 	round_is_over = false
+	$RoundTimer.paused = false
+	$RoundTimer.start()
 
 func _on_round_timer_timeout():
 	$HUD.show_announcement_text("TIME OVER")

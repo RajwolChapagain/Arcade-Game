@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://bwwfadbv80f4t"
-path="res://.godot/imported/HubotSans-Bold.otf-0bcfb5e97fdefea7fecfc8a7ae1ba314.fontdata"
+path="res://.godot/imported/HubotSans-Bold.otf-0960d0cc961fe00320ab10549d9e9d83.fontdata"
 
 [deps]
 
-source_file="res://ui/HubotSans-Bold.otf"
-dest_files=["res://.godot/imported/HubotSans-Bold.otf-0bcfb5e97fdefea7fecfc8a7ae1ba314.fontdata"]
+source_file="res://UI/HubotSans-Bold.otf"
+dest_files=["res://.godot/imported/HubotSans-Bold.otf-0960d0cc961fe00320ab10549d9e9d83.fontdata"]
 
 [params]
 
