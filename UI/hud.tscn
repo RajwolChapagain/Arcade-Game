@@ -1,12 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://0uuiimj7834t"]
 
 [ext_resource type="Script" path="res://ui/hud.gd" id="1_2eusb"]
-[ext_resource type="PackedScene" uid="uid://l4c7xcvflq5r" path="res://UI/health_bar.tscn" id="2_7d51a"]
+[ext_resource type="PackedScene" uid="uid://dpdvumh4y0ej1" path="res://UI/health_bar.tscn" id="2_7d51a"]
+[ext_resource type="PackedScene" uid="uid://bbqw3yx2uj7u5" path="res://UI/super_bar.tscn" id="3_8pa78"]
 [ext_resource type="Theme" uid="uid://bb7f13p2xc05p" path="res://UI/ui_theme.tres" id="3_ainlw"]
 [ext_resource type="Texture2D" uid="uid://bvruc8kcjdmrq" path="res://UI/timer_background.png" id="4_xeyvx"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eqrp0"]
-bg_color = Color(0.670588, 0.603922, 0.266667, 1)
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -21,44 +19,34 @@ size_flags_vertical = 0
 script = ExtResource("1_2eusb")
 
 [node name="HealthBar" parent="." instance=ExtResource("2_7d51a")]
-layout_mode = 1
-offset_left = 100.0
-offset_top = 100.0
-offset_right = 608.0
-offset_bottom = 173.0
+layout_mode = 0
+offset_left = 284.0
+offset_top = 112.0
+offset_right = 1446.0
+offset_bottom = 277.0
+
+[node name="SuperBar" parent="." instance=ExtResource("3_8pa78")]
+layout_mode = 0
+offset_left = 284.0
+offset_top = 321.0
+offset_right = 1446.0
+offset_bottom = 486.0
 
 [node name="HealthBar2" parent="." instance=ExtResource("2_7d51a")]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -658.0
-offset_top = 100.0
-offset_right = -150.0
-offset_bottom = 173.0
-grow_horizontal = 0
+layout_mode = 0
+offset_left = 2557.0
+offset_top = 112.0
+offset_right = 3719.0
+offset_bottom = 277.0
+fill_mode = 1
 
-[node name="SuperBar" parent="." instance=ExtResource("2_7d51a")]
-layout_mode = 1
-offset_left = 100.0
-offset_top = 213.0
-offset_right = 488.0
-offset_bottom = 260.0
-theme_override_styles/fill = SubResource("StyleBoxFlat_eqrp0")
-value = 0.0
-
-[node name="SuperBar2" parent="." instance=ExtResource("2_7d51a")]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -538.0
-offset_top = 200.0
-offset_right = -150.0
-offset_bottom = 247.0
-grow_horizontal = 0
-theme_override_styles/fill = SubResource("StyleBoxFlat_eqrp0")
-value = 0.0
+[node name="SuperBar2" parent="." instance=ExtResource("3_8pa78")]
+layout_mode = 0
+offset_left = 2999.0
+offset_top = 321.0
+offset_right = 4161.0
+offset_bottom = 486.0
+fill_mode = 1
 
 [node name="WinnerAnnouncementText" type="Label" parent="."]
 layout_mode = 1

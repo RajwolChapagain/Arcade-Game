@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://0uuiimj7834t" path="res://UI/hud.tscn" id="4_kn60h"]
 [ext_resource type="PackedScene" uid="uid://dkg36k7t483lp" path="res://ship/tank_ship.tscn" id="4_sx32l"]
 [ext_resource type="PackedScene" uid="uid://d4gsdtgxa50oe" path="res://powerups/spawner.tscn" id="5_0xksv"]
-[ext_resource type="Texture2D" uid="uid://cqlh81kd4so08" path="res://UI/backdrop.png" id="5_cpvq4"]
+[ext_resource type="Texture2D" uid="uid://bappb2am6aals" path="res://UI/backdrop.png" id="5_e7ay6"]
 [ext_resource type="PackedScene" uid="uid://mf26dw6pyc04" path="res://UI/main_menu.tscn" id="5_ksg3p"]
 
 [node name="Main" type="Node2D"]
@@ -23,7 +23,7 @@ offset_right = 2000.0
 offset_bottom = 1500.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("5_cpvq4")
+texture = ExtResource("5_e7ay6")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.25, 0.25)
