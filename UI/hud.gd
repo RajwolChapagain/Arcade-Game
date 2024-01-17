@@ -44,14 +44,14 @@ func show_announcement_text(text):
 func set_round_time(text):
 	$RoundTime.set_text(str(text))
 
-func indicate_round_won(player, round):
+func indicate_round_won(player, victory_count):
 	if player == 1:
-		if round == 1:
+		if victory_count == 1:
 			$TimerBackground/P1Round1Indicator.toggle_to_win()
-		elif round == 2 || round == 3:
+		elif victory_count == 2:
 			$TimerBackground/P1Round2Indicator.toggle_to_win()
 	if player == 2:
-		if round == 1:
+		if victory_count == 1:
 			$TimerBackground/P2Round1Indicator.toggle_to_win()
-		elif round == 2 || round == 3:
+		elif victory_count == 2:
 			$TimerBackground/P2Round2Indicator.toggle_to_win()
