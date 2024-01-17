@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://biukihesde2gc"
-path="res://.godot/imported/hollow_circle.png-a0822ab04c9cec02c6024c4dd51e1e08.ctex"
+path="res://.godot/imported/hollow_circle.png-cc228bcb5e8aaeb6651e416fc6135b0e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/hollow_circle.png"
-dest_files=["res://.godot/imported/hollow_circle.png-a0822ab04c9cec02c6024c4dd51e1e08.ctex"]
+source_file="res://ui/hollow_circle.png"
+dest_files=["res://.godot/imported/hollow_circle.png-cc228bcb5e8aaeb6651e416fc6135b0e.ctex"]
 
 [params]
 
