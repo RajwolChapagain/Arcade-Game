@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://6i3n35apo5nh"]
+[gd_scene load_steps=4 format=3 uid="uid://6i3n35apo5nh"]
 
 [ext_resource type="Texture2D" uid="uid://bm4jk11u7ex3i" path="res://ui/stat_panel.png" id="1_kuc3p"]
 [ext_resource type="Theme" uid="uid://h2qn3r626o1h" path="res://ui/ui_theme.tres" id="2_jgoxv"]
+[ext_resource type="PackedScene" uid="uid://dxjo2jvbea7hv" path="res://ui/stat_bar.tscn" id="3_bikkd"]
 
 [node name="StatPanel" type="TextureRect"]
 offset_right = 1208.0
@@ -20,6 +21,7 @@ offset_top = -229.0
 offset_right = 500.0
 offset_bottom = 220.0
 grow_vertical = 2
+alignment = 1
 metadata/_edit_group_ = true
 
 [node name="Toughness" type="Label" parent="Labels"]
@@ -53,6 +55,34 @@ text = "Acceleration
 "
 
 [node name="Bars" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -681.0
+offset_top = -210.0
+offset_right = 583.0
+offset_bottom = 804.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.44, 0.44)
+alignment = 1
+metadata/_edit_group_ = true
+
+[node name="StatBar" parent="Bars" instance=ExtResource("3_bikkd")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="StatBar2" parent="Bars" instance=ExtResource("3_bikkd")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="StatBar3" parent="Bars" instance=ExtResource("3_bikkd")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="StatBar4" parent="Bars" instance=ExtResource("3_bikkd")]
+layout_mode = 2
+size_flags_vertical = 3
