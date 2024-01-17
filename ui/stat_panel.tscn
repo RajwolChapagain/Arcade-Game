@@ -42,6 +42,13 @@ theme_override_font_sizes/font_size = 64
 text = "Damage
 "
 
+[node name="RechargeRate" type="Label" parent="Labels"]
+layout_mode = 2
+size_flags_vertical = 6
+theme = ExtResource("2_jgoxv")
+theme_override_font_sizes/font_size = 64
+text = "Recharge Rate"
+
 [node name="TopSpeed" type="Label" parent="Labels"]
 layout_mode = 2
 size_flags_vertical = 6
@@ -56,13 +63,6 @@ theme = ExtResource("2_jgoxv")
 theme_override_font_sizes/font_size = 64
 text = "Acceleration
 "
-
-[node name="RechargeRate" type="Label" parent="Labels"]
-layout_mode = 2
-size_flags_vertical = 6
-theme = ExtResource("2_jgoxv")
-theme_override_font_sizes/font_size = 64
-text = "Recharge Rate"
 
 [node name="Bars" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -94,6 +94,12 @@ min_value = 5.0
 max_value = 15.0
 value = 10.0
 
+[node name="RechargeRate" parent="Bars" instance=ExtResource("3_bikkd")]
+layout_mode = 2
+size_flags_vertical = 6
+max_value = 5.0
+value = 5.0
+
 [node name="TopSpeed" parent="Bars" instance=ExtResource("3_bikkd")]
 layout_mode = 2
 size_flags_vertical = 6
@@ -101,12 +107,6 @@ max_value = 2000.0
 value = 1500.0
 
 [node name="Acceleration" parent="Bars" instance=ExtResource("3_bikkd")]
-layout_mode = 2
-size_flags_vertical = 6
-max_value = 1000.0
-value = 1000.0
-
-[node name="RechargeRate" parent="Bars" instance=ExtResource("3_bikkd")]
 layout_mode = 2
 size_flags_vertical = 6
 max_value = 1000.0
