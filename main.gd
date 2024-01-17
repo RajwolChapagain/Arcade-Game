@@ -82,9 +82,11 @@ func on_round_over(winner):
 	if winner == 1:
 		$HUD.set_p2_health(0)
 		rounds_won_by_p1 += 1
+		$HUD.indicate_round_won(winner, rounds_won_by_p1)
 	elif winner == 2:
 		$HUD.set_p1_health(0)
 		rounds_won_by_p2 += 1
+		$HUD.indicate_round_won(winner, rounds_won_by_p2)		
 	$HUD.announce_winner(winner)
 	await get_tree().create_timer(5).timeout
 	$HUD.hide_announcement_text()
