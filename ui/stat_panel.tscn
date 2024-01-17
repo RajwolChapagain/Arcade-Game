@@ -39,7 +39,7 @@ theme_override_font_sizes/font_size = 64
 text = "Damage
 "
 
-[node name="Top Speed" type="Label" parent="Labels"]
+[node name="TopSpeed" type="Label" parent="Labels"]
 layout_mode = 2
 size_flags_vertical = 6
 theme = ExtResource("2_jgoxv")
@@ -71,18 +71,18 @@ scale = Vector2(0.44, 0.44)
 alignment = 1
 metadata/_edit_group_ = true
 
-[node name="StatBar" parent="Bars" instance=ExtResource("3_bikkd")]
+[node name="Toughness" parent="Bars" instance=ExtResource("3_bikkd")]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="StatBar2" parent="Bars" instance=ExtResource("3_bikkd")]
+[node name="Damage" parent="Bars" instance=ExtResource("3_bikkd")]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="StatBar3" parent="Bars" instance=ExtResource("3_bikkd")]
+[node name="TopSpeed" parent="Bars" instance=ExtResource("3_bikkd")]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="StatBar4" parent="Bars" instance=ExtResource("3_bikkd")]
+[node name="Acceleration" parent="Bars" instance=ExtResource("3_bikkd")]
 layout_mode = 2
 size_flags_vertical = 3
