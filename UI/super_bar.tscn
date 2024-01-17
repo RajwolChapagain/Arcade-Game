@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bbqw3yx2uj7u5"]
+[gd_scene load_steps=3 format=3 uid="uid://cvqndeuy7v0gb"]
 
-[ext_resource type="PackedScene" uid="uid://dpdvumh4y0ej1" path="res://UI/health_bar.tscn" id="1_4dwey"]
-[ext_resource type="Texture2D" uid="uid://dd744bbwruenx" path="res://UI/super_bar_under.png" id="2_qed06"]
+[ext_resource type="PackedScene" uid="uid://fy7mejvsl646" path="res://UI/health_bar.tscn" id="1_4dwey"]
+[ext_resource type="Texture2D" uid="uid://dd744bbwruenx" path="res://ui/super_bar_under.png" id="2_qed06"]
 
 [node name="SuperBar" instance=ExtResource("1_4dwey")]
 scale = Vector2(0.619107, 0.619107)

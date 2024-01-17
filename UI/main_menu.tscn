@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://mf26dw6pyc04"]
+[gd_scene load_steps=7 format=3 uid="uid://djskn3te3j2kl"]
 
-[ext_resource type="Texture2D" uid="uid://c87ojw4yeuuud" path="res://UI/right_arrow.svg" id="1_5rmpm"]
+[ext_resource type="Texture2D" uid="uid://c87ojw4yeuuud" path="res://ui/right_arrow.svg" id="1_5rmpm"]
 [ext_resource type="Texture2D" uid="uid://dvoiqv1dp1eab" path="res://ship/stock_ship.svg" id="1_835c4"]
 [ext_resource type="Script" path="res://UI/main_menu.gd" id="1_qtlmi"]
 [ext_resource type="Texture2D" uid="uid://d3etsdxr15cwe" path="res://ship/scout_ship.png" id="2_1eyi0"]
