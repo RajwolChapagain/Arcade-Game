@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://6i3n35apo5nh"]
+
+[ext_resource type="Texture2D" uid="uid://bm4jk11u7ex3i" path="res://ui/stat_panel.png" id="1_kuc3p"]
+
+[node name="StatPanel" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_kuc3p")
+
+[node name="Texts" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Bars" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
