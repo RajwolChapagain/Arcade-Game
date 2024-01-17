@@ -54,6 +54,13 @@ theme_override_font_sizes/font_size = 64
 text = "Acceleration
 "
 
+[node name="SuperRechargeRate" type="Label" parent="Labels"]
+layout_mode = 2
+size_flags_vertical = 6
+theme = ExtResource("2_jgoxv")
+theme_override_font_sizes/font_size = 64
+text = "Super Recharge Rate"
+
 [node name="Bars" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 6
@@ -91,6 +98,12 @@ max_value = 2000.0
 value = 1500.0
 
 [node name="Acceleration" parent="Bars" instance=ExtResource("3_bikkd")]
+layout_mode = 2
+size_flags_vertical = 3
+max_value = 1000.0
+value = 1000.0
+
+[node name="SuperRechargeRate" parent="Bars" instance=ExtResource("3_bikkd")]
 layout_mode = 2
 size_flags_vertical = 3
 max_value = 1000.0
