@@ -74,15 +74,24 @@ metadata/_edit_group_ = true
 [node name="Toughness" parent="Bars" instance=ExtResource("3_bikkd")]
 layout_mode = 2
 size_flags_vertical = 3
+max_value = 200.0
+value = 100.0
 
 [node name="Damage" parent="Bars" instance=ExtResource("3_bikkd")]
 layout_mode = 2
 size_flags_vertical = 3
+min_value = 5.0
+max_value = 15.0
+value = 10.0
 
 [node name="TopSpeed" parent="Bars" instance=ExtResource("3_bikkd")]
 layout_mode = 2
 size_flags_vertical = 3
+max_value = 2000.0
+value = 1500.0
 
 [node name="Acceleration" parent="Bars" instance=ExtResource("3_bikkd")]
 layout_mode = 2
 size_flags_vertical = 3
+max_value = 1000.0
+value = 1000.0
