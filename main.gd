@@ -12,7 +12,7 @@ func _ready():
 	var offset = 80
 	$Spawner.set_path_points(Vector2(-2000 - offset, -1500 - offset), Vector2(2000 + offset, -1500 - offset), Vector2(2000 + offset, 1500 + offset), Vector2(-2000 - offset, 1500 + offset))
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	$HUD.set_round_time(round($RoundTimer.time_left))
 	
 func on_player1_fired_bullet(bullet_scene, damage, direction, location, owner_player):
