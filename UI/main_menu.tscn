@@ -5,13 +5,15 @@
 [ext_resource type="Script" path="res://UI/main_menu.gd" id="1_qtlmi"]
 [ext_resource type="Texture2D" uid="uid://d3etsdxr15cwe" path="res://ship/scout_ship.png" id="2_1eyi0"]
 [ext_resource type="Texture2D" uid="uid://deb848xhneunh" path="res://ship/tank_ship.svg" id="4_4vnet"]
-[ext_resource type="Theme" uid="uid://bb7f13p2xc05p" path="res://UI/ui_theme.tres" id="5_85q3v"]
+[ext_resource type="Theme" uid="uid://h2qn3r626o1h" path="res://UI/ui_theme.tres" id="5_85q3v"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 3000.0
+offset_bottom = 2250.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 4
