@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ShipStats" load_steps=2 format=3 uid="uid://natcbjmon8y2"]
+
+[ext_resource type="Script" path="res://ship/ship_stats.gd" id="1_srdpn"]
+
+[resource]
+script = ExtResource("1_srdpn")
+toughness = 70
+damage = 15
+recharge_rate = 4
+top_speed = 2000
+acceleration = 1000

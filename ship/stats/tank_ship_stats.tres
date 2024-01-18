@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ShipStats" load_steps=2 format=3 uid="uid://c1q7efuyhhpgm"]
+
+[ext_resource type="Script" path="res://ship/ship_stats.gd" id="1_5idd5"]
+
+[resource]
+script = ExtResource("1_5idd5")
+toughness = 200
+damage = 5
+recharge_rate = 5
+top_speed = 1500
+acceleration = 500
