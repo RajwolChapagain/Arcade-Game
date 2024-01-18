@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://djskn3te3j2kl"]
+[gd_scene load_steps=8 format=3 uid="uid://djskn3te3j2kl"]
 
 [ext_resource type="Texture2D" uid="uid://c87ojw4yeuuud" path="res://ui/right_arrow.svg" id="1_5rmpm"]
 [ext_resource type="Texture2D" uid="uid://dvoiqv1dp1eab" path="res://ship/stock_ship.svg" id="1_835c4"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://d3etsdxr15cwe" path="res://ship/scout_ship.png" id="2_1eyi0"]
 [ext_resource type="Texture2D" uid="uid://deb848xhneunh" path="res://ship/tank_ship.svg" id="4_4vnet"]
 [ext_resource type="Theme" uid="uid://h2qn3r626o1h" path="res://UI/ui_theme.tres" id="5_85q3v"]
+[ext_resource type="PackedScene" uid="uid://6i3n35apo5nh" path="res://ui/stat_panel.tscn" id="7_cpdse"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -121,3 +122,31 @@ size_flags_horizontal = 3
 layout_mode = 2
 texture = ExtResource("1_5rmpm")
 stretch_mode = 3
+
+[node name="P1Stats" parent="." instance=ExtResource("7_cpdse")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -1739.0
+offset_top = -1196.0
+offset_right = -543.0
+offset_bottom = -552.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="P2Stats" parent="." instance=ExtResource("7_cpdse")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 654.0
+offset_top = -1196.0
+offset_right = 1850.0
+offset_bottom = -552.0
+grow_horizontal = 2
+grow_vertical = 0
