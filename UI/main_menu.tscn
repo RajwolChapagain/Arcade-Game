@@ -1,12 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://djskn3te3j2kl"]
+[gd_scene load_steps=11 format=3 uid="uid://djskn3te3j2kl"]
 
 [ext_resource type="Texture2D" uid="uid://c87ojw4yeuuud" path="res://ui/right_arrow.svg" id="1_5rmpm"]
 [ext_resource type="Texture2D" uid="uid://dvoiqv1dp1eab" path="res://ship/stock_ship.svg" id="1_835c4"]
 [ext_resource type="Script" path="res://UI/main_menu.gd" id="1_qtlmi"]
 [ext_resource type="Texture2D" uid="uid://d3etsdxr15cwe" path="res://ship/scout_ship.png" id="2_1eyi0"]
 [ext_resource type="Texture2D" uid="uid://deb848xhneunh" path="res://ship/tank_ship.svg" id="4_4vnet"]
-[ext_resource type="Theme" uid="uid://h2qn3r626o1h" path="res://UI/ui_theme.tres" id="5_85q3v"]
+[ext_resource type="Theme" path="res://UI/ui_theme.tres" id="5_85q3v"]
+[ext_resource type="Resource" uid="uid://natcbjmon8y2" path="res://ship/stats/scout_ship_stats.tres" id="5_mf37f"]
+[ext_resource type="Resource" uid="uid://cbmn1wqvamq0r" path="res://ship/stats/stock_ship_stats.tres" id="6_na07h"]
 [ext_resource type="PackedScene" uid="uid://6i3n35apo5nh" path="res://ui/stat_panel.tscn" id="7_cpdse"]
+[ext_resource type="Resource" uid="uid://c1q7efuyhhpgm" path="res://ship/stats/tank_ship_stats.tres" id="7_scpje"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -20,6 +23,7 @@ grow_vertical = 2
 size_flags_vertical = 4
 script = ExtResource("1_qtlmi")
 ships_sprites = [ExtResource("2_1eyi0"), ExtResource("1_835c4"), ExtResource("4_4vnet")]
+ship_stats = [ExtResource("5_mf37f"), ExtResource("6_na07h"), ExtResource("7_scpje")]
 
 [node name="Prompt" type="HBoxContainer" parent="."]
 layout_mode = 1

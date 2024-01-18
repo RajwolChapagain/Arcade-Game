@@ -1,6 +1,8 @@
 extends Control
 
 @export var ships_sprites : Array
+@export var ship_stats : Array ##Must follow the same order as ships_sprites
+
 var left_pointer = 1:
 	get:
 		return left_pointer
