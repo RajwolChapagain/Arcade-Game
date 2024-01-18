@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://UI/main_menu.gd" id="1_qtlmi"]
 [ext_resource type="Texture2D" uid="uid://d3etsdxr15cwe" path="res://ship/scout_ship.png" id="2_1eyi0"]
 [ext_resource type="Texture2D" uid="uid://deb848xhneunh" path="res://ship/tank_ship.svg" id="4_4vnet"]
-[ext_resource type="Theme" uid="uid://h2qn3r626o1h" path="res://UI/ui_theme.tres" id="5_85q3v"]
+[ext_resource type="Theme" path="res://UI/ui_theme.tres" id="5_85q3v"]
 [ext_resource type="PackedScene" uid="uid://6i3n35apo5nh" path="res://ui/stat_panel.tscn" id="7_cpdse"]
 
 [node name="MainMenu" type="Control"]
@@ -27,8 +27,10 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -268.917
-offset_bottom = -128.917
+offset_left = 265.0
+offset_top = -310.0
+offset_right = -125.0
+offset_bottom = -129.0
 grow_horizontal = 2
 grow_vertical = 0
 alignment = 1
@@ -38,7 +40,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("5_85q3v")
 text = "Insert Credit to Start"
-horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="Prompt"]
@@ -46,7 +47,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("5_85q3v")
 text = "Insert Credit to Start"
-horizontal_alignment = 1
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="Selection" type="HBoxContainer" parent="."]
@@ -131,9 +132,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -1739.0
-offset_top = -1196.0
+offset_top = -1223.0
 offset_right = -543.0
-offset_bottom = -552.0
+offset_bottom = -579.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -145,8 +146,8 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = 654.0
-offset_top = -1196.0
+offset_top = -1223.0
 offset_right = 1850.0
-offset_bottom = -552.0
+offset_bottom = -579.0
 grow_horizontal = 2
 grow_vertical = 0
