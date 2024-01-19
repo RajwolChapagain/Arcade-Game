@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=2 format=3 uid="uid://h2qn3r626o1h"]
 
-[ext_resource type="FontFile" uid="uid://bwwfadbv80f4t" path="res://UI/HubotSans-Bold.otf" id="1_4ygcw"]
+[ext_resource type="FontFile" uid="uid://bwwfadbv80f4t" path="res://ui/HubotSans-Bold.otf" id="1_4ygcw"]
 
 [resource]
 Label/font_sizes/font_size = 150
