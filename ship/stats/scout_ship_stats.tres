@@ -6,6 +6,6 @@
 script = ExtResource("1_srdpn")
 toughness = 80
 damage = 10
-recharge_rate = 3
+recharge_rate = 33
 top_speed = 2000
 acceleration = 1500
