@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dxrj6hhnkc3xu"]
+[gd_scene load_steps=4 format=3 uid="uid://dxrj6hhnkc3xu"]
 
-[ext_resource type="PackedScene" uid="uid://dsgskm8hx8n3" path="res://ship/stock_ship.tscn" id="1_egwrg"]
+[ext_resource type="PackedScene" uid="uid://dsgskm8hx8n3" path="res://ship/scenes/stock_ship.tscn" id="1_egwrg"]
 [ext_resource type="Texture2D" uid="uid://d3etsdxr15cwe" path="res://ship/scout_ship.png" id="2_35g52"]
+[ext_resource type="Resource" uid="uid://natcbjmon8y2" path="res://ship/stats/scout_ship_stats.tres" id="2_n54ks"]
 
 [node name="Ship" instance=ExtResource("1_egwrg")]
+stats = ExtResource("2_n54ks")
 MAX_VELOCITY_MAGNITUDE = 2000
 max_hp = 70
 bullet_damage = 15

@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkg36k7t483lp"]
+
+[ext_resource type="PackedScene" uid="uid://dsgskm8hx8n3" path="res://ship/scenes/stock_ship.tscn" id="1_os2ek"]
+[ext_resource type="Resource" uid="uid://c1q7efuyhhpgm" path="res://ship/stats/tank_ship_stats.tres" id="2_6gnoa"]
+[ext_resource type="Texture2D" uid="uid://deb848xhneunh" path="res://ship/tank_ship.svg" id="2_yqfjs"]
+
+[node name="Ship" instance=ExtResource("1_os2ek")]
+stats = ExtResource("2_6gnoa")
+THRUST_FORCE = 500
+max_hp = 200
+bullet_damage = 5
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_yqfjs")

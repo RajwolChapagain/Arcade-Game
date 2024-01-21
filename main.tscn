@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://dtp6xrfqaukse"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_uyiea"]
-[ext_resource type="PackedScene" uid="uid://dsgskm8hx8n3" path="res://ship/stock_ship.tscn" id="2_rmhn6"]
-[ext_resource type="PackedScene" uid="uid://dxrj6hhnkc3xu" path="res://ship/scout_ship.tscn" id="2_xweoy"]
+[ext_resource type="PackedScene" uid="uid://dsgskm8hx8n3" path="res://ship/scenes/stock_ship.tscn" id="2_rmhn6"]
+[ext_resource type="PackedScene" uid="uid://dxrj6hhnkc3xu" path="res://ship/scenes/scout_ship.tscn" id="2_xweoy"]
 [ext_resource type="PackedScene" uid="uid://0uuiimj7834t" path="res://ui/hud.tscn" id="4_kn60h"]
-[ext_resource type="PackedScene" uid="uid://dkg36k7t483lp" path="res://ship/tank_ship.tscn" id="4_sx32l"]
+[ext_resource type="PackedScene" uid="uid://dkg36k7t483lp" path="res://ship/scenes/tank_ship.tscn" id="4_sx32l"]
 [ext_resource type="PackedScene" uid="uid://d4gsdtgxa50oe" path="res://powerups/spawner.tscn" id="5_0xksv"]
 [ext_resource type="Texture2D" uid="uid://bappb2am6aals" path="res://ui/backdrop.png" id="5_e7ay6"]
 [ext_resource type="PackedScene" uid="uid://djskn3te3j2kl" path="res://ui/main_menu.tscn" id="5_ksg3p"]
