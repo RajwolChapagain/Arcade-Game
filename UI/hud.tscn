@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://0uuiimj7834t"]
 
 [ext_resource type="Script" path="res://ui/hud.gd" id="1_2eusb"]
-[ext_resource type="PackedScene" uid="uid://fy7mejvsl646" path="res://UI/health_bar.tscn" id="2_7d51a"]
-[ext_resource type="PackedScene" uid="uid://cvqndeuy7v0gb" path="res://UI/super_bar.tscn" id="3_8pa78"]
-[ext_resource type="Theme" uid="uid://bb7f13p2xc05p" path="res://UI/ui_theme.tres" id="3_ainlw"]
+[ext_resource type="PackedScene" uid="uid://fy7mejvsl646" path="res://ui/health_bar.tscn" id="2_7d51a"]
+[ext_resource type="PackedScene" uid="uid://cvqndeuy7v0gb" path="res://ui/super_bar.tscn" id="3_8pa78"]
+[ext_resource type="Theme" uid="uid://h2qn3r626o1h" path="res://UI/ui_theme.tres" id="3_ainlw"]
 [ext_resource type="Texture2D" uid="uid://bvruc8kcjdmrq" path="res://ui/timer_background.png" id="4_xeyvx"]
 [ext_resource type="PackedScene" uid="uid://c5bx8rtodfp1x" path="res://ui/win_indicator.tscn" id="6_p4tyy"]
 
