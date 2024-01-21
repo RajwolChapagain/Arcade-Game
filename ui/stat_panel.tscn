@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://dxjo2jvbea7hv" path="res://ui/stat_bar.tscn" id="3_bikkd"]
 
 [node name="StatPanel" type="NinePatchRect"]
-offset_right = 1196.0
-offset_bottom = 644.0
+offset_right = 1543.0
+offset_bottom = 831.0
 texture = ExtResource("1_kuc3p")
 region_rect = Rect2(0, 0, 1386, 705)
 patch_margin_left = 20
@@ -22,9 +22,9 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 72.0
-offset_top = -264.5
+offset_top = -336.5
 offset_right = 545.0
-offset_bottom = 241.5
+offset_bottom = 321.5
 grow_vertical = 2
 alignment = 1
 metadata/_edit_group_ = true
@@ -73,13 +73,13 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -527.0
-offset_top = -264.5
-offset_right = 635.0
-offset_bottom = 1114.5
+offset_left = -819.0
+offset_top = -352.5
+offset_right = 343.0
+offset_bottom = 789.5
 grow_horizontal = 0
 grow_vertical = 2
-scale = Vector2(0.365, 0.365)
+scale = Vector2(0.585, 0.585)
 alignment = 1
 metadata/_edit_group_ = true
 
