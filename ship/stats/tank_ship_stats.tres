@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_5idd5")
-toughness = 200
-damage = 5
-recharge_rate = 5
-top_speed = 1500
-acceleration = 500
+toughness = 120
+damage = 20
+recharge_rate = 8
+top_speed = 1300
+acceleration = 800
