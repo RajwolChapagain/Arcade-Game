@@ -6,10 +6,6 @@
 
 [node name="Ship" instance=ExtResource("1_egwrg")]
 stats = ExtResource("2_n54ks")
-MAX_VELOCITY_MAGNITUDE = 2000
-max_hp = 70
-bullet_damage = 15
-TIME_TO_FILL_SUPER = 4
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("2_35g52")

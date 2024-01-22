@@ -1,12 +1,13 @@
 extends CharacterBody2D
  
 @export var stats : ShipStats
-@export var THRUST_FORCE = 1000 #Takes 3 seconds to reach max velocity w/ MAX_VELOCITY_MAGNITUDE = 3000
-@export var MAX_VELOCITY_MAGNITUDE = 1500 #3000
+@onready var max_hp = stats.toughness
+@onready var bullet_damage = stats.damage
+@onready var TIME_TO_FILL_SUPER = 100 / stats.recharge_rate
+@onready var MAX_VELOCITY_MAGNITUDE = stats.top_speed #3000
+@onready var THRUST_FORCE = stats.acceleration #Takes 3 seconds to reach max velocity w/ MAX_VELOCITY_MAGNITUDE = 3000
+
 @export var RETARDING_FORCE = 750 #Takes 4 seconds to reach min from a MAX_VELOCITY_MAGNITUDE of 3000
-#@export var SHIP_SPRITE : Texture2D = preload("res://ship/ship_sprite.png")
-@export var max_hp = 100
-@export var bullet_damage = 10
 @onready var hp = max_hp:
 	get:
 		return hp
@@ -26,7 +27,6 @@ extends CharacterBody2D
 @export var BULLET_LAYER_MASK = 2
 @export var SUPER_DURATION = 1
 @export var SHIELD_DURATION = 2
-@export var TIME_TO_FILL_SUPER = 5
 @export var super_percentage = 0:
 	get:
 		return super_percentage
