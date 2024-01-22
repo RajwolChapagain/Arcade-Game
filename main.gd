@@ -206,7 +206,7 @@ func shake_camera(intensity: float, duration: float):
 	
 func start_next_round():
 	round_number += 1
-	get_tree().call_group("ship", "free")
+	get_tree().call_group("ship", "queue_free")
 	get_tree().call_group("spawned_objects", "queue_free")
 	get_tree().call_group("bullet", "queue_free")
 	instantiate_ships()
