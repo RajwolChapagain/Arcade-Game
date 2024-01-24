@@ -66,18 +66,18 @@ func on_player1_hit(_damage):
 func on_player2_hit(_damage):
 	shake_camera(0.2, 200)
 	
-func on_player1_died(explosion_scene, global_position):
+func on_player1_died(explosion_scene, global_pos):
 	delete_bullet_rings(1)	
 	var explosion = explosion_scene.instantiate()
-	explosion.global_position = global_position
+	explosion.global_position = global_pos
 	add_child(explosion)
 	if not round_is_over:
 		on_round_over(2)
 
-func on_player2_died(explosion_scene, global_position):
+func on_player2_died(explosion_scene, global_pos):
 	delete_bullet_rings(2)	
 	var explosion = explosion_scene.instantiate()
-	explosion.global_position = global_position
+	explosion.global_position = global_pos
 	add_child(explosion)
 	if not round_is_over:
 		on_round_over(1)
