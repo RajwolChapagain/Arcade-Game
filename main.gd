@@ -15,9 +15,6 @@ func _ready():
 func _physics_process(_delta):
 	$HUD.set_round_time(round($RoundTimer.time_left))
 	
-	if get_node_or_null("Player1") != null:
-		$Trail.global_position = $Player1.global_position
-	
 func on_player1_fired_bullet(bullet_scene, damage, direction, location, owner_player):
 	var bullet = bullet_scene.instantiate()
 	bullet.global_position = location
