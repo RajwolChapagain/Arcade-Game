@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var stats : ShipStats
 @onready var max_hp = stats.toughness
 @onready var bullet_damage = stats.damage
-@onready var TIME_TO_FILL_SUPER = 100 / stats.recharge_rate
+@onready var TIME_TO_FILL_SUPER = 100.0 / stats.recharge_rate
 @onready var MAX_VELOCITY_MAGNITUDE = stats.top_speed #3000
 @onready var THRUST_FORCE = stats.acceleration #Takes 3 seconds to reach max velocity w/ MAX_VELOCITY_MAGNITUDE = 3000
 
