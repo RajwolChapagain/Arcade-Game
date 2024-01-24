@@ -34,7 +34,8 @@ extends CharacterBody2D
 		super_percentage = value
 		super_percentage = clamp(super_percentage, 0, 100)
 		super_percentage_changed.emit(super_percentage)
-	
+@export var expolosion_particles = preload("res://ship/ship_explosion_particle.png")
+
 const ONLY_SHIP1_BULLET_LAYER = 4
 const ONLY_SHIP2_BULLET_LAYER = 5
 const SHARED_BULLET_LAYER = 3
@@ -60,7 +61,7 @@ signal bullet_ring_activated(BULLET_RING_SCENE, position, bullet_layer_mask)
 signal hit(damage)
 signal super_percentage_changed(new_super_percentage)
 signal hp_changed(new_hp)
-signal player_died
+signal player_died(expolosion_particles, global_position)
 signal super_fired(super_duration)
 
 func _ready():
@@ -137,7 +138,7 @@ func on_hit(damage):
 		die()
 		
 func die():
-	player_died.emit()
+	player_died.emit(expolosion_particles, global_position)
 	queue_free()
 
 func _on_super_timer_timeout():
