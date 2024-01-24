@@ -12,7 +12,7 @@ angular_velocity_max = 360.0
 gravity = Vector3(0, 0, 0)
 scale_min = 0.5
 
-[node name="ExplosionParticles" type="GPUParticles2D"]
+[node name="ExplosionParticles" type="GPUParticles2D" groups=["spawned_objects"]]
 amount = 20
 process_material = SubResource("ParticleProcessMaterial_uchhx")
 texture = ExtResource("1_tr67w")

@@ -34,7 +34,7 @@ extends CharacterBody2D
 		super_percentage = value
 		super_percentage = clamp(super_percentage, 0, 100)
 		super_percentage_changed.emit(super_percentage)
-@export var expolosion_particles = preload("res://ship/ship_explosion_particle.png")
+@export var expolosion_particles = load("res://misc_objects/explosion_particles.tscn")
 
 const ONLY_SHIP1_BULLET_LAYER = 4
 const ONLY_SHIP2_BULLET_LAYER = 5
