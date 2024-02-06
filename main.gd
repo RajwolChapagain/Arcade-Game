@@ -9,7 +9,6 @@ var rounds_won_by_p1 = 0
 var rounds_won_by_p2 = 0
 
 func _ready():
-	print("Main is ready")
 	var offset = 80
 	$Spawner.set_path_points(Vector2(-2000 - offset, -1500 - offset), Vector2(2000 + offset, -1500 - offset), Vector2(2000 + offset, 1500 + offset), Vector2(-2000 - offset, 1500 + offset))
 	
