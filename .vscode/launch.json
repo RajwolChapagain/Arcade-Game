@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    // https://github.com/godotengine/godot-vscode-plugin/issues/389#issuecomment-1806992798
+    "configurations": [
+        {
+            "name": "Godot Debug",
+            "type": "godot",
+            "request": "launch",
+            "project": "${workspaceFolder}",
+            "port": 6007,
+            "debugServer": 6006, // 6006 is the default, at least in Godot 4.2.1
+            "address": "127.0.0.1",
+            "launch_game_instance": true,
+            "launch_scene": false
+        }
+    ]
+}
