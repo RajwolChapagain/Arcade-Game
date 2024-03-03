@@ -4,7 +4,5 @@
 [ext_resource type="Texture2D" uid="uid://puawuxw20ff7" path="res://ui/stat_bar_under.png" id="2_nwvd1"]
 
 [node name="StatBar" instance=ExtResource("1_trqe3")]
-offset_right = 1162.0
-offset_bottom = 165.0
 texture_under = ExtResource("2_nwvd1")
 tint_progress = Color(1, 0.717647, 0.0117647, 1)
