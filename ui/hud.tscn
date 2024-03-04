@@ -122,6 +122,7 @@ size_flags_horizontal = 3
 stretch_mode = 5
 
 [node name="RoundTime" type="Label" parent="TimerBackground"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

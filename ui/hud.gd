@@ -42,7 +42,7 @@ func show_announcement_text(text):
 	$WinnerAnnouncementText.set_visible(true)	
 
 func set_round_time(text):
-	$RoundTime.set_text(str(text))
+	%RoundTime.set_text(str(text))
 
 func indicate_round_won(player, victory_count):
 	if player == 1:
