@@ -68,82 +68,68 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -492.5
-offset_top = 42.0
-offset_right = 492.5
-offset_bottom = 268.0
+offset_left = -124.5
+offset_right = 124.5
+offset_bottom = 59.0
 grow_horizontal = 2
 texture = ExtResource("4_xeyvx")
 
-[node name="P1Round1Indicator" parent="TimerBackground" instance=ExtResource("6_p4tyy")]
+[node name="Indicators" type="HBoxContainer" parent="TimerBackground"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -118.5
+offset_top = -32.0
+offset_right = 121.5
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="P1Round1Indicator" parent="TimerBackground/Indicators" instance=ExtResource("6_p4tyy")]
+layout_mode = 2
+size_flags_horizontal = 3
+stretch_mode = 5
+
+[node name="P1Round2Indicator" parent="TimerBackground/Indicators" instance=ExtResource("6_p4tyy")]
+layout_mode = 2
+size_flags_horizontal = 3
+stretch_mode = 5
+
+[node name="Control" type="Control" parent="TimerBackground/Indicators"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.59
+
+[node name="P2Round1Indicator" parent="TimerBackground/Indicators" instance=ExtResource("6_p4tyy")]
+layout_mode = 2
+size_flags_horizontal = 3
+stretch_mode = 5
+
+[node name="P2Round2Indicator" parent="TimerBackground/Indicators" instance=ExtResource("6_p4tyy")]
+layout_mode = 2
+size_flags_horizontal = 3
+stretch_mode = 5
+
+[node name="RoundTime" type="Label" parent="TimerBackground"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -288.0
-offset_top = -11.5
-offset_right = -183.0
-offset_bottom = 93.5
+offset_left = -23.0
+offset_top = -22.5
+offset_right = 23.0
+offset_bottom = 22.5
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="P1Round2Indicator" parent="TimerBackground" instance=ExtResource("6_p4tyy")]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -429.0
-offset_top = -11.5
-offset_right = -324.0
-offset_bottom = 93.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="P2Round1Indicator" parent="TimerBackground" instance=ExtResource("6_p4tyy")]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 191.0
-offset_top = -11.5
-offset_right = 296.0
-offset_bottom = 93.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="P2Round2Indicator" parent="TimerBackground" instance=ExtResource("6_p4tyy")]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 332.0
-offset_top = -11.5
-offset_right = 437.0
-offset_bottom = 93.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="RoundTime" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -142.0
-offset_top = 61.0
-offset_right = 143.0
-offset_bottom = 260.0
-grow_horizontal = 2
 theme = ExtResource("3_ainlw")
 theme_override_colors/font_color = Color(1, 0.717647, 0.0117647, 1)
-theme_override_font_sizes/font_size = 165
+theme_override_font_sizes/font_size = 37
 text = "90"
 horizontal_alignment = 1
 vertical_alignment = 1
