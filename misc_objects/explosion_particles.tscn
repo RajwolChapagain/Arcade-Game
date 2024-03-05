@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://d1swy8bg5c3wn"]
 
-[ext_resource type="Texture2D" uid="uid://caa5xojm6lkt5" path="res://ship/ship_explosion_particle.png" id="1_tr67w"]
+[ext_resource type="Texture2D" uid="uid://btfeypbd8rooq" path="res://ship/sprites/explosion_particle.png" id="1_fcpaj"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uchhx"]
 particle_flag_disable_z = true
@@ -15,6 +15,6 @@ scale_min = 0.5
 [node name="ExplosionParticles" type="GPUParticles2D" groups=["spawned_objects"]]
 amount = 20
 process_material = SubResource("ParticleProcessMaterial_uchhx")
-texture = ExtResource("1_tr67w")
+texture = ExtResource("1_fcpaj")
 lifetime = 6.0
 explosiveness = 1.0
