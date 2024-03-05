@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://powerups/powerup_component.gd" id="1_vol8q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pkged"]
-size = Vector2(128, 128)
+size = Vector2(50, 50)
 
 [node name="PowerupComponent" type="Area2D"]
 script = ExtResource("1_vol8q")
