@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://bljrv7d275wa1"]
 
-[ext_resource type="Texture2D" uid="uid://jedo7hr35wdw" path="res://icon.svg" id="1_lut3m"]
 [ext_resource type="Script" path="res://misc_objects/ufo.gd" id="1_nkpty"]
+[ext_resource type="Texture2D" uid="uid://bkggjjiine0ht" path="res://misc_objects/ufo.png" id="2_kludb"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2mmn"]
-size = Vector2(176, 176)
+[sub_resource type="CircleShape2D" id="CircleShape2D_rfc5j"]
+radius = 60.0083
 
 [node name="UFO" type="CharacterBody2D" groups=["spawned_objects", "ufo"]]
 collision_mask = 0
@@ -12,36 +12,35 @@ script = ExtResource("1_nkpty")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(1.375, 1.375)
-texture = ExtResource("1_lut3m")
+texture = ExtResource("2_kludb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_e2mmn")
+shape = SubResource("CircleShape2D_rfc5j")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(0, -150)
+position = Vector2(0, -102)
 
 [node name="Marker2D2" type="Marker2D" parent="."]
-position = Vector2(0, 150)
+position = Vector2(0, 101)
 
 [node name="Marker2D3" type="Marker2D" parent="."]
-position = Vector2(150, 0)
+position = Vector2(101, 0)
 
 [node name="Marker2D4" type="Marker2D" parent="."]
-position = Vector2(-150, 0)
+position = Vector2(-110, 0)
 
 [node name="Marker2D5" type="Marker2D" parent="."]
-position = Vector2(-115, -107)
+position = Vector2(-74, -75)
 
 [node name="Marker2D6" type="Marker2D" parent="."]
-position = Vector2(105, -110)
+position = Vector2(73, -74)
 
 [node name="Marker2D7" type="Marker2D" parent="."]
-position = Vector2(114, 100)
+position = Vector2(71, 68)
 
 [node name="Marker2D8" type="Marker2D" parent="."]
-position = Vector2(-117, 111)
+position = Vector2(-71, 71)
 
 [node name="FireTimer" type="Timer" parent="."]
 wait_time = 3.0
