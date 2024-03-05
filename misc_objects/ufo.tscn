@@ -1,10 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://bljrv7d275wa1"]
+[gd_scene load_steps=5 format=3 uid="uid://bljrv7d275wa1"]
 
 [ext_resource type="Script" path="res://misc_objects/ufo.gd" id="1_nkpty"]
 [ext_resource type="Texture2D" uid="uid://bkggjjiine0ht" path="res://misc_objects/ufo.png" id="2_kludb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rfc5j"]
 radius = 60.0083
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vvpss"]
+bg_color = Color(0.0901961, 0.768627, 0.34902, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="UFO" type="CharacterBody2D" groups=["spawned_objects", "ufo"]]
 collision_mask = 0
@@ -19,41 +26,42 @@ shape = SubResource("CircleShape2D_rfc5j")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(0, -102)
+position = Vector2(0, -70)
 
 [node name="Marker2D2" type="Marker2D" parent="."]
-position = Vector2(0, 101)
+position = Vector2(0, 69)
 
 [node name="Marker2D3" type="Marker2D" parent="."]
-position = Vector2(101, 0)
+position = Vector2(69, 0)
 
 [node name="Marker2D4" type="Marker2D" parent="."]
-position = Vector2(-110, 0)
+position = Vector2(-73, 0)
 
 [node name="Marker2D5" type="Marker2D" parent="."]
-position = Vector2(-74, -75)
+position = Vector2(-48, -48)
 
 [node name="Marker2D6" type="Marker2D" parent="."]
-position = Vector2(73, -74)
+position = Vector2(48, -47)
 
 [node name="Marker2D7" type="Marker2D" parent="."]
-position = Vector2(71, 68)
+position = Vector2(46, 47)
 
 [node name="Marker2D8" type="Marker2D" parent="."]
-position = Vector2(-71, 71)
+position = Vector2(-48, 48)
 
 [node name="FireTimer" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-scale = Vector2(8.8, 8.8)
+scale = Vector2(5.9, 6)
 
 [node name="HealthBar" type="ProgressBar" parent="."]
-offset_left = -82.0
-offset_top = -175.0
-offset_right = 81.0
-offset_bottom = -128.0
+offset_left = -69.0
+offset_top = -119.0
+offset_right = 68.0
+offset_bottom = -86.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_vvpss")
 max_value = 50.0
 value = 50.0
 show_percentage = false
