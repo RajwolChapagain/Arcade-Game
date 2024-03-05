@@ -47,11 +47,11 @@ func set_round_time(text):
 func indicate_round_won(player, victory_count):
 	if player == 1:
 		if victory_count == 1:
-			$TimerBackground/P1Round1Indicator.toggle_to_win()
+			%P1Round1Indicator.toggle_to_win()
 		elif victory_count == 2:
-			$TimerBackground/P1Round2Indicator.toggle_to_win()
+			%P1Round2Indicator.toggle_to_win()
 	if player == 2:
 		if victory_count == 1:
-			$TimerBackground/P2Round1Indicator.toggle_to_win()
+			%P2Round1Indicator.toggle_to_win()
 		elif victory_count == 2:
-			$TimerBackground/P2Round2Indicator.toggle_to_win()
+			%P2Round2Indicator.toggle_to_win()
