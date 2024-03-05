@@ -8,10 +8,6 @@ var round_number = 1
 var rounds_won_by_p1 = 0
 var rounds_won_by_p2 = 0
 
-func _ready():
-	var offset = 80
-	$Spawner.set_path_points(Vector2(-2000 - offset, -1500 - offset), Vector2(2000 + offset, -1500 - offset), Vector2(2000 + offset, 1500 + offset), Vector2(-2000 - offset, 1500 + offset))
-	
 func _physics_process(_delta):
 	$HUD.set_round_time(round($RoundTimer.time_left))
 	
