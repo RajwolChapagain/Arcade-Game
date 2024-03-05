@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpsyh3rc5oynw"
-path="res://.godot/imported/super.png-59caa23c63fda98907df92f5ab7e2889.ctex"
+uid="uid://dkhq62nq0hq12"
+path="res://.godot/imported/redtail.png-7336f7230714691f829d83935290d1e8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ship/super.png"
-dest_files=["res://.godot/imported/super.png-59caa23c63fda98907df92f5ab7e2889.ctex"]
+source_file="res://ship/sprites/redtail.png"
+dest_files=["res://.godot/imported/redtail.png-7336f7230714691f829d83935290d1e8.ctex"]
 
 [params]
 

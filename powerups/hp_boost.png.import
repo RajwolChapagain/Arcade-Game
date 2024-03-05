@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbx28a1qg5u2s"
-path="res://.godot/imported/circle.png-dc3883690b09c1a9385f5e6d9f82492c.ctex"
+uid="uid://c18yi1h28h8n1"
+path="res://.godot/imported/hp_boost.png-6d8a51113a81a3bda1d1bb8b0028ded3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://bullet/circle.png"
-dest_files=["res://.godot/imported/circle.png-dc3883690b09c1a9385f5e6d9f82492c.ctex"]
+source_file="res://powerups/hp_boost.png"
+dest_files=["res://.godot/imported/hp_boost.png-6d8a51113a81a3bda1d1bb8b0028ded3.ctex"]
 
 [params]
 

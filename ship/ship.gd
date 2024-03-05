@@ -145,7 +145,16 @@ func _on_super_timer_timeout():
 	remove_child($Super)
 
 func _on_visibility_notifier_screen_exited():
-	position = -position
+	var inset = 10
+	if position.x < 0:
+		position.x = get_viewport_rect().size.x - inset
+	elif position.x > get_viewport_rect().size.x:
+		position.x = inset
+	
+	if position.y < 0:
+		position.y = get_viewport_rect().size.y - inset
+	elif position.y > get_viewport_rect().size.y:
+		position.y = inset
 	
 func activate_shield():
 	$Shield.visible = true
