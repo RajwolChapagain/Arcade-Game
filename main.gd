@@ -181,8 +181,8 @@ func initialize_players(p1_ship_node, p2_ship_node):
 	p1_ship_node.hit.connect(on_player1_hit)
 	p2_ship_node.hit.connect(on_player2_hit)
 	p2_ship_node.owner_player = 2
-	p1_ship_node.global_position = Vector2($Camera2D.get_screen_center_position().x - 1000, $Camera2D.get_screen_center_position().y)
-	p2_ship_node.global_position = Vector2($Camera2D.get_screen_center_position().x + 1000, $Camera2D.get_screen_center_position().y)
+	p1_ship_node.global_position = Vector2($Camera2D.get_screen_center_position().x - 250, $Camera2D.get_screen_center_position().y)
+	p2_ship_node.global_position = Vector2($Camera2D.get_screen_center_position().x + 250, $Camera2D.get_screen_center_position().y)
 	p2_ship_node.rotation += PI
 	
 	p2_ship_node.LEFT_STRING = "p2_left"
