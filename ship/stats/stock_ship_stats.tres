@@ -7,5 +7,5 @@ script = ExtResource("1_dt4mh")
 toughness = 100
 damage = 15
 recharge_rate = 20
-top_speed = 1500
-acceleration = 1000
+top_speed = 500
+acceleration = 300

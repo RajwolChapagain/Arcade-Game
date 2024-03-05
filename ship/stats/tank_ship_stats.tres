@@ -7,5 +7,5 @@ script = ExtResource("1_5idd5")
 toughness = 120
 damage = 20
 recharge_rate = 12
-top_speed = 1300
-acceleration = 800
+top_speed = 400
+acceleration = 200
