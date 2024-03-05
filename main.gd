@@ -128,10 +128,10 @@ func _on_accleration_boost_collected(player, values):
 			$Player1.THRUST_FORCE -= values[0]
 	elif player == 2:
 		$Player2.THRUST_FORCE += values[0]
-		await get_tree().create_timer(values[1]).timeout
+		await get_tree().create_timer(values[1]).timeout 
 		if get_node_or_null("Player2") != null:
 			$Player1.THRUST_FORCE -= values[0]
-		$Player2.THRUST_FORCE -= values[0]
+		$Player2.THRUST_FORCE -= values[0] #FIXME: These kinds of code create crashes when the player is freed after game over but it still tries to execute after await timeout is over
 
 func _on_ufo_fired_bullet(bullet_scene, pos, dir):
 	var bullet = bullet_scene.instantiate()
