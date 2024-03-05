@@ -96,13 +96,13 @@ grow_horizontal = 2
 grow_vertical = 0
 alignment = 1
 
-[node name="P1Round1Indicator" parent="TimerBackground/Indicators" instance=ExtResource("6_p4tyy")]
+[node name="P1Round2Indicator" parent="TimerBackground/Indicators" instance=ExtResource("6_p4tyy")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 stretch_mode = 5
 
-[node name="P1Round2Indicator" parent="TimerBackground/Indicators" instance=ExtResource("6_p4tyy")]
+[node name="P1Round1Indicator" parent="TimerBackground/Indicators" instance=ExtResource("6_p4tyy")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
