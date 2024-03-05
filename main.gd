@@ -194,7 +194,7 @@ func initialize_players(p1_ship_node, p2_ship_node):
 
 func shake_camera(intensity: float, duration: float):
 	intensity = clampf(intensity, 0, 1)
-	var max_distance = 100
+	var max_distance = 50
 	
 	var start_time = Time.get_ticks_msec()
 	
