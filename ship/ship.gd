@@ -41,7 +41,6 @@ const ONLY_SHIP2_BULLET_LAYER = 5
 const SHARED_BULLET_LAYER = 3
 const SHIP_COLLISION_DAMAGE = 20
 
-var shield_button_is_pressed = false
 var fire_button_is_pressed = false
 var shield_is_active = false
 var dash_time = 0.1
@@ -65,7 +64,6 @@ signal player_died(expolosion_particles, global_position)
 signal super_fired(super_duration)
 
 func _ready():
-#	$Sprite2D.texture = SHIP_SPRITE
 	$SuperTimer.wait_time = SUPER_DURATION
 	$ShieldTimer.wait_time = SHIELD_DURATION
 	
@@ -82,25 +80,16 @@ func _input(event):
 		return
 		
 	if event.is_action_pressed(FIRE_STRING):
-		if shield_button_is_pressed:
-			dash()
-		else:
-			bullet_fired.emit(BULLET_SCENE, bullet_damage, transform.x, $BulletOrigin.global_position, owner_player)
+		bullet_fired.emit(BULLET_SCENE, bullet_damage, transform.x, $BulletOrigin.global_position, owner_player)
 	
-	if event.is_action_pressed(SUPER_STRING) and super_percentage == 100:
-		super_percentage = 0
-		#REMOVE: shield button is pressed check  and the following lines
-		#ADD: fire stream of bullets using new system
-		if shield_button_is_pressed:
-			if fire_button_is_pressed and not is_bullet_ring_active:
-				instantiate_bullet_ring()
+	if event.is_action_pressed(SUPER_STRING):
+		if super_percentage == 100:
+			if fire_button_is_pressed:
+				fire_stream_of_bullets()
 			else:
-				activate_shield()
-		elif fire_button_is_pressed:
-			fire_stream_of_bullets()
-		else:
-			fire_super()
-	
+				fire_super()
+			super_percentage = 0
+			
 	if event.is_action_pressed(SHIELD_STRING):
 		if super_percentage == 100:
 			if fire_button_is_pressed and not is_bullet_ring_active:
@@ -113,7 +102,6 @@ func get_input(delta):
 	if is_dashing:
 		return
 		
-	shield_button_is_pressed = Input.is_action_pressed(SHIELD_STRING)
 	fire_button_is_pressed = Input.is_action_pressed(FIRE_STRING)
 	
 	var input_direction = Input.get_vector(LEFT_STRING, RIGHT_STRING, UP_STRING, DOWN_STRING)
