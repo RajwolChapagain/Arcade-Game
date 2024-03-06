@@ -89,6 +89,8 @@ func _input(event):
 	
 	if event.is_action_pressed(SUPER_STRING) and super_percentage == 100:
 		super_percentage = 0
+		#REMOVE: shield button is pressed check  and the following lines
+		#ADD: fire stream of bullets using new system
 		if shield_button_is_pressed:
 			if fire_button_is_pressed and not is_bullet_ring_active:
 				instantiate_bullet_ring()
