@@ -93,13 +93,20 @@ func _input(event):
 			if fire_button_is_pressed and not is_bullet_ring_active:
 				instantiate_bullet_ring()
 			else:
-				$ShieldTimer.start()
 				activate_shield()
 		elif fire_button_is_pressed:
 			fire_stream_of_bullets()
 		else:
 			fire_super()
 	
+	if event.is_action_pressed(SHIELD_STRING):
+		if super_percentage == 100:
+			if fire_button_is_pressed and not is_bullet_ring_active:
+				instantiate_bullet_ring()
+			else:
+				activate_shield()
+			super_percentage = 0
+			
 func get_input(delta):
 	if is_dashing:
 		return
@@ -157,6 +164,7 @@ func _on_visibility_notifier_screen_exited():
 		position.y = inset
 	
 func activate_shield():
+	$ShieldTimer.start()	
 	$Shield.visible = true
 	shield_is_active = true
 
