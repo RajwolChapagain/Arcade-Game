@@ -10,10 +10,12 @@ var owner_player = 1
 signal bullet_did_damage(owner_player)
 
 func _physics_process(delta):
+	check_object_in_path()
 	position += direction * SPEED * delta
 
 func set_direction(new_direction):
 	direction = new_direction
+	rotation = new_direction.angle()
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	if is_in_ring:
@@ -43,3 +45,20 @@ func _on_area_entered(area): #For collision with powerups and other bullets
 	if is_in_ring and area.is_in_group("super") and area.owner_player == owner_player:
 		return
 	queue_free()
+
+func check_object_in_path():
+	var upper_collider = $UpperRay.get_collider()
+	if upper_collider != null:
+		if upper_collider.is_in_group("bullet") and upper_collider.owner_player != owner_player:
+			_on_area_entered(upper_collider)
+			upper_collider.queue_free()
+		if upper_collider.is_in_group("debris"):
+			queue_free()
+	
+	var lower_collider = $LowerRay.get_collider()
+	if lower_collider != null:
+		if lower_collider.is_in_group("bullet") and lower_collider.owner_player != owner_player:
+			_on_area_entered(lower_collider)
+			lower_collider.queue_free()
+		if lower_collider.is_in_group("debris"):
+			queue_free()

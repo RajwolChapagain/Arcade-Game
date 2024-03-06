@@ -46,7 +46,7 @@ scale = Vector2(3.3, 2.4)
 one_shot = true
 
 [node name="BulletOrigin" type="Marker2D" parent="."]
-position = Vector2(45, 0)
+position = Vector2(36, 0)
 
 [connection signal="timeout" from="SuperTimer" to="." method="_on_super_timer_timeout"]
 [connection signal="screen_exited" from="VisibilityNotifier" to="." method="_on_visibility_notifier_screen_exited"]
