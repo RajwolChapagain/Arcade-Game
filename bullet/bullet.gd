@@ -52,9 +52,13 @@ func check_object_in_path():
 		if upper_collider.is_in_group("bullet") and upper_collider.owner_player != owner_player:
 			_on_area_entered(upper_collider)
 			upper_collider.queue_free()
+		if upper_collider.is_in_group("debris"):
+			queue_free()
 	
 	var lower_collider = $LowerRay.get_collider()
 	if lower_collider != null:
 		if lower_collider.is_in_group("bullet") and lower_collider.owner_player != owner_player:
 			_on_area_entered(lower_collider)
 			lower_collider.queue_free()
+		if lower_collider.is_in_group("debris"):
+			queue_free()
