@@ -314,7 +314,7 @@ func save_end_of_round_playtesting_data():
 		DataWriter.save_data("Total bullets fired by P1: " + str(total_bullets_fired_p1))
 		DataWriter.save_data("Total bullets missed by P1: " + str(total_bullets_missed_p1))
 		if total_bullets_fired_p1 != 0:
-			DataWriter.save_data("P1 Hit Rate: " + str((total_bullets_fired_p1 - total_bullets_missed_p1) * 100 / total_bullets_fired_p1) + "%")
+			DataWriter.save_data("P1 Hit Rate: " + str((total_bullets_fired_p1 - total_bullets_missed_p1) * 100.0 / total_bullets_fired_p1) + "%")
 		else:
 			DataWriter.save_data("P1 didn't fire any shots!")
 		DataWriter.save_data("")
@@ -322,7 +322,7 @@ func save_end_of_round_playtesting_data():
 		DataWriter.save_data("Total bullets fired by P2: " + str(total_bullets_fired_p2))
 		DataWriter.save_data("Total bullets missed by P2: " + str(total_bullets_missed_p2))
 		if total_bullets_fired_p2 != 0:
-			DataWriter.save_data("P2 Hit Rate: " + str((total_bullets_fired_p2 - total_bullets_missed_p2) * 100 / total_bullets_fired_p2) + "%")
+			DataWriter.save_data("P2 Hit Rate: " + str((total_bullets_fired_p2 - total_bullets_missed_p2) * 100.0 / total_bullets_fired_p2) + "%")
 		else:
 			DataWriter.save_data("P2 didn't fire any shots!")
 		DataWriter.save_data("")
