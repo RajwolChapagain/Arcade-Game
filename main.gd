@@ -1,6 +1,8 @@
 extends Node2D
 
+@export var playtesting = false
 @export var ships : Array[PackedScene] ##Has to be in the same order as ship_sprites in Main Menu
+
 var p1_ship_index = 0
 var p2_ship_index = 0
 var round_is_over = false
@@ -8,10 +10,20 @@ var round_number = 1
 var rounds_won_by_p1 = 0
 var rounds_won_by_p2 = 0
 
-func _ready():
-	var offset = 80
-	$Spawner.set_path_points(Vector2(-2000 - offset, -1500 - offset), Vector2(2000 + offset, -1500 - offset), Vector2(2000 + offset, 1500 + offset), Vector2(-2000 - offset, 1500 + offset))
-	
+#Playtesting variables
+var total_bullets_fired_p1 = 0
+var total_bullets_fired_p2 = 0
+var total_bullets_missed_p1 = 0
+var total_bullets_missed_p2 = 0
+var num_shield_used_p1 = 0
+var num_shield_used_p2 = 0
+var num_alternative_shield_used_p1 = 0
+var num_alternative_shield_used_p2 = 0
+var num_super_fired_p1 = 0
+var num_super_fired_p2 = 0
+var num_alternative_super_fired_p1 = 0
+var num_alternative_super_fired_p2 = 0
+
 func _physics_process(_delta):
 	$HUD.set_round_time(round($RoundTimer.time_left))
 	
@@ -25,7 +37,10 @@ func on_player1_fired_bullet(bullet_scene, damage, direction, location, owner_pl
 	bullet.bullet_did_damage.connect(on_bullet_did_damage)
 	add_child(bullet)
 	shake_camera(0.1, 100)
-
+	if playtesting:
+		total_bullets_fired_p1 += 1
+		bullet.bullet_exited_screen.connect(on_bullet_exit_screen)
+	
 func on_player2_fired_bullet(bullet_scene, damage, direction, location, owner_player):
 	var bullet = bullet_scene.instantiate()
 	bullet.global_position = location
@@ -35,13 +50,20 @@ func on_player2_fired_bullet(bullet_scene, damage, direction, location, owner_pl
 	bullet.owner_player = owner_player
 	add_child(bullet)
 	shake_camera(0.1, 100)	
+	if playtesting:
+		total_bullets_fired_p2 += 1
+		bullet.bullet_exited_screen.connect(on_bullet_exit_screen)		
 
 func on_player1_fired_super(super_duration):
 	shake_camera(0.15, super_duration * 1000)
+	if playtesting:
+		num_super_fired_p1 += 1
 
 func on_player2_fired_super(super_duration):
 	shake_camera(0.15, super_duration * 1000)
-	
+	if playtesting:
+		num_super_fired_p2 += 1
+		
 func on_bullet_did_damage(damaging_player, damage_amount):
 	if damaging_player == 1 and get_node_or_null("Player1") != null:
 		$Player1.super_percentage += damage_amount / 2
@@ -94,6 +116,10 @@ func on_round_over(winner):
 		rounds_won_by_p2 += 1
 		$HUD.indicate_round_won(winner, rounds_won_by_p2)		
 	$HUD.announce_winner(winner)
+	
+	if playtesting:
+		save_end_of_round_playtesting_data()
+		
 	await get_tree().create_timer(5).timeout
 	$HUD.hide_announcement_text()
 
@@ -132,10 +158,10 @@ func _on_accleration_boost_collected(player, values):
 			$Player1.THRUST_FORCE -= values[0]
 	elif player == 2:
 		$Player2.THRUST_FORCE += values[0]
-		await get_tree().create_timer(values[1]).timeout
+		await get_tree().create_timer(values[1]).timeout 
 		if get_node_or_null("Player2") != null:
 			$Player1.THRUST_FORCE -= values[0]
-		$Player2.THRUST_FORCE -= values[0]
+		$Player2.THRUST_FORCE -= values[0] #FIXME: These kinds of code create crashes when the player is freed after game over but it still tries to execute after await timeout is over
 
 func _on_ufo_fired_bullet(bullet_scene, pos, dir):
 	var bullet = bullet_scene.instantiate()
@@ -181,8 +207,8 @@ func initialize_players(p1_ship_node, p2_ship_node):
 	p1_ship_node.hit.connect(on_player1_hit)
 	p2_ship_node.hit.connect(on_player2_hit)
 	p2_ship_node.owner_player = 2
-	p1_ship_node.global_position = Vector2($Camera2D.get_screen_center_position().x - 1000, $Camera2D.get_screen_center_position().y)
-	p2_ship_node.global_position = Vector2($Camera2D.get_screen_center_position().x + 1000, $Camera2D.get_screen_center_position().y)
+	p1_ship_node.global_position = Vector2($Camera2D.get_screen_center_position().x - 250, $Camera2D.get_screen_center_position().y)
+	p2_ship_node.global_position = Vector2($Camera2D.get_screen_center_position().x + 250, $Camera2D.get_screen_center_position().y)
 	p2_ship_node.rotation += PI
 	
 	p2_ship_node.LEFT_STRING = "p2_left"
@@ -196,9 +222,18 @@ func initialize_players(p1_ship_node, p2_ship_node):
 	$HUD.initialize_max_hp_bar(1, p1_ship_node.max_hp)
 	$HUD.initialize_max_hp_bar(2, p2_ship_node.max_hp)
 
+	if playtesting:
+		p1_ship_node.shield_activated.connect(on_shield_activated)
+		p1_ship_node.bullet_ring_activated.connect(on_bullet_ring_activated)
+		p1_ship_node.alternative_super_fired.connect(on_alternative_super_fired)
+		
+		p2_ship_node.shield_activated.connect(on_shield_activated)
+		p2_ship_node.bullet_ring_activated.connect(on_bullet_ring_activated)
+		p2_ship_node.alternative_super_fired.connect(on_alternative_super_fired)
+		
 func shake_camera(intensity: float, duration: float):
 	intensity = clampf(intensity, 0, 1)
-	var max_distance = 100
+	var max_distance = 50
 	
 	var start_time = Time.get_ticks_msec()
 	
@@ -247,7 +282,78 @@ func _on_round_timer_timeout():
 		
 	get_tree().paused = false	
 		
+func on_bullet_exit_screen(owner_player):
+	if owner_player == 1:
+		total_bullets_missed_p1 += 1
+	elif owner_player == 2:
+		total_bullets_missed_p2 += 1
 	
+func on_shield_activated(owner_player):
+	if owner_player == 1:
+		num_shield_used_p1 += 1
+	elif owner_player == 2:
+		num_shield_used_p2 += 1
+		
+func on_bullet_ring_activated(owner_player):
+	if owner_player == 1:
+		num_alternative_shield_used_p1 += 1
+	if owner_player == 2:
+		num_alternative_shield_used_p2 += 1
+		
+func on_alternative_super_fired(owner_player):
+	if owner_player == 1:
+		num_alternative_super_fired_p1  += 1
+	elif owner_player == 2:
+		num_alternative_super_fired_p2 += 1
 	
-	
+func save_end_of_round_playtesting_data():
+		DataWriter.save_data("=============================================================================================================")
+		DataWriter.save_data("Round Length (seconds): " + str(int(90 - $RoundTimer.time_left)))
+		DataWriter.save_data("")
+		
+		DataWriter.save_data("Total bullets fired by P1: " + str(total_bullets_fired_p1))
+		DataWriter.save_data("Total bullets missed by P1: " + str(total_bullets_missed_p1))
+		if total_bullets_fired_p1 != 0:
+			DataWriter.save_data("P1 Hit Rate: " + str((total_bullets_fired_p1 - total_bullets_missed_p1) * 100 / total_bullets_fired_p1) + "%")
+		else:
+			DataWriter.save_data("P1 didn't fire any shots!")
+		DataWriter.save_data("")
+		
+		DataWriter.save_data("Total bullets fired by P2: " + str(total_bullets_fired_p2))
+		DataWriter.save_data("Total bullets missed by P2: " + str(total_bullets_missed_p2))
+		if total_bullets_fired_p2 != 0:
+			DataWriter.save_data("P2 Hit Rate: " + str((total_bullets_fired_p2 - total_bullets_missed_p2) * 100 / total_bullets_fired_p2) + "%")
+		else:
+			DataWriter.save_data("P2 didn't fire any shots!")
+		DataWriter.save_data("")
+		
+		DataWriter.save_data("Number of supers fired by P1: " + str(num_super_fired_p1))
+		DataWriter.save_data("Number of supers fired by P2: " + str(num_super_fired_p2))	
+		DataWriter.save_data("")
+		
+		DataWriter.save_data("Number of alternative supers fired by P1: " + str(num_alternative_super_fired_p1))
+		DataWriter.save_data("Number of alternative supers fired by P2: " + str(num_alternative_super_fired_p2))
+		DataWriter.save_data("")
+		
+		DataWriter.save_data("Number of shields used by P1: " + str(num_shield_used_p1))
+		DataWriter.save_data("Number of shields used by P2: " + str(num_shield_used_p2))
+		DataWriter.save_data("")
+		
+		DataWriter.save_data("Number of alternative shields used by P1: " + str(num_alternative_shield_used_p1))
+		DataWriter.save_data("Number of alternative shields used by P2: " + str(num_alternative_shield_used_p2))
+		DataWriter.save_data("")
+		
+
+		total_bullets_fired_p1 = 0
+		total_bullets_fired_p2 = 0
+		total_bullets_missed_p1 = 0
+		total_bullets_missed_p2 = 0
+		num_super_fired_p1 = 0
+		num_super_fired_p2 = 0
+		num_alternative_super_fired_p1 = 0
+		num_alternative_super_fired_p2 = 0
+		num_shield_used_p1 = 0
+		num_shield_used_p2 = 0
+		num_alternative_shield_used_p1 = 0
+		num_alternative_shield_used_p2 = 0
 	

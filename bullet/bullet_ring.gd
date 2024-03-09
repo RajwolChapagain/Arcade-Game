@@ -1,6 +1,6 @@
 extends Node2D
 
-var radius = 200
+var radius = 50
 const angular_velocity = 180
 var owner_player = 1:
 	get:

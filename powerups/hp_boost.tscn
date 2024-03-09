@@ -1,11 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://c0sitt3o03ayv"]
 
 [ext_resource type="PackedScene" uid="uid://8le43nudq3ms" path="res://powerups/powerup_component.tscn" id="1_pxg01"]
-[ext_resource type="Texture2D" uid="uid://nw60aqglp3p0" path="res://powerups/hp_boost.svg" id="2_p25kq"]
+[ext_resource type="Texture2D" uid="uid://c18yi1h28h8n1" path="res://powerups/hp_boost.png" id="2_sekpr"]
 
 [node name="HPBoost" groups=["hp_boost", "spawned_objects"] instance=ExtResource("1_pxg01")]
 emitted_values = [20]
 
 [node name="Sprite2D" parent="." index="0"]
-scale = Vector2(0.427481, 0.427481)
-texture = ExtResource("2_p25kq")
+texture = ExtResource("2_sekpr")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="2"]
+scale = Vector2(2.5, 2.5)

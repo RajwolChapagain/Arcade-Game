@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://deb848xhneunh"
-path="res://.godot/imported/tank_ship.svg-54b8193ef43e7ebb5eab6ec17e2740cd.ctex"
+uid="uid://bkggjjiine0ht"
+path="res://.godot/imported/ufo.png-103125cb518027b4b4f45ff17bcea714.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ship/tank_ship.svg"
-dest_files=["res://.godot/imported/tank_ship.svg-54b8193ef43e7ebb5eab6ec17e2740cd.ctex"]
+source_file="res://misc_objects/ufo.png"
+dest_files=["res://.godot/imported/ufo.png-103125cb518027b4b4f45ff17bcea714.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

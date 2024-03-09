@@ -41,7 +41,6 @@ const ONLY_SHIP2_BULLET_LAYER = 5
 const SHARED_BULLET_LAYER = 3
 const SHIP_COLLISION_DAMAGE = 20
 
-var shield_button_is_pressed = false
 var fire_button_is_pressed = false
 var shield_is_active = false
 var dash_time = 0.1
@@ -57,15 +56,18 @@ var BULLET_RING_SCENE = preload("res://bullet/bullet_ring.tscn")
 var SUPER_SCENE = preload("res://ship/super.tscn")
 
 signal bullet_fired(bullet, bullet_damage, direction, location)
-signal bullet_ring_activated(BULLET_RING_SCENE, position, bullet_layer_mask)
 signal hit(damage)
 signal super_percentage_changed(new_super_percentage)
 signal hp_changed(new_hp)
 signal player_died(expolosion_particles, global_position)
 signal super_fired(super_duration)
 
+#Playtesting signals
+signal shield_activated(owner_player)
+signal bullet_ring_activated(owner_player)
+signal alternative_super_fired(owner_player)
+
 func _ready():
-#	$Sprite2D.texture = SHIP_SPRITE
 	$SuperTimer.wait_time = SUPER_DURATION
 	$ShieldTimer.wait_time = SHIELD_DURATION
 	
@@ -82,29 +84,28 @@ func _input(event):
 		return
 		
 	if event.is_action_pressed(FIRE_STRING):
-		if shield_button_is_pressed:
-			dash()
-		else:
-			bullet_fired.emit(BULLET_SCENE, bullet_damage, transform.x, $BulletOrigin.global_position, owner_player)
+		bullet_fired.emit(BULLET_SCENE, bullet_damage, transform.x, $BulletOrigin.global_position, owner_player)
 	
-	if event.is_action_pressed(SUPER_STRING) and super_percentage == 100:
-		super_percentage = 0
-		if shield_button_is_pressed:
+	if event.is_action_pressed(SUPER_STRING):
+		if super_percentage == 100:
+			if fire_button_is_pressed:
+				fire_stream_of_bullets()
+			else:
+				fire_super()
+			super_percentage = 0
+			
+	if event.is_action_pressed(SHIELD_STRING):
+		if super_percentage == 100:
 			if fire_button_is_pressed and not is_bullet_ring_active:
 				instantiate_bullet_ring()
 			else:
-				$ShieldTimer.start()
 				activate_shield()
-		elif fire_button_is_pressed:
-			fire_stream_of_bullets()
-		else:
-			fire_super()
-	
+			super_percentage = 0
+			
 func get_input(delta):
 	if is_dashing:
 		return
 		
-	shield_button_is_pressed = Input.is_action_pressed(SHIELD_STRING)
 	fire_button_is_pressed = Input.is_action_pressed(FIRE_STRING)
 	
 	var input_direction = Input.get_vector(LEFT_STRING, RIGHT_STRING, UP_STRING, DOWN_STRING)
@@ -145,11 +146,22 @@ func _on_super_timer_timeout():
 	remove_child($Super)
 
 func _on_visibility_notifier_screen_exited():
-	position = -position
+	var inset = 10
+	if position.x < 0:
+		position.x = get_viewport_rect().size.x - inset
+	elif position.x > get_viewport_rect().size.x:
+		position.x = inset
+	
+	if position.y < 0:
+		position.y = get_viewport_rect().size.y - inset
+	elif position.y > get_viewport_rect().size.y:
+		position.y = inset
 	
 func activate_shield():
+	$ShieldTimer.start()	
 	$Shield.visible = true
 	shield_is_active = true
+	shield_activated.emit(owner_player)
 
 func deactivate_shield():
 	$Shield.visible = false
@@ -169,6 +181,8 @@ func fire_stream_of_bullets():
 	for i in range(10):
 		bullet_fired.emit(BULLET_SCENE, bullet_damage, transform.x, $BulletOrigin.global_position, owner_player)
 		await get_tree().create_timer(0.05).timeout
+	
+	alternative_super_fired.emit(owner_player)
 
 func on_bullet_ring_destroyed():
 	is_bullet_ring_active = false
@@ -197,6 +211,7 @@ func instantiate_bullet_ring():
 	current_bullet_ring.owner_player = owner_player
 	add_sibling(current_bullet_ring)
 	is_bullet_ring_active = true
+	bullet_ring_activated.emit(owner_player)
 
 func on_super_did_damage(damage):
 	super_percentage += damage / 2

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0n774p4wqiic"
-path="res://.godot/imported/ship_sprite.png-787da17868ca52ef3e34a4f472877b04.ctex"
+uid="uid://btt50nabpvd5a"
+path="res://.godot/imported/hammerhead.png-f20a61013388a106681e05168638d1be.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ship/ship_sprite.png"
-dest_files=["res://.godot/imported/ship_sprite.png-787da17868ca52ef3e34a4f472877b04.ctex"]
+source_file="res://ship/sprites/hammerhead.png"
+dest_files=["res://.godot/imported/hammerhead.png-f20a61013388a106681e05168638d1be.ctex"]
 
 [params]
 

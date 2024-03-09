@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" path="res://ship/ship.gd" id="1_5xbcq"]
 [ext_resource type="Resource" uid="uid://cbmn1wqvamq0r" path="res://ship/stats/stock_ship_stats.tres" id="2_xiukv"]
-[ext_resource type="Texture2D" uid="uid://dvoiqv1dp1eab" path="res://ship/stock_ship.svg" id="3_5r8y4"]
-[ext_resource type="Texture2D" uid="uid://ci8d2ridgh8a6" path="res://ship/shield.png" id="3_j0chd"]
+[ext_resource type="Texture2D" uid="uid://bi7knj1ujbmmc" path="res://ship/sprites/shield.png" id="3_p4adt"]
+[ext_resource type="Texture2D" uid="uid://dkhq62nq0hq12" path="res://ship/sprites/redtail.png" id="4_61gfa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jmyd8"]
-radius = 136.0
+radius = 68.593
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_18nrc"]
-size = Vector2(190, 122)
+size = Vector2(66, 48)
 
 [node name="Ship" type="CharacterBody2D" groups=["ship"]]
 script = ExtResource("1_5xbcq")
@@ -22,7 +22,7 @@ collision_mask = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="Shield"]
 scale = Vector2(1.29524, 1.29524)
-texture = ExtResource("3_j0chd")
+texture = ExtResource("3_p4adt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shield"]
 shape = SubResource("CircleShape2D_jmyd8")
@@ -30,7 +30,7 @@ debug_color = Color(0.658824, 0.509804, 0.235294, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
-texture = ExtResource("3_5r8y4")
+texture = ExtResource("4_61gfa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_18nrc")
@@ -40,13 +40,13 @@ debug_color = Color(0, 0.6, 0.701961, 0.419608)
 one_shot = true
 
 [node name="VisibilityNotifier" type="VisibleOnScreenNotifier2D" parent="."]
-scale = Vector2(9.7, 6.1)
+scale = Vector2(3.3, 2.4)
 
 [node name="ShieldTimer" type="Timer" parent="."]
 one_shot = true
 
 [node name="BulletOrigin" type="Marker2D" parent="."]
-position = Vector2(123, 0)
+position = Vector2(36, 0)
 
 [connection signal="timeout" from="SuperTimer" to="." method="_on_super_timer_timeout"]
 [connection signal="screen_exited" from="VisibilityNotifier" to="." method="_on_visibility_notifier_screen_exited"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3etsdxr15cwe"
-path="res://.godot/imported/scout_ship.png-1929d736ff423c334a4e77893a7b076f.ctex"
+uid="uid://bbx28a1qg5u2s"
+path="res://.godot/imported/bullet.png-2c2153c0dd3b3eaf69d3b6d097e024ff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ship/scout_ship.png"
-dest_files=["res://.godot/imported/scout_ship.png-1929d736ff423c334a4e77893a7b076f.ctex"]
+source_file="res://bullet/bullet.png"
+dest_files=["res://.godot/imported/bullet.png-2c2153c0dd3b3eaf69d3b6d097e024ff.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

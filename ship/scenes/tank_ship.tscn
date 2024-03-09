@@ -1,11 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://dkg36k7t483lp"]
+[gd_scene load_steps=5 format=3 uid="uid://dkg36k7t483lp"]
 
 [ext_resource type="PackedScene" uid="uid://dsgskm8hx8n3" path="res://ship/scenes/stock_ship.tscn" id="1_os2ek"]
 [ext_resource type="Resource" uid="uid://c1q7efuyhhpgm" path="res://ship/stats/tank_ship_stats.tres" id="2_6gnoa"]
-[ext_resource type="Texture2D" uid="uid://deb848xhneunh" path="res://ship/tank_ship.svg" id="2_yqfjs"]
+[ext_resource type="Texture2D" uid="uid://btt50nabpvd5a" path="res://ship/sprites/hammerhead.png" id="3_ppwde"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_msliu"]
+size = Vector2(80, 48)
 
 [node name="Ship" instance=ExtResource("1_os2ek")]
 stats = ExtResource("2_6gnoa")
 
 [node name="Sprite2D" parent="." index="1"]
-texture = ExtResource("2_yqfjs")
+texture = ExtResource("3_ppwde")
+
+[node name="CollisionShape2D" parent="." index="2"]
+shape = SubResource("RectangleShape2D_msliu")
+
+[node name="VisibilityNotifier" parent="." index="4"]
+scale = Vector2(4, 2.4)

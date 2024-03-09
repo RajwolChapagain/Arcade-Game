@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvoiqv1dp1eab"
-path="res://.godot/imported/stock_ship.svg-8711a2def44591e77d650032dd6a9cc7.ctex"
+uid="uid://bi7knj1ujbmmc"
+path="res://.godot/imported/shield.png-43f483d1f05ddd41439359b0e8e42903.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ship/stock_ship.svg"
-dest_files=["res://.godot/imported/stock_ship.svg-8711a2def44591e77d650032dd6a9cc7.ctex"]
+source_file="res://ship/sprites/shield.png"
+dest_files=["res://.godot/imported/shield.png-43f483d1f05ddd41439359b0e8e42903.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false
