@@ -15,6 +15,10 @@ var total_bullets_fired_p1 = 0
 var total_bullets_fired_p2 = 0
 var total_bullets_missed_p1 = 0
 var total_bullets_missed_p2 = 0
+var num_shield_used_p1 = 0
+var num_shield_used_p2 = 0
+var num_super_fired_p1 = 0
+var num_super_fired_p2 = 0
 
 func _physics_process(_delta):
 	$HUD.set_round_time(round($RoundTimer.time_left))
@@ -48,10 +52,14 @@ func on_player2_fired_bullet(bullet_scene, damage, direction, location, owner_pl
 
 func on_player1_fired_super(super_duration):
 	shake_camera(0.15, super_duration * 1000)
+	if playtesting:
+		num_super_fired_p1 += 1
 
 func on_player2_fired_super(super_duration):
 	shake_camera(0.15, super_duration * 1000)
-	
+	if playtesting:
+		num_super_fired_p2 += 1
+		
 func on_bullet_did_damage(damaging_player, damage_amount):
 	if damaging_player == 1 and get_node_or_null("Player1") != null:
 		$Player1.super_percentage += damage_amount / 2
@@ -106,20 +114,32 @@ func on_round_over(winner):
 	$HUD.announce_winner(winner)
 	
 	if playtesting:
+		DataWriter.save_data("=============================================================================================================")
 		DataWriter.save_data("Round Time: " + str(int($RoundTimer.time_left)))
-		DataWriter.save_data("P1_total_bullets_fired: " + str(total_bullets_fired_p1))
-		DataWriter.save_data("P1_total_bullets_missed: " + str(total_bullets_missed_p1))
+		DataWriter.save_data("")
+		
+		DataWriter.save_data("Total bullets fired by P1: " + str(total_bullets_fired_p1))
+		DataWriter.save_data("Total bullets missed by P1: " + str(total_bullets_missed_p1))
 		if total_bullets_fired_p1 != 0:
-			DataWriter.save_data("P1_hit_rate: " + str((total_bullets_fired_p1 - total_bullets_missed_p1) * 100 / total_bullets_fired_p1) + "%")
+			DataWriter.save_data("P1 Hit Rate: " + str((total_bullets_fired_p1 - total_bullets_missed_p1) * 100 / total_bullets_fired_p1) + "%")
 		else:
 			DataWriter.save_data("P1 didn't fire any shots!")
-		DataWriter.save_data("P2_total_bullets_fired: " + str(total_bullets_fired_p2))
-		DataWriter.save_data("P2_total_bullets_missed: " + str(total_bullets_missed_p2))
+		DataWriter.save_data("")
+		
+		DataWriter.save_data("Total bullets fired by P2: " + str(total_bullets_fired_p2))
+		DataWriter.save_data("Total bullets missed by P2: " + str(total_bullets_missed_p2))
 		if total_bullets_fired_p2 != 0:
-			DataWriter.save_data("P2_hit_rate: " + str((total_bullets_fired_p2 - total_bullets_missed_p2) * 100 / total_bullets_fired_p2) + "%")
+			DataWriter.save_data("P2 Hit Rate: " + str((total_bullets_fired_p2 - total_bullets_missed_p2) * 100 / total_bullets_fired_p2) + "%")
 		else:
 			DataWriter.save_data("P2 didn't fire any shots!")
-			
+		DataWriter.save_data("")
+		
+		DataWriter.save_data("Number of supers fired by P1: " + str(num_super_fired_p1))
+		DataWriter.save_data("Number of supers fired by P2: " + str(num_super_fired_p2))	
+		DataWriter.save_data("")
+		
+		num_super_fired_p1 = 0
+		num_super_fired_p2 = 0
 		total_bullets_fired_p1 = 0
 		total_bullets_fired_p2 = 0
 		total_bullets_missed_p1 = 0
