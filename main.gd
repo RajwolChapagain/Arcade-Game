@@ -1,6 +1,8 @@
 extends Node2D
 
+@export var playtesting = false
 @export var ships : Array[PackedScene] ##Has to be in the same order as ship_sprites in Main Menu
+
 var p1_ship_index = 0
 var p2_ship_index = 0
 var round_is_over = false

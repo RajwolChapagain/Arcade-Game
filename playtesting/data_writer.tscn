@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cb51cinnlyc18"]
+
+[ext_resource type="Script" path="res://playtesting/data_writer.gd" id="1_eykg0"]
+
+[node name="DataWriter" type="Node"]
+script = ExtResource("1_eykg0")

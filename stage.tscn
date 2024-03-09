@@ -1,0 +1,142 @@
+[gd_scene load_steps=7 format=3 uid="uid://naoql4b5pyiu"]
+
+[ext_resource type="Texture2D" uid="uid://bappb2am6aals" path="res://ui/backdrop.png" id="1_8mnoy"]
+[ext_resource type="PackedScene" uid="uid://0uuiimj7834t" path="res://ui/hud.tscn" id="2_cah66"]
+[ext_resource type="Texture2D" uid="uid://dm3ch1wtb34f7" path="res://ui/filled_circle.png" id="3_5rp5x"]
+[ext_resource type="PackedScene" uid="uid://dsgskm8hx8n3" path="res://ship/scenes/stock_ship.tscn" id="4_ect3n"]
+[ext_resource type="PackedScene" uid="uid://bljrv7d275wa1" path="res://misc_objects/ufo.tscn" id="5_8h0io"]
+[ext_resource type="PackedScene" uid="uid://clheje8yd88pn" path="res://bullet/bullet.tscn" id="7_8g4vm"]
+
+[node name="Stage" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1000.0
+offset_bottom = 750.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_8mnoy")
+
+[node name="HUD" parent="." instance=ExtResource("2_cah66")]
+offset_right = 1000.0
+offset_bottom = 750.0
+
+[node name="HealthBar" parent="HUD" index="0"]
+value = 100.0
+
+[node name="HealthBar2" parent="HUD" index="2"]
+value = 100.0
+
+[node name="SuperBar2" parent="HUD" index="3"]
+value = 100.0
+
+[node name="P2Round1Indicator" parent="HUD/TimerBackground/Indicators" index="3"]
+texture = ExtResource("3_5rp5x")
+
+[node name="Ship" parent="." instance=ExtResource("4_ect3n")]
+position = Vector2(750, 375)
+rotation = 3.14159
+
+[node name="UFO" parent="." instance=ExtResource("5_8h0io")]
+position = Vector2(725, 616)
+rotation = 0.886627
+
+[node name="Bullet" parent="." instance=ExtResource("7_8g4vm")]
+position = Vector2(676, 556)
+SPEED = 0
+
+[node name="Bullet2" parent="." instance=ExtResource("7_8g4vm")]
+position = Vector2(733, 541)
+SPEED = 0
+
+[node name="Bullet3" parent="." instance=ExtResource("7_8g4vm")]
+position = Vector2(788, 563)
+SPEED = 0
+
+[node name="Bullet4" parent="." instance=ExtResource("7_8g4vm")]
+position = Vector2(793, 622)
+SPEED = 0
+
+[node name="Bullet5" parent="." instance=ExtResource("7_8g4vm")]
+position = Vector2(771, 671)
+SPEED = 0
+
+[node name="Bullet6" parent="." instance=ExtResource("7_8g4vm")]
+position = Vector2(716, 690)
+SPEED = 0
+
+[node name="Bullet7" parent="." instance=ExtResource("7_8g4vm")]
+position = Vector2(667, 665)
+SPEED = 0
+
+[node name="Bullet8" parent="." instance=ExtResource("7_8g4vm")]
+position = Vector2(645, 607)
+SPEED = 0
+
+[node name="Bullet9" parent="." instance=ExtResource("7_8g4vm")]
+position = Vector2(615, 604)
+SPEED = 0
+
+[node name="Bullet10" parent="." instance=ExtResource("7_8g4vm")]
+position = Vector2(659, 530)
+SPEED = 0
+
+[node name="Bullet17" parent="." instance=ExtResource("7_8g4vm")]
+position = Vector2(635, 501)
+SPEED = 0
+
+[node name="Bullet18" parent="." instance=ExtResource("7_8g4vm")]
+position = Vector2(744, 470)
+SPEED = 0
+
+[node name="Bullet19" parent="." instance=ExtResource("7_8g4vm")]
+position = Vector2(826, 513)
+SPEED = 0
+
+[node name="Bullet20" parent="." instance=ExtResource("7_8g4vm")]
+position = Vector2(864, 623)
+SPEED = 0
+
+[node name="Bullet21" parent="." instance=ExtResource("7_8g4vm")]
+position = Vector2(825, 721)
+SPEED = 0
+
+[node name="Bullet22" parent="." instance=ExtResource("7_8g4vm")]
+position = Vector2(716, 754)
+SPEED = 0
+
+[node name="Bullet23" parent="." instance=ExtResource("7_8g4vm")]
+position = Vector2(618, 711)
+SPEED = 0
+
+[node name="Bullet24" parent="." instance=ExtResource("7_8g4vm")]
+position = Vector2(573, 598)
+SPEED = 0
+
+[node name="Bullet11" parent="." instance=ExtResource("7_8g4vm")]
+position = Vector2(739, 511)
+SPEED = 0
+
+[node name="Bullet12" parent="." instance=ExtResource("7_8g4vm")]
+position = Vector2(803, 540)
+SPEED = 0
+
+[node name="Bullet13" parent="." instance=ExtResource("7_8g4vm")]
+position = Vector2(825, 621)
+SPEED = 0
+
+[node name="Bullet14" parent="." instance=ExtResource("7_8g4vm")]
+position = Vector2(794, 692)
+SPEED = 0
+
+[node name="Bullet15" parent="." instance=ExtResource("7_8g4vm")]
+position = Vector2(715, 717)
+SPEED = 0
+
+[node name="Bullet16" parent="." instance=ExtResource("7_8g4vm")]
+position = Vector2(651, 680)
+SPEED = 0
+
+[editable path="HUD"]
