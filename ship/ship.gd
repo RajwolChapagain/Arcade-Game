@@ -56,12 +56,16 @@ var BULLET_RING_SCENE = preload("res://bullet/bullet_ring.tscn")
 var SUPER_SCENE = preload("res://ship/super.tscn")
 
 signal bullet_fired(bullet, bullet_damage, direction, location)
-signal bullet_ring_activated(BULLET_RING_SCENE, position, bullet_layer_mask)
 signal hit(damage)
 signal super_percentage_changed(new_super_percentage)
 signal hp_changed(new_hp)
 signal player_died(expolosion_particles, global_position)
 signal super_fired(super_duration)
+
+#Playtesting signals
+signal shield_activated(owner_player)
+signal bullet_ring_activated(owner_player)
+signal alternative_super_fired(owner_player)
 
 func _ready():
 	$SuperTimer.wait_time = SUPER_DURATION
@@ -157,6 +161,7 @@ func activate_shield():
 	$ShieldTimer.start()	
 	$Shield.visible = true
 	shield_is_active = true
+	shield_activated.emit(owner_player)
 
 func deactivate_shield():
 	$Shield.visible = false
@@ -176,6 +181,8 @@ func fire_stream_of_bullets():
 	for i in range(10):
 		bullet_fired.emit(BULLET_SCENE, bullet_damage, transform.x, $BulletOrigin.global_position, owner_player)
 		await get_tree().create_timer(0.05).timeout
+	
+	alternative_super_fired.emit(owner_player)
 
 func on_bullet_ring_destroyed():
 	is_bullet_ring_active = false
@@ -204,6 +211,7 @@ func instantiate_bullet_ring():
 	current_bullet_ring.owner_player = owner_player
 	add_sibling(current_bullet_ring)
 	is_bullet_ring_active = true
+	bullet_ring_activated.emit(owner_player)
 
 func on_super_did_damage(damage):
 	super_percentage += damage / 2
