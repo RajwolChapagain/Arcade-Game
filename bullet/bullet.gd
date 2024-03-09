@@ -8,6 +8,7 @@ var is_in_ring = false
 var owner_player = 1
 
 signal bullet_did_damage(owner_player)
+signal bullet_exited_screen(owner_player)
 
 func _physics_process(delta):
 	check_object_in_path()
@@ -21,7 +22,8 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 	if is_in_ring:
 		return
 	queue_free()
-
+	bullet_exited_screen.emit(owner_player)
+	
 func on_hit(_damage): #Useful when super destroys bullet
 	queue_free()
 

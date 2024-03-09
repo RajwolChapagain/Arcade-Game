@@ -10,6 +10,12 @@ var round_number = 1
 var rounds_won_by_p1 = 0
 var rounds_won_by_p2 = 0
 
+#Playtesting variables
+var total_bullets_fired_p1 = 0
+var total_bullets_fired_p2 = 0
+var total_bullets_missed_p1 = 0
+var total_bullets_missed_p2 = 0
+
 func _physics_process(_delta):
 	$HUD.set_round_time(round($RoundTimer.time_left))
 	
@@ -23,7 +29,10 @@ func on_player1_fired_bullet(bullet_scene, damage, direction, location, owner_pl
 	bullet.bullet_did_damage.connect(on_bullet_did_damage)
 	add_child(bullet)
 	shake_camera(0.1, 100)
-
+	if playtesting:
+		total_bullets_fired_p1 += 1
+		bullet.bullet_exited_screen.connect(on_bullet_exit_screen)
+	
 func on_player2_fired_bullet(bullet_scene, damage, direction, location, owner_player):
 	var bullet = bullet_scene.instantiate()
 	bullet.global_position = location
@@ -33,6 +42,9 @@ func on_player2_fired_bullet(bullet_scene, damage, direction, location, owner_pl
 	bullet.owner_player = owner_player
 	add_child(bullet)
 	shake_camera(0.1, 100)	
+	if playtesting:
+		total_bullets_fired_p2 += 1
+		bullet.bullet_exited_screen.connect(on_bullet_exit_screen)		
 
 func on_player1_fired_super(super_duration):
 	shake_camera(0.15, super_duration * 1000)
@@ -83,7 +95,6 @@ func on_player2_died(explosion_scene, global_pos):
 func on_round_over(winner):
 	round_is_over = true
 	$RoundTimer.paused = true
-	DataWriter.save_data("Round Time: " + str(int($RoundTimer.time_left)))
 	if winner == 1:
 		$HUD.set_p2_health(0)
 		rounds_won_by_p1 += 1
@@ -93,6 +104,27 @@ func on_round_over(winner):
 		rounds_won_by_p2 += 1
 		$HUD.indicate_round_won(winner, rounds_won_by_p2)		
 	$HUD.announce_winner(winner)
+	
+	if playtesting:
+		DataWriter.save_data("Round Time: " + str(int($RoundTimer.time_left)))
+		DataWriter.save_data("P1_total_bullets_fired: " + str(total_bullets_fired_p1))
+		DataWriter.save_data("P1_total_bullets_missed: " + str(total_bullets_missed_p1))
+		if total_bullets_fired_p1 != 0:
+			DataWriter.save_data("P1_hit_rate: " + str((total_bullets_fired_p1 - total_bullets_missed_p1) * 100 / total_bullets_fired_p1) + "%")
+		else:
+			DataWriter.save_data("P1 didn't fire any shots!")
+		DataWriter.save_data("P2_total_bullets_fired: " + str(total_bullets_fired_p2))
+		DataWriter.save_data("P2_total_bullets_missed: " + str(total_bullets_missed_p2))
+		if total_bullets_fired_p2 != 0:
+			DataWriter.save_data("P2_hit_rate: " + str((total_bullets_fired_p2 - total_bullets_missed_p2) * 100 / total_bullets_fired_p2) + "%")
+		else:
+			DataWriter.save_data("P2 didn't fire any shots!")
+			
+		total_bullets_fired_p1 = 0
+		total_bullets_fired_p2 = 0
+		total_bullets_missed_p1 = 0
+		total_bullets_missed_p2 = 0
+		
 	await get_tree().create_timer(5).timeout
 	$HUD.hide_announcement_text()
 
@@ -246,7 +278,11 @@ func _on_round_timer_timeout():
 		
 	get_tree().paused = false	
 		
-	
+func on_bullet_exit_screen(owner_player):
+	if owner_player == 1:
+		total_bullets_missed_p1 += 1
+	elif owner_player == 2:
+		total_bullets_missed_p2 += 1
 	
 	
 	
