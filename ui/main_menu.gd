@@ -30,16 +30,16 @@ func _input(event):
 	if game_started:
 		return
 		
-	if event.is_action_pressed("p1_left"):
+	if event.is_action_pressed("p1_left") or event.is_action_pressed("p1_ui_left"):
 		if player1_inserted_coin and !player1_ready:
 			left_pointer -= 1
-	if event.is_action_pressed("p1_right"):
+	if event.is_action_pressed("p1_right") or event.is_action_pressed("p1_ui_right"):
 		if player1_inserted_coin and !player1_ready:
 			left_pointer += 1
-	if event.is_action_pressed("p2_left"):	
+	if event.is_action_pressed("p2_left") or event.is_action_pressed("p2_ui_left"):	
 		if player2_inserted_coin and !player2_ready:
 			right_pointer -= 1
-	if event.is_action_pressed("p2_right"):
+	if event.is_action_pressed("p2_right") or event.is_action_pressed("p2_ui_right"):
 		if player2_inserted_coin and !player2_ready:
 			right_pointer += 1
 	
