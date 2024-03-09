@@ -83,6 +83,7 @@ func on_player2_died(explosion_scene, global_pos):
 func on_round_over(winner):
 	round_is_over = true
 	$RoundTimer.paused = true
+	DataWriter.save_data("Round Time: " + str(int($RoundTimer.time_left)))
 	if winner == 1:
 		$HUD.set_p2_health(0)
 		rounds_won_by_p1 += 1
