@@ -308,7 +308,7 @@ func on_alternative_super_fired(owner_player):
 	
 func save_end_of_round_playtesting_data():
 		DataWriter.save_data("=============================================================================================================")
-		DataWriter.save_data("Round Time: " + str(int($RoundTimer.time_left)))
+		DataWriter.save_data("Round Length (seconds): " + str(int(90 - $RoundTimer.time_left)))
 		DataWriter.save_data("")
 		
 		DataWriter.save_data("Total bullets fired by P1: " + str(total_bullets_fired_p1))
