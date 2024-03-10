@@ -36,6 +36,8 @@ extends CharacterBody2D
 		super_percentage_changed.emit(super_percentage)
 @export var expolosion_particles = load("res://misc_objects/explosion_particles.tscn")
 
+@export var audio_stream_players : Array[AudioStreamPlayer]
+
 const ONLY_SHIP1_BULLET_LAYER = 4
 const ONLY_SHIP2_BULLET_LAYER = 5
 const SHARED_BULLET_LAYER = 3
@@ -85,7 +87,7 @@ func _input(event):
 		
 	if event.is_action_pressed(FIRE_STRING):
 		bullet_fired.emit(BULLET_SCENE, bullet_damage, transform.x, $BulletOrigin.global_position, owner_player)
-		$GunFireSound.play()
+		audio_stream_players.pick_random().play()
 	
 	if event.is_action_pressed(SUPER_STRING):
 		if super_percentage == 100:
@@ -181,7 +183,7 @@ func dash():
 func fire_stream_of_bullets():
 	for i in range(10):
 		bullet_fired.emit(BULLET_SCENE, bullet_damage, transform.x, $BulletOrigin.global_position, owner_player)
-		$GunFireSound.play()		
+		audio_stream_players.pick_random().play()
 		await get_tree().create_timer(0.05).timeout
 	
 	alternative_super_fired.emit(owner_player)

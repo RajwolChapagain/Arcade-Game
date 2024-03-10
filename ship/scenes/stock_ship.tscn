@@ -1,10 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://dsgskm8hx8n3"]
+[gd_scene load_steps=15 format=3 uid="uid://dsgskm8hx8n3"]
 
 [ext_resource type="Script" path="res://ship/ship.gd" id="1_5xbcq"]
 [ext_resource type="Resource" uid="uid://cbmn1wqvamq0r" path="res://ship/stats/stock_ship_stats.tres" id="2_xiukv"]
 [ext_resource type="Texture2D" uid="uid://bi7knj1ujbmmc" path="res://ship/sprites/shield.png" id="3_p4adt"]
 [ext_resource type="Texture2D" uid="uid://dkhq62nq0hq12" path="res://ship/sprites/redtail.png" id="4_61gfa"]
+[ext_resource type="AudioStream" uid="uid://4rl7hrhlfy2t" path="res://ship/sfx/fire_1.wav" id="5_6e16m"]
 [ext_resource type="AudioStream" uid="uid://bw8pt5t6ni13p" path="res://ship/sfx/fire_2.wav" id="5_48g1p"]
+[ext_resource type="AudioStream" uid="uid://dadmfotrk8f8s" path="res://ship/sfx/fire_3.wav" id="7_rdgcw"]
+[ext_resource type="AudioStream" uid="uid://ctj4pqqkfg3nf" path="res://ship/sfx/fire_4.wav" id="8_slh2o"]
+[ext_resource type="AudioStream" uid="uid://cjaasd47g75m5" path="res://ship/sfx/fire_5.wav" id="9_oxn1k"]
+[ext_resource type="AudioStream" uid="uid://5wy04fuf8l7h" path="res://ship/sfx/fire_6.wav" id="10_jeiim"]
+[ext_resource type="AudioStream" uid="uid://cylo0vpcpx277" path="res://ship/sfx/fire_7.wav" id="11_o3c5e"]
+[ext_resource type="AudioStream" uid="uid://djm72s4xn5kxh" path="res://ship/sfx/fire_8.wav" id="12_cy50j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jmyd8"]
 radius = 68.593
@@ -12,9 +19,10 @@ radius = 68.593
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_18nrc"]
 size = Vector2(66, 48)
 
-[node name="Ship" type="CharacterBody2D" groups=["ship"]]
+[node name="Ship" type="CharacterBody2D" node_paths=PackedStringArray("audio_stream_players") groups=["ship"]]
 script = ExtResource("1_5xbcq")
 stats = ExtResource("2_xiukv")
+audio_stream_players = [NodePath("GunFireSound1"), NodePath("GunFireSound2"), NodePath("GunFireSound3"), NodePath("GunFireSound4"), NodePath("GunFireSound5"), NodePath("GunFireSound6"), NodePath("GunFireSound7"), NodePath("GunFireSound8")]
 
 [node name="Shield" type="Area2D" parent="."]
 visible = false
@@ -49,8 +57,29 @@ one_shot = true
 [node name="BulletOrigin" type="Marker2D" parent="."]
 position = Vector2(36, 0)
 
-[node name="GunFireSound" type="AudioStreamPlayer" parent="."]
+[node name="GunFireSound1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_6e16m")
+
+[node name="GunFireSound2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_48g1p")
+
+[node name="GunFireSound3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_rdgcw")
+
+[node name="GunFireSound4" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_slh2o")
+
+[node name="GunFireSound5" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_oxn1k")
+
+[node name="GunFireSound6" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_jeiim")
+
+[node name="GunFireSound7" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_o3c5e")
+
+[node name="GunFireSound8" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_cy50j")
 
 [connection signal="timeout" from="SuperTimer" to="." method="_on_super_timer_timeout"]
 [connection signal="screen_exited" from="VisibilityNotifier" to="." method="_on_visibility_notifier_screen_exited"]
