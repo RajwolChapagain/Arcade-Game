@@ -199,6 +199,7 @@ func fire_super():
 	super_instance.super_did_damage.connect(on_super_did_damage)
 	super_instance.owner_player = owner_player
 	add_child(super_instance)
+	$SuperSound.play()
 
 func refill_super(delta):
 	if velocity.length() < MAX_VELOCITY_MAGNITUDE - 5: #Subtracting by 5 because length is not always exactly equal to 1500
