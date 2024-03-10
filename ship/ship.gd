@@ -85,6 +85,7 @@ func _input(event):
 		
 	if event.is_action_pressed(FIRE_STRING):
 		bullet_fired.emit(BULLET_SCENE, bullet_damage, transform.x, $BulletOrigin.global_position, owner_player)
+		$GunFireSound.play()
 	
 	if event.is_action_pressed(SUPER_STRING):
 		if super_percentage == 100:
@@ -180,6 +181,7 @@ func dash():
 func fire_stream_of_bullets():
 	for i in range(10):
 		bullet_fired.emit(BULLET_SCENE, bullet_damage, transform.x, $BulletOrigin.global_position, owner_player)
+		$GunFireSound.play()		
 		await get_tree().create_timer(0.05).timeout
 	
 	alternative_super_fired.emit(owner_player)
