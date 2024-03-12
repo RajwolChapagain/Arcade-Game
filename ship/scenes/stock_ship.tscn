@@ -12,7 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://5wy04fuf8l7h" path="res://ship/sfx/fire_6.wav" id="10_jeiim"]
 [ext_resource type="AudioStream" uid="uid://cylo0vpcpx277" path="res://ship/sfx/fire_7.wav" id="11_o3c5e"]
 [ext_resource type="AudioStream" uid="uid://djm72s4xn5kxh" path="res://ship/sfx/fire_8.wav" id="12_cy50j"]
-[ext_resource type="AudioStream" path="res://ship/sfx/super_1.wav" id="13_nwtxs"]
+[ext_resource type="AudioStream" uid="uid://djmyknkjfuxst" path="res://ship/sfx/super_1.wav" id="13_nwtxs"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jmyd8"]
 radius = 68.593
