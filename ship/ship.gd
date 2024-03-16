@@ -135,11 +135,13 @@ func get_input(delta):
 func on_hit(damage):
 	if shield_is_active:
 		return
+		
 	hp -= damage
 	hit.emit(damage)
 	super_percentage += damage
 	if hp <= 0:
 		die()
+	$HitSound.play()
 		
 func die():
 	player_died.emit(expolosion_particles, global_position)
