@@ -37,6 +37,9 @@ func _on_body_entered(body):
 		
 	if body.has_method("on_hit"):
 		body.on_hit(DAMAGE)
+	
+	if body.is_in_group("debris"):
+		body.on_bullet_hit()
 		
 	queue_free()
 
@@ -55,6 +58,7 @@ func check_object_in_path():
 			_on_area_entered(upper_collider)
 			upper_collider.queue_free()
 		if upper_collider.is_in_group("debris"):
+			upper_collider.on_bullet_hit()
 			queue_free()
 	
 	var lower_collider = $LowerRay.get_collider()
@@ -63,4 +67,5 @@ func check_object_in_path():
 			_on_area_entered(lower_collider)
 			lower_collider.queue_free()
 		if lower_collider.is_in_group("debris"):
+			lower_collider.on_bullet_hit()
 			queue_free()
