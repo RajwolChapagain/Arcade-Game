@@ -145,6 +145,9 @@ func on_hit(damage):
 		
 func die():
 	player_died.emit(expolosion_particles, global_position)
+	visible = false
+	$CollisionShape2D.set_deferred("disabled", true) 
+	await get_tree().create_timer(2).timeout
 	queue_free()
 
 func _on_super_timer_timeout():
