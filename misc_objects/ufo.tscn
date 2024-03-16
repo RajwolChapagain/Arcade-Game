@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bljrv7d275wa1"]
+[gd_scene load_steps=6 format=3 uid="uid://bljrv7d275wa1"]
 
 [ext_resource type="Script" path="res://misc_objects/ufo.gd" id="1_nkpty"]
 [ext_resource type="Texture2D" uid="uid://bkggjjiine0ht" path="res://misc_objects/ufo.png" id="2_kludb"]
+[ext_resource type="AudioStream" uid="uid://bpidd3qgmv057" path="res://misc_objects/sfx/ufo_hit.wav" id="3_s3h1d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rfc5j"]
 radius = 60.0083
@@ -65,6 +66,9 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_vvpss")
 max_value = 50.0
 value = 50.0
 show_percentage = false
+
+[node name="HitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_s3h1d")
 
 [connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -22,12 +22,14 @@ func _physics_process(delta):
 	rotation_degrees += angular_velocity * delta
 
 func on_hit(damage):
-	hp -= damage
+	hp -= damage	
+	$HitSound.play()	
 	if hp <= 0:
-		queue_free()
+		die()
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
-	queue_free()
+	if not $HitSound.playing:
+		queue_free()
 
 func _on_fire_timer_timeout():	
 	for i in range(5):
@@ -37,4 +39,9 @@ func _on_fire_timer_timeout():
 				if get_tree() != null:#☣️FIX ME: Crashes saying Cannot call method create_timer on a null value when game tries to restart as it fires
 					await get_tree().create_timer(0.01).timeout 
 		
-	
+
+func die():
+	visible = false
+	$CollisionShape2D.set_deferred("disabled", true)
+	await get_tree().create_timer(1).timeout
+	queue_free()
