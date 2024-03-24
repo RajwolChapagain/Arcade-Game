@@ -43,5 +43,6 @@ func _on_fire_timer_timeout():
 func die():
 	visible = false
 	$CollisionShape2D.set_deferred("disabled", true)
+	$FireTimer.stop()
 	await get_tree().create_timer(1).timeout
 	queue_free()
