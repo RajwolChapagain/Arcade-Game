@@ -31,6 +31,8 @@ extends CharacterBody2D
 	get:
 		return super_percentage
 	set(value):
+		if value >= 100 and super_percentage < 100:
+			$SuperFullSound.play()
 		super_percentage = value
 		super_percentage = clamp(super_percentage, 0, 100)
 		super_percentage_changed.emit(super_percentage)

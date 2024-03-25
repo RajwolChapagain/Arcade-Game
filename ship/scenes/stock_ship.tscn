@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dsgskm8hx8n3"]
+[gd_scene load_steps=19 format=3 uid="uid://dsgskm8hx8n3"]
 
 [ext_resource type="Script" path="res://ship/ship.gd" id="1_5xbcq"]
 [ext_resource type="Resource" uid="uid://cbmn1wqvamq0r" path="res://ship/stats/stock_ship_stats.tres" id="2_xiukv"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://djmyknkjfuxst" path="res://ship/sfx/super_1.wav" id="13_nwtxs"]
 [ext_resource type="AudioStream" uid="uid://m8db1ibaebd8" path="res://ship/sfx/hit.wav" id="14_aois5"]
 [ext_resource type="AudioStream" uid="uid://b6e4btcfegdvt" path="res://ship/sfx/shield_on.wav" id="15_4otl1"]
+[ext_resource type="AudioStream" uid="uid://bhv3jnhon2c2n" path="res://ship/sfx/super_full.wav" id="16_cs85w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jmyd8"]
 radius = 68.593
@@ -92,6 +93,9 @@ stream = ExtResource("14_aois5")
 
 [node name="ShieldOnSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_4otl1")
+
+[node name="SuperFullSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_cs85w")
 
 [connection signal="timeout" from="SuperTimer" to="." method="_on_super_timer_timeout"]
 [connection signal="screen_exited" from="VisibilityNotifier" to="." method="_on_visibility_notifier_screen_exited"]
