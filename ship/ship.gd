@@ -104,6 +104,7 @@ func _input(event):
 			else:
 				activate_shield()
 			super_percentage = 0
+			$ShieldOnSound.play()
 			
 func get_input(delta):
 	if is_dashing:
