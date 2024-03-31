@@ -39,6 +39,7 @@ extends CharacterBody2D
 @export var expolosion_particles = load("res://misc_objects/explosion_particles.tscn")
 
 @export var fire_sound_players : Array[AudioStreamPlayer]
+@export var bullet_origins : Array[Marker2D]
 
 const ONLY_SHIP1_BULLET_LAYER = 4
 const ONLY_SHIP2_BULLET_LAYER = 5
@@ -88,7 +89,8 @@ func _input(event):
 		return
 		
 	if event.is_action_pressed(FIRE_STRING):
-		bullet_fired.emit(BULLET_SCENE, bullet_damage, transform.x, $BulletOrigin.global_position, owner_player)
+		for bullet_origin in bullet_origins:
+			bullet_fired.emit(BULLET_SCENE, bullet_damage, transform.x, bullet_origin.global_position, owner_player)
 		fire_sound_players.pick_random().play()
 	
 	if event.is_action_pressed(SUPER_STRING):
@@ -96,7 +98,8 @@ func _input(event):
 			if fire_button_is_pressed:
 				fire_stream_of_bullets()
 			else:
-				fire_super()
+				for bullet_origin in bullet_origins:
+					fire_super(bullet_origin.position)
 			super_percentage = 0
 			
 	if event.is_action_pressed(SHIELD_STRING):
@@ -154,7 +157,9 @@ func die():
 	queue_free()
 
 func _on_super_timer_timeout():
-	remove_child($Super)
+	for child in get_children():
+		if child.is_in_group("super"):
+			remove_child(child)
 
 func _on_visibility_notifier_screen_exited():
 	var inset = 10
@@ -190,7 +195,8 @@ func dash():
 
 func fire_stream_of_bullets():
 	for i in range(10):
-		bullet_fired.emit(BULLET_SCENE, bullet_damage, transform.x, $BulletOrigin.global_position, owner_player)
+		for bullet_origin in bullet_origins:		
+			bullet_fired.emit(BULLET_SCENE, bullet_damage, transform.x, bullet_origin.global_position, owner_player)
 		fire_sound_players.pick_random().play()
 		await get_tree().create_timer(0.05).timeout
 	
@@ -199,11 +205,11 @@ func fire_stream_of_bullets():
 func on_bullet_ring_destroyed():
 	is_bullet_ring_active = false
 
-func fire_super():
+func fire_super(pos):
 	$SuperTimer.start()
 	super_fired.emit(SUPER_DURATION)
 	var super_instance = SUPER_SCENE.instantiate()
-	super_instance.position = $BulletOrigin.position
+	super_instance.position = pos
 	super_instance.super_did_damage.connect(on_super_did_damage)
 	super_instance.owner_player = owner_player
 	add_child(super_instance)

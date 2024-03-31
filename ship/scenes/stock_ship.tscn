@@ -23,10 +23,11 @@ radius = 68.593
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_18nrc"]
 size = Vector2(66, 48)
 
-[node name="Ship" type="CharacterBody2D" node_paths=PackedStringArray("fire_sound_players") groups=["ship"]]
+[node name="Ship" type="CharacterBody2D" node_paths=PackedStringArray("fire_sound_players", "bullet_origins") groups=["ship"]]
 script = ExtResource("1_5xbcq")
 stats = ExtResource("2_xiukv")
 fire_sound_players = [NodePath("GunFireSound1"), NodePath("GunFireSound2"), NodePath("GunFireSound3"), NodePath("GunFireSound4"), NodePath("GunFireSound5"), NodePath("GunFireSound6"), NodePath("GunFireSound7"), NodePath("GunFireSound8")]
+bullet_origins = [NodePath("TopBulletOrigin"), NodePath("BottomBulletOrigin")]
 
 [node name="Shield" type="Area2D" parent="."]
 visible = false
@@ -58,8 +59,11 @@ scale = Vector2(3.3, 2.4)
 [node name="ShieldTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="BulletOrigin" type="Marker2D" parent="."]
-position = Vector2(36, 0)
+[node name="TopBulletOrigin" type="Marker2D" parent="."]
+position = Vector2(36, -16)
+
+[node name="BottomBulletOrigin" type="Marker2D" parent="."]
+position = Vector2(36, 16)
 
 [node name="GunFireSound1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_6e16m")
