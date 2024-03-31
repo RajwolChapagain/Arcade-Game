@@ -7,8 +7,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_msliu"]
 size = Vector2(80, 48)
 
-[node name="Ship" instance=ExtResource("1_os2ek")]
+[node name="Ship" node_paths=PackedStringArray("bullet_origins") instance=ExtResource("1_os2ek")]
 stats = ExtResource("2_6gnoa")
+bullet_origins = [NodePath("TopBulletOrigin")]
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("3_ppwde")
@@ -18,3 +19,6 @@ shape = SubResource("RectangleShape2D_msliu")
 
 [node name="VisibilityNotifier" parent="." index="4"]
 scale = Vector2(4, 2.4)
+
+[node name="TopBulletOrigin" parent="." index="6"]
+position = Vector2(43, 0)
