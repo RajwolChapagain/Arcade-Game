@@ -25,7 +25,8 @@ var num_alternative_super_fired_p1 = 0
 var num_alternative_super_fired_p2 = 0
 
 func _physics_process(_delta):
-	$HUD.set_round_time(round($RoundTimer.time_left))
+	if not $RoundTimer.is_stopped():
+		$HUD.set_round_time(round($RoundTimer.time_left))
 	
 func on_player1_fired_bullet(bullet_scene, damage, direction, location, owner_player):
 	var bullet = bullet_scene.instantiate()
@@ -356,4 +357,3 @@ func save_end_of_round_playtesting_data():
 		num_shield_used_p2 = 0
 		num_alternative_shield_used_p1 = 0
 		num_alternative_shield_used_p2 = 0
-	

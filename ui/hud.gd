@@ -1,5 +1,7 @@
 extends Control
 	
+var beep_seconds = [0, 1, 2, 3, 4, 5]
+
 func initialize_max_hp_bar(player, max_hp):
 	var health_bar
 	
@@ -42,8 +44,10 @@ func show_announcement_text(text):
 	$WinnerAnnouncementText.set_visible(true)	
 
 func set_round_time(text):
+	if int(text) in beep_seconds and str(text) != %RoundTime.text:
+		$Beep.play()
 	%RoundTime.set_text(str(text))
-
+		
 func indicate_round_won(player, victory_count):
 	if player == 1:
 		if victory_count == 1:

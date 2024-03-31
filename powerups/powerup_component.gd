@@ -18,11 +18,14 @@ func _on_body_entered(body):
 			collected.emit(2, emitted_values)
 		else:
 			pass #collected by ufo
-		queue_free()
+		die()
+	elif body.is_in_group("ufo"):
+		die()
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
-	queue_free()
+	if not $HitSound.playing:
+		queue_free()
 
 func _on_area_entered(area):
 	if area.is_in_group("bullet") or area.is_in_group("super"):
@@ -32,4 +35,11 @@ func _on_area_entered(area):
 			collected.emit(2, emitted_values)
 		else:
 			pass #collected by ufo
-		queue_free()
+		die()
+
+func die():
+	$HitSound.play()
+	visible = false
+	$CollisionShape2D.set_deferred("disabled", true)
+	await get_tree().create_timer(1).timeout
+	queue_free()

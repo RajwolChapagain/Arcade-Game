@@ -5,6 +5,9 @@ var owner_player = 1
 
 signal super_did_damage(damage)
 
+func _ready():
+	$AnimationPlayer.play("grow")
+	
 func _physics_process(delta):
 	for body in get_overlapping_bodies():		
 		if body.has_method("on_hit"):

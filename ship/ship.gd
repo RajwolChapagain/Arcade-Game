@@ -31,10 +31,14 @@ extends CharacterBody2D
 	get:
 		return super_percentage
 	set(value):
+		if value >= 100 and super_percentage < 100:
+			$SuperFullSound.play()
 		super_percentage = value
 		super_percentage = clamp(super_percentage, 0, 100)
 		super_percentage_changed.emit(super_percentage)
 @export var expolosion_particles = load("res://misc_objects/explosion_particles.tscn")
+
+@export var fire_sound_players : Array[AudioStreamPlayer]
 
 const ONLY_SHIP1_BULLET_LAYER = 4
 const ONLY_SHIP2_BULLET_LAYER = 5
@@ -85,6 +89,7 @@ func _input(event):
 		
 	if event.is_action_pressed(FIRE_STRING):
 		bullet_fired.emit(BULLET_SCENE, bullet_damage, transform.x, $BulletOrigin.global_position, owner_player)
+		fire_sound_players.pick_random().play()
 	
 	if event.is_action_pressed(SUPER_STRING):
 		if super_percentage == 100:
@@ -101,6 +106,7 @@ func _input(event):
 			else:
 				activate_shield()
 			super_percentage = 0
+			$ShieldOnSound.play()
 			
 func get_input(delta):
 	if is_dashing:
@@ -132,14 +138,19 @@ func get_input(delta):
 func on_hit(damage):
 	if shield_is_active:
 		return
+		
 	hp -= damage
 	hit.emit(damage)
 	super_percentage += damage
 	if hp <= 0:
 		die()
+	$HitSound.play()
 		
 func die():
 	player_died.emit(expolosion_particles, global_position)
+	visible = false
+	$CollisionShape2D.set_deferred("disabled", true) 
+	await get_tree().create_timer(2).timeout
 	queue_free()
 
 func _on_super_timer_timeout():
@@ -180,6 +191,7 @@ func dash():
 func fire_stream_of_bullets():
 	for i in range(10):
 		bullet_fired.emit(BULLET_SCENE, bullet_damage, transform.x, $BulletOrigin.global_position, owner_player)
+		fire_sound_players.pick_random().play()
 		await get_tree().create_timer(0.05).timeout
 	
 	alternative_super_fired.emit(owner_player)
@@ -195,6 +207,7 @@ func fire_super():
 	super_instance.super_did_damage.connect(on_super_did_damage)
 	super_instance.owner_player = owner_player
 	add_child(super_instance)
+	$SuperSound.play()
 
 func refill_super(delta):
 	if velocity.length() < MAX_VELOCITY_MAGNITUDE - 5: #Subtracting by 5 because length is not always exactly equal to 1500

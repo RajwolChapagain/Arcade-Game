@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://djskn3te3j2kl"]
+[gd_scene load_steps=13 format=3 uid="uid://djskn3te3j2kl"]
 
 [ext_resource type="Texture2D" uid="uid://c87ojw4yeuuud" path="res://ui/right_arrow.svg" id="1_5rmpm"]
 [ext_resource type="Script" path="res://ui/main_menu.gd" id="1_qtlmi"]
@@ -10,6 +10,8 @@
 [ext_resource type="Resource" uid="uid://cbmn1wqvamq0r" path="res://ship/stats/stock_ship_stats.tres" id="6_na07h"]
 [ext_resource type="PackedScene" uid="uid://6i3n35apo5nh" path="res://ui/stat_panel.tscn" id="7_cpdse"]
 [ext_resource type="Resource" uid="uid://c1q7efuyhhpgm" path="res://ship/stats/tank_ship_stats.tres" id="7_scpje"]
+[ext_resource type="AudioStream" uid="uid://c6yf7nnlhdc5n" path="res://ui/sfx/ui_change_selection.wav" id="11_lwe4g"]
+[ext_resource type="AudioStream" uid="uid://de2xed632gt3t" path="res://ui/sfx/ui_error.wav" id="12_kvqf3"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -151,3 +153,9 @@ offset_right = -50.0
 offset_bottom = -70.0
 grow_horizontal = 0
 grow_vertical = 0
+
+[node name="ChangeSelectionSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_lwe4g")
+
+[node name="UIErrorSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_kvqf3")
