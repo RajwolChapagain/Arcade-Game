@@ -37,6 +37,7 @@ extends CharacterBody2D
 		super_percentage = clamp(super_percentage, 0, 100)
 		super_percentage_changed.emit(super_percentage)
 @export var expolosion_particles = load("res://misc_objects/explosion_particles.tscn")
+@export var hit_particles = load("res://ship/scenes/hit_particles.tscn")
 
 @export var fire_sound_players : Array[AudioStreamPlayer]
 @export var bullet_origins : Array[Marker2D]
@@ -61,7 +62,7 @@ var BULLET_RING_SCENE = preload("res://bullet/bullet_ring.tscn")
 var SUPER_SCENE = preload("res://ship/super.tscn")
 
 signal bullet_fired(bullet, bullet_damage, direction, location)
-signal hit(damage)
+signal hit(damage, hit_particles, global_position)
 signal super_percentage_changed(new_super_percentage)
 signal hp_changed(new_hp)
 signal player_died(expolosion_particles, global_position)
@@ -143,7 +144,7 @@ func on_hit(damage):
 		return
 		
 	hp -= damage
-	hit.emit(damage)
+	hit.emit(damage, hit_particles, global_position)
 	super_percentage += damage
 	if hp <= 0:
 		die()

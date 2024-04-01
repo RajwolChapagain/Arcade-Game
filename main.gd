@@ -83,11 +83,19 @@ func on_player1_super_percentage_changed(new_super_percentage):
 func on_player2_super_percentage_changed(new_super_percentage):
 	$HUD.update_p2_super_bar(new_super_percentage)
 	
-func on_player1_hit(_damage):
+func on_player1_hit(_damage, hit_particles_scene, global_pos):
 	shake_camera(0.2, 200)
-
-func on_player2_hit(_damage):
+	var hit_particles = hit_particles_scene.instantiate()
+	hit_particles.global_position = global_pos
+	add_child(hit_particles)
+	hit_particles.emitting = true
+	
+func on_player2_hit(_damage, hit_particles_scene, global_pos):
 	shake_camera(0.2, 200)
+	var hit_particles = hit_particles_scene.instantiate()
+	hit_particles.global_position = global_pos
+	add_child(hit_particles)
+	hit_particles.emitting = true
 	
 func on_player1_died(explosion_scene, global_pos):
 	delete_bullet_rings(1)	
