@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgk0wr63i1jif"]
+[gd_scene load_steps=6 format=3 uid="uid://cgk0wr63i1jif"]
 
 [ext_resource type="Texture2D" uid="uid://b4muimma5bqdv" path="res://ship/sprites/hit_particle.png" id="1_cwycm"]
+[ext_resource type="Script" path="res://ship/hit_particles.gd" id="2_fj638"]
 
 [sub_resource type="Curve" id="Curve_qiavw"]
 _data = [Vector2(0, 1), 0.0, 1.4, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -26,3 +27,6 @@ texture = ExtResource("1_cwycm")
 lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
+script = ExtResource("2_fj638")
+
+[connection signal="finished" from="." to="." method="_on_finished"]
