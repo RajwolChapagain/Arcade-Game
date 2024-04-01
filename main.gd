@@ -277,9 +277,9 @@ func _on_round_timer_timeout():
 	on_round_over(winner)
 	
 	if winner == 1:
-		$Player2.queue_free()
+		$Player2.die()
 	if winner == 2:
-		$Player1.queue_free()
+		$Player1.die()
 		
 	get_tree().paused = false	
 		
