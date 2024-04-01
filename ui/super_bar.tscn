@@ -1,9 +1,52 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvqndeuy7v0gb"]
+[gd_scene load_steps=6 format=3 uid="uid://cvqndeuy7v0gb"]
 
 [ext_resource type="PackedScene" uid="uid://fy7mejvsl646" path="res://ui/health_bar.tscn" id="1_4dwey"]
 [ext_resource type="Texture2D" uid="uid://dd744bbwruenx" path="res://ui/super_bar_under.png" id="2_qed06"]
+
+[sub_resource type="Animation" id="Animation_wlvst"]
+resource_name = "glow"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:tint_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(0.5, 1, 2),
+"update": 0,
+"values": [Color(0.0980392, 0.509804, 0.768627, 1), Color(1, 1, 1, 1), Color(0.0980392, 0.509804, 0.768627, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4hywj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:tint_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.0980392, 0.509804, 0.768627, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ge0oh"]
+_data = {
+"RESET": SubResource("Animation_4hywj"),
+"glow": SubResource("Animation_wlvst")
+}
 
 [node name="SuperBar" instance=ExtResource("1_4dwey")]
 scale = Vector2(0.619107, 0.619107)
 texture_under = ExtResource("2_qed06")
 tint_progress = Color(0.0980392, 0.509804, 0.768627, 1)
+
+[node name="Glow" type="AnimationPlayer" parent="." index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_ge0oh")
+}
