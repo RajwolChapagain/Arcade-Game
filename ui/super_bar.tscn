@@ -6,7 +6,7 @@
 
 [sub_resource type="Animation" id="Animation_wlvst"]
 resource_name = "glow"
-length = 0.6
+length = 0.4
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -15,7 +15,7 @@ tracks/0/path = NodePath(".:tint_progress")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6),
+"times": PackedFloat32Array(0, 0.2, 0.4),
 "transitions": PackedFloat32Array(0.5, 1, 2),
 "update": 0,
 "values": [Color(0.0980392, 0.509804, 0.768627, 1), Color(1, 1, 1, 1), Color(0.0980392, 0.509804, 0.768627, 1)]
