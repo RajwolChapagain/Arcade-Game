@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cvqndeuy7v0gb"]
+[gd_scene load_steps=7 format=3 uid="uid://cvqndeuy7v0gb"]
 
 [ext_resource type="PackedScene" uid="uid://fy7mejvsl646" path="res://ui/health_bar.tscn" id="1_4dwey"]
 [ext_resource type="Texture2D" uid="uid://dd744bbwruenx" path="res://ui/super_bar_under.png" id="2_qed06"]
+[ext_resource type="Script" path="res://ui/super_bar.gd" id="3_5sk4u"]
 
 [sub_resource type="Animation" id="Animation_wlvst"]
 resource_name = "glow"
@@ -45,8 +46,11 @@ _data = {
 scale = Vector2(0.619107, 0.619107)
 texture_under = ExtResource("2_qed06")
 tint_progress = Color(0.0980392, 0.509804, 0.768627, 1)
+script = ExtResource("3_5sk4u")
 
 [node name="Glow" type="AnimationPlayer" parent="." index="0"]
 libraries = {
 "": SubResource("AnimationLibrary_ge0oh")
 }
+
+[connection signal="value_changed" from="." to="." method="_on_value_changed"]
