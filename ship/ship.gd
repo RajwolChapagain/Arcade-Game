@@ -154,6 +154,7 @@ func die():
 	player_died.emit(expolosion_particles, global_position)
 	visible = false
 	$CollisionShape2D.set_deferred("disabled", true) 
+	is_dashing = true;
 	await get_tree().create_timer(2).timeout
 	queue_free()
 
