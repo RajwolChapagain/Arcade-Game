@@ -46,3 +46,4 @@ autoplay = true
 [connection signal="object_spawned" from="Spawner" to="." method="_on_spawner_object_spawned"]
 [connection signal="both_players_ready" from="MainMenu" to="." method="_on_main_menu_both_players_ready"]
 [connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]
+[connection signal="finished" from="Music" to="." method="_on_music_finished"]

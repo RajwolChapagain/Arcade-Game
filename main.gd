@@ -365,3 +365,8 @@ func save_end_of_round_playtesting_data():
 		num_shield_used_p2 = 0
 		num_alternative_shield_used_p1 = 0
 		num_alternative_shield_used_p2 = 0
+
+
+func _on_music_finished():
+	await get_tree().create_timer(5).timeout
+	$Music.play()
