@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dtp6xrfqaukse"]
+[gd_scene load_steps=10 format=3 uid="uid://dtp6xrfqaukse"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_uyiea"]
 [ext_resource type="PackedScene" uid="uid://dsgskm8hx8n3" path="res://ship/scenes/stock_ship.tscn" id="2_rmhn6"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d4gsdtgxa50oe" path="res://powerups/spawner.tscn" id="5_0xksv"]
 [ext_resource type="Texture2D" uid="uid://bappb2am6aals" path="res://ui/backdrop.png" id="5_e7ay6"]
 [ext_resource type="PackedScene" uid="uid://djskn3te3j2kl" path="res://ui/main_menu.tscn" id="5_ksg3p"]
+[ext_resource type="AudioStream" uid="uid://bc1d4hwshgr1a" path="res://starship_showdown.wav" id="9_ouiqs"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_uyiea")
@@ -36,6 +37,11 @@ offset_bottom = 750.0
 [node name="RoundTimer" type="Timer" parent="."]
 wait_time = 90.0
 one_shot = true
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_ouiqs")
+volume_db = -1.0
+autoplay = true
 
 [connection signal="object_spawned" from="Spawner" to="." method="_on_spawner_object_spawned"]
 [connection signal="both_players_ready" from="MainMenu" to="." method="_on_main_menu_both_players_ready"]
