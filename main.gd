@@ -128,6 +128,9 @@ func on_round_over(winner):
 	
 	if playtesting:
 		save_end_of_round_playtesting_data()
+	
+	if rounds_won_by_p1 == 2 or rounds_won_by_p2 == 2:
+		fade_music_out()
 		
 	await get_tree().create_timer(5).timeout
 	$HUD.hide_announcement_text()
@@ -370,3 +373,9 @@ func save_end_of_round_playtesting_data():
 func _on_music_finished():
 	await get_tree().create_timer(5).timeout
 	$Music.play()
+
+func fade_music_out():
+	var tween = get_tree().create_tween()
+	tween.set_parallel(true)
+	tween.tween_property($Music, "volume_db", -80, 4).set_ease(Tween.EASE_IN)
+	tween.tween_property($Music, "pitch_scale", 0.5, 2).set_ease(Tween.EASE_IN)
