@@ -59,7 +59,7 @@ var owner_player = 1
 
 var BULLET_SCENE = preload("res://bullet/bullet.tscn")
 var BULLET_RING_SCENE = preload("res://bullet/bullet_ring.tscn")
-var SUPER_SCENE = preload("res://ship/super.tscn")
+@export var SUPER_SCENE = preload("res://ship/super.tscn")
 
 signal bullet_fired(bullet, bullet_damage, direction, location)
 signal hit(damage, hit_particles, global_position)
@@ -99,8 +99,7 @@ func _input(event):
 			if fire_button_is_pressed:
 				fire_stream_of_bullets()
 			else:
-				for bullet_origin in bullet_origins:
-					fire_super(bullet_origin.position)
+				fire_super(bullet_origins[0].position)
 			super_percentage = 0
 			
 	if event.is_action_pressed(SHIELD_STRING):

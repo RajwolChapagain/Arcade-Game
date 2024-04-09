@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dijivedu4qtni"]
+
+[ext_resource type="PackedScene" uid="uid://cm2ycv76trfh5" path="res://ship/super.tscn" id="1_3q35b"]
+[ext_resource type="Texture2D" uid="uid://sfbdbvvxdl1o" path="res://ship/sprites/super.png" id="2_id61g"]
+[ext_resource type="Texture2D" uid="uid://pk0sanxjfvyq" path="res://ship/sprites/super_cone.png" id="3_bbjt8"]
+
+[node name="ScrapperSuper" instance=ExtResource("1_3q35b")]
+
+[node name="Sprite2D2" type="Sprite2D" parent="." index="2"]
+position = Vector2(29, 32)
+texture = ExtResource("2_id61g")
+offset = Vector2(750, 0)
+
+[node name="SuperCone2" type="Sprite2D" parent="." index="3"]
+position = Vector2(14.5, 32)
+texture = ExtResource("3_bbjt8")
+
+[node name="CollisionShape2D" parent="." index="4"]
+position = Vector2(764.25, 16)
