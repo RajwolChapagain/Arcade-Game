@@ -140,12 +140,13 @@ func get_input(delta):
 		velocity = Vector2.ZERO
 	
 func on_hit(damage):
+	super_percentage += damage
+	
 	if shield_is_active:
-		return
+		return	
 		
 	hp -= damage
 	hit.emit(damage, hit_particles, global_position)
-	super_percentage += damage
 	if hp <= 0:
 		die()
 	$HitSound.play()
