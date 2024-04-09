@@ -6,13 +6,21 @@
 
 [node name="ScrapperSuper" instance=ExtResource("1_3q35b")]
 
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(1, 0.6)
+
+[node name="SuperCone" parent="." index="1"]
+scale = Vector2(1, 0.6)
+
 [node name="Sprite2D2" type="Sprite2D" parent="." index="2"]
 position = Vector2(29, 32)
+scale = Vector2(1, 0.6)
 texture = ExtResource("2_id61g")
 offset = Vector2(750, 0)
 
 [node name="SuperCone2" type="Sprite2D" parent="." index="3"]
 position = Vector2(14.5, 32)
+scale = Vector2(1, 0.6)
 texture = ExtResource("3_bbjt8")
 
 [node name="CollisionShape2D" parent="." index="4"]
