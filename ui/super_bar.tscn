@@ -43,6 +43,7 @@ _data = {
 }
 
 [node name="SuperBar" instance=ExtResource("1_4dwey")]
+process_mode = 3
 scale = Vector2(0.619107, 0.619107)
 texture_under = ExtResource("2_qed06")
 tint_progress = Color(0.0980392, 0.509804, 0.768627, 1)
