@@ -44,7 +44,13 @@ stream = ExtResource("9_ouiqs")
 volume_db = -1.0
 autoplay = true
 
+[node name="StartTimer" type="Timer" parent="."]
+process_mode = 2
+wait_time = 3.0
+autostart = true
+
 [connection signal="object_spawned" from="Spawner" to="." method="_on_spawner_object_spawned"]
 [connection signal="both_players_ready" from="MainMenu" to="." method="_on_main_menu_both_players_ready"]
 [connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_timeout"]
 [connection signal="finished" from="Music" to="." method="_on_music_finished"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]

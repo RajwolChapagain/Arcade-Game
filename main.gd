@@ -204,8 +204,6 @@ func instantiate_ships():
 	$HUD.visible = true
 	$Spawner.start_spawn_timer()
 	get_tree().paused = true
-	await get_tree().create_timer(3).timeout
-	get_tree().paused = false
 	$RoundTimer.start()
 
 func initialize_players(p1_ship_node, p2_ship_node):
@@ -382,3 +380,8 @@ func fade_music_out():
 	tween.set_parallel(true)
 	tween.tween_property($Music, "volume_db", -80, 4).set_ease(Tween.EASE_IN)
 	tween.tween_property($Music, "pitch_scale", 0.5, 2).set_ease(Tween.EASE_IN)
+
+
+func _on_start_timer_timeout():
+	get_tree().paused = false
+	print("Called through here")
