@@ -27,7 +27,7 @@ extends CharacterBody2D
 @export var BULLET_LAYER_MASK = 2
 @export var SUPER_DURATION = 1
 @export var SHIELD_DURATION = 2
-@export var super_percentage = 0:
+@export var super_percentage = 100:
 	get:
 		return super_percentage
 	set(value):
