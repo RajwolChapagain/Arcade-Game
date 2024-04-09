@@ -203,6 +203,9 @@ func instantiate_ships():
 	$MainMenu.visible = false
 	$HUD.visible = true
 	$Spawner.start_spawn_timer()
+	get_tree().paused = true
+	await get_tree().create_timer(3).timeout
+	get_tree().paused = false
 	$RoundTimer.start()
 
 func initialize_players(p1_ship_node, p2_ship_node):
