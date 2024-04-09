@@ -27,28 +27,28 @@ shape = SubResource("CircleShape2D_rfc5j")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(0, -70)
+position = Vector2(0, -67)
 
 [node name="Marker2D2" type="Marker2D" parent="."]
-position = Vector2(0, 69)
+position = Vector2(0, 65)
 
 [node name="Marker2D3" type="Marker2D" parent="."]
-position = Vector2(69, 0)
+position = Vector2(68, -6)
 
 [node name="Marker2D4" type="Marker2D" parent="."]
-position = Vector2(-73, 0)
+position = Vector2(-66, -8)
 
 [node name="Marker2D5" type="Marker2D" parent="."]
-position = Vector2(-48, -48)
+position = Vector2(-50, -56)
 
 [node name="Marker2D6" type="Marker2D" parent="."]
-position = Vector2(48, -47)
+position = Vector2(51, -56)
 
 [node name="Marker2D7" type="Marker2D" parent="."]
-position = Vector2(46, 47)
+position = Vector2(54, 50)
 
 [node name="Marker2D8" type="Marker2D" parent="."]
-position = Vector2(-48, 48)
+position = Vector2(-56, 51)
 
 [node name="FireTimer" type="Timer" parent="."]
 wait_time = 3.0
