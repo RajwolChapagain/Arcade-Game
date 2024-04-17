@@ -56,10 +56,10 @@ func _input(event):
 	if event.is_action_pressed("p2_insert_coin"):
 		on_player_insert_coin(2)
 	
-	if event.is_action_pressed("p1_fire"):
+	if event.is_action_pressed("p1_start"):
 		if player1_inserted_coin:
 			make_player_ready(1)
-	if event.is_action_pressed("p2_fire"):
+	if event.is_action_pressed("p2_start"):
 		if player2_inserted_coin:
 			make_player_ready(2)
 		
