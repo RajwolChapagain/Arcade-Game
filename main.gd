@@ -24,6 +24,9 @@ var num_super_fired_p2 = 0
 var num_alternative_super_fired_p1 = 0
 var num_alternative_super_fired_p2 = 0
 
+func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	
 func _physics_process(_delta):
 	if not $RoundTimer.is_stopped():
 		$HUD.set_round_time(round($RoundTimer.time_left))
