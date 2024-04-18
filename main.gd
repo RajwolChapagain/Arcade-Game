@@ -3,6 +3,11 @@ extends Node2D
 @export var playtesting = false
 @export var ships : Array[PackedScene] ##Has to be in the same order as ship_sprites in Main Menu
 
+var hit_particles_material = preload("res://ship/materials/hit_particles.tres")
+var explosion_particles_material = preload("res://ship/materials/explosion_particles.tres")
+
+var materials = [hit_particles_material, explosion_particles_material]
+
 var p1_ship_index = 0
 var p2_ship_index = 0
 var round_is_over = false
@@ -204,6 +209,7 @@ func instantiate_ships():
 	add_child(player2_ship)
 	initialize_players(player1_ship, player2_ship)
 	$MainMenu.visible = false
+	cache_particles(materials)
 	$HUD.visible = true
 	$HUD.get_node("StartCountdownLabel").visible = true
 	$Spawner.start_spawn_timer()
@@ -388,7 +394,14 @@ func fade_music_out():
 	tween.tween_property($Music, "volume_db", -80, 4).set_ease(Tween.EASE_IN)
 	tween.tween_property($Music, "pitch_scale", 0.5, 2).set_ease(Tween.EASE_IN)
 
-
 func _on_start_timer_timeout():
 	get_tree().paused = false
-	print("Called through here")
+
+func cache_particles(materials):
+	for mat in materials:
+		var particles_instance = GPUParticles2D.new()
+		particles_instance.set_process_material(mat)
+		particles_instance.set_one_shot(true)
+		particles_instance.set_modulate(Color(1,1,1,0))
+		particles_instance.set_emitting(true)
+		add_child(particles_instance)

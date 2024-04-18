@@ -1,28 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://cgk0wr63i1jif"]
+[gd_scene load_steps=4 format=3 uid="uid://cgk0wr63i1jif"]
 
 [ext_resource type="Texture2D" uid="uid://b4muimma5bqdv" path="res://ship/sprites/hit_particle.png" id="1_cwycm"]
+[ext_resource type="Material" uid="uid://btax5n02b8uxe" path="res://ship/materials/hit_particles.tres" id="1_y0sss"]
 [ext_resource type="Script" path="res://ship/hit_particles.gd" id="2_fj638"]
-
-[sub_resource type="Curve" id="Curve_qiavw"]
-_data = [Vector2(0, 1), 0.0, 1.4, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_6n682"]
-curve = SubResource("Curve_qiavw")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_35cle"]
-particle_flag_disable_z = true
-spread = 180.0
-initial_velocity_min = 200.0
-initial_velocity_max = 200.0
-scale_min = 0.3
-scale_max = 0.7
-scale_curve = SubResource("CurveTexture_6n682")
 
 [node name="HitParticles" type="GPUParticles2D"]
 emitting = false
 amount = 16
-process_material = SubResource("ParticleProcessMaterial_35cle")
+process_material = ExtResource("1_y0sss")
 texture = ExtResource("1_cwycm")
 lifetime = 0.5
 one_shot = true
