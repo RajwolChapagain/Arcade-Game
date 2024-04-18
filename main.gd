@@ -208,6 +208,8 @@ func instantiate_ships():
 	$HUD.get_node("StartCountdownLabel").visible = true
 	$Spawner.start_spawn_timer()
 	$HUD.get_node("StartCountdownLabel/Countdown").play("countdown")
+	$HUD/SuperBar.value = 100
+	$HUD/SuperBar2.value = 100
 	get_tree().paused = true
 	$RoundTimer.start()
 
