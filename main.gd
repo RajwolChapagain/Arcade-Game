@@ -205,7 +205,9 @@ func instantiate_ships():
 	initialize_players(player1_ship, player2_ship)
 	$MainMenu.visible = false
 	$HUD.visible = true
+	$HUD.get_node("StartCountdownLabel").visible = true
 	$Spawner.start_spawn_timer()
+	$HUD.get_node("StartCountdownLabel/Countdown").play("countdown")
 	get_tree().paused = true
 	$RoundTimer.start()
 
