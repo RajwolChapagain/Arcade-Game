@@ -2,6 +2,7 @@ extends Control
 
 @export var ships_sprites : Array
 @export var ship_stats : Array ##Must follow the same order as ships_sprites
+@export var pilots : Array[Texture2D]
 
 var left_pointer = 1:
 	get:
@@ -13,6 +14,7 @@ var left_pointer = 1:
 			$UIErrorSound.play()			
 		left_pointer = clamp(value, 0, ships_sprites.size() - 1)
 		set_sprite(1, ships_sprites[left_pointer])
+		set_pilot_sprite(1, pilots[left_pointer])
 		$P1Stats.tween_to_stats(ship_stats[left_pointer])
 var right_pointer = 1:
 	get:
@@ -24,6 +26,7 @@ var right_pointer = 1:
 			$UIErrorSound.play()
 		right_pointer = clamp(value, 0, ships_sprites.size() - 1)
 		set_sprite(2, ships_sprites[right_pointer])		
+		set_pilot_sprite(2, pilots[right_pointer])		
 		$P2Stats.tween_to_stats(ship_stats[right_pointer])
 		
 var player1_inserted_coin = false
@@ -67,6 +70,10 @@ func set_sprite(player, sprite : Texture2D):
 	var ship_sprite = $Selection/LeftItems/LeftShip if player == 1 else $Selection/RightItems/RightShip
 	ship_sprite.texture = sprite
 
+func set_pilot_sprite(player, sprite : Texture2D):
+	var pilot_sprite = $Pilot1 if player == 1 else $Pilot2
+	pilot_sprite.texture = sprite
+	
 func on_player_insert_coin(player):
 	if player == 1:
 		player1_inserted_coin = true
