@@ -25,6 +25,15 @@ script = ExtResource("1_qtlmi")
 ships_sprites = [ExtResource("2_058su"), ExtResource("3_pisly"), ExtResource("4_ky7au")]
 ship_stats = [ExtResource("5_mf37f"), ExtResource("6_na07h"), ExtResource("7_scpje")]
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0.0392157, 1)
+
 [node name="Prompt" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 12
