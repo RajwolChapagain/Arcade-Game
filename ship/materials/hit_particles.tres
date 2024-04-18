@@ -1,0 +1,17 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=3 format=3 uid="uid://btax5n02b8uxe"]
+
+[sub_resource type="Curve" id="Curve_qiavw"]
+_data = [Vector2(0, 1), 0.0, 1.4, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_6n682"]
+curve = SubResource("Curve_qiavw")
+
+[resource]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+scale_min = 0.3
+scale_max = 0.7
+scale_curve = SubResource("CurveTexture_6n682")
