@@ -23,7 +23,7 @@ DataWriter="*res://playtesting/data_writer.tscn"
 
 window/size/viewport_width=1000
 window/size/viewport_height=750
-window/size/mode=3
+window/size/mode=4
 window/stretch/mode="canvas_items"
 
 [filesystem]
