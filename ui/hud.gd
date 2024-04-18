@@ -60,6 +60,5 @@ func indicate_round_won(player, victory_count):
 		elif victory_count == 2:
 			%P2Round2Indicator.toggle_to_win()
 
-
-func _on_countdown_animation_finished(anim_name):
+func _on_countdown_animation_finished(_anim_name):
 	$StartCountdownLabel.visible = false

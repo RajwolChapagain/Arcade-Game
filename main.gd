@@ -397,8 +397,8 @@ func fade_music_out():
 func _on_start_timer_timeout():
 	get_tree().paused = false
 
-func cache_particles(materials):
-	for mat in materials:
+func cache_particles(mats):
+	for mat in mats:
 		var particles_instance = GPUParticles2D.new()
 		particles_instance.set_process_material(mat)
 		particles_instance.set_one_shot(true)
