@@ -33,7 +33,7 @@ func announce_winner(player):
 	elif player == 2:
 		player_name = "Player 2"
 		
-	var announcement = player_name + " WINS!!!"
+	var announcement = player_name + " WINS!"
 	show_announcement_text(announcement)
 
 func hide_announcement_text():
@@ -42,6 +42,7 @@ func hide_announcement_text():
 func show_announcement_text(text):
 	$WinnerAnnouncementText.set_text(text)
 	$WinnerAnnouncementText.set_visible(true)	
+	$WinnerAnnouncementText/AnimationPlayer.play("spin_grow_fade")
 
 func set_round_time(text):
 	if int(text) in beep_seconds and str(text) != %RoundTime.text:

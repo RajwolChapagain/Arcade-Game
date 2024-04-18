@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://0uuiimj7834t"]
+[gd_scene load_steps=14 format=3 uid="uid://0uuiimj7834t"]
 
 [ext_resource type="Script" path="res://ui/hud.gd" id="1_2eusb"]
 [ext_resource type="PackedScene" uid="uid://fy7mejvsl646" path="res://ui/health_bar.tscn" id="2_7d51a"]
@@ -7,6 +7,91 @@
 [ext_resource type="Texture2D" uid="uid://bvruc8kcjdmrq" path="res://ui/timer_background.png" id="4_xeyvx"]
 [ext_resource type="PackedScene" uid="uid://c5bx8rtodfp1x" path="res://ui/win_indicator.tscn" id="6_p4tyy"]
 [ext_resource type="AudioStream" uid="uid://c3nyty4g6n3eh" path="res://ui/sfx/timer_beep.wav" id="7_hanu0"]
+
+[sub_resource type="Animation" id="Animation_fol3s"]
+resource_name = "spin_grow_fade"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1.2, 1),
+"update": 0,
+"values": [0.0, 18.8496]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1, 5),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_e5pec"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wmjn3"]
+_data = {
+"RESET": SubResource("Animation_e5pec"),
+"spin_grow_fade": SubResource("Animation_fol3s")
+}
 
 [sub_resource type="Animation" id="Animation_n3dua"]
 length = 0.001
@@ -119,17 +204,28 @@ fill_mode = 1
 
 [node name="WinnerAnnouncementText" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -755.0
-offset_top = 552.0
-offset_right = 756.0
-offset_bottom = 825.0
+anchor_bottom = 0.5
+offset_left = -417.5
+offset_top = -72.5
+offset_right = 417.5
+offset_bottom = 72.5
 grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(417, 72)
 theme = ExtResource("3_ainlw")
+theme_override_font_sizes/font_size = 120
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WinnerAnnouncementText"]
+libraries = {
+"": SubResource("AnimationLibrary_wmjn3")
+}
 
 [node name="TimerBackground" type="TextureRect" parent="."]
 layout_mode = 1
