@@ -21,7 +21,6 @@ scale_curve = SubResource("CurveTexture_6n682")
 
 [node name="HitParticles" type="GPUParticles2D"]
 emitting = false
-amount = 16
 process_material = SubResource("ParticleProcessMaterial_35cle")
 texture = ExtResource("1_cwycm")
 lifetime = 0.5
