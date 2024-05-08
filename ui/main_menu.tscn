@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://djskn3te3j2kl"]
+[gd_scene load_steps=17 format=3 uid="uid://djskn3te3j2kl"]
 
 [ext_resource type="Texture2D" uid="uid://c87ojw4yeuuud" path="res://ui/right_arrow.svg" id="1_5rmpm"]
 [ext_resource type="Script" path="res://ui/main_menu.gd" id="1_qtlmi"]
@@ -10,7 +10,6 @@
 [ext_resource type="Resource" uid="uid://cbmn1wqvamq0r" path="res://ship/stats/stock_ship_stats.tres" id="6_na07h"]
 [ext_resource type="PackedScene" uid="uid://6i3n35apo5nh" path="res://ui/stat_panel.tscn" id="7_cpdse"]
 [ext_resource type="Resource" uid="uid://c1q7efuyhhpgm" path="res://ship/stats/tank_ship_stats.tres" id="7_scpje"]
-[ext_resource type="Texture2D" uid="uid://dkqoprwunur5l" path="res://ui/title.png" id="8_g467h"]
 [ext_resource type="Texture2D" uid="uid://i7bjdg6cqpox" path="res://ui/stingray_pilot.png" id="8_th1bv"]
 [ext_resource type="Texture2D" uid="uid://tgs1xepeqnci" path="res://ui/scrapper_pilot.png" id="9_a76t2"]
 [ext_resource type="Texture2D" uid="uid://co4ts1yuohi6k" path="res://ui/gooper_pilot.png" id="10_0qnnm"]
@@ -68,23 +67,12 @@ stretch_mode = 5
 flip_h = true
 metadata/_edit_use_anchors_ = true
 
-[node name="Title" type="TextureRect" parent="."]
-modulate = Color(0.941176, 0.941176, 0.941176, 1)
+[node name="Title" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 2.0
-offset_bottom = 235.0
-grow_horizontal = 2
-texture = ExtResource("8_g467h")
-expand_mode = 2
-stretch_mode = 5
-
-[node name="Title2" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 65.0
+offset_top = 8.0
+offset_bottom = 87.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.941176, 0.941176, 0.941176, 1)
 theme_override_colors/font_shadow_color = Color(0.827451, 0.756863, 0.788235, 1)
