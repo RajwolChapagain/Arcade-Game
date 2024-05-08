@@ -78,9 +78,11 @@ func on_player_insert_coin(player):
 	if player == 1:
 		player1_inserted_coin = true
 		player1_ready = false
+		$Prompt/Label/AnimationPlayer.stop()
 	elif player == 2:
 		player2_inserted_coin = true
 		player2_ready = false
+		$Prompt/Label2/AnimationPlayer.stop()		
 		
 	set_prompt(player, "Select Ship")
 	
