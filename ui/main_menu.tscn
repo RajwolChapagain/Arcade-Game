@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://djskn3te3j2kl"]
+[gd_scene load_steps=20 format=3 uid="uid://djskn3te3j2kl"]
 
 [ext_resource type="Texture2D" uid="uid://c87ojw4yeuuud" path="res://ui/right_arrow.svg" id="1_5rmpm"]
 [ext_resource type="Script" path="res://ui/main_menu.gd" id="1_qtlmi"]
@@ -16,6 +16,44 @@
 [ext_resource type="AudioStream" uid="uid://c6yf7nnlhdc5n" path="res://ui/sfx/ui_change_selection.wav" id="11_lwe4g"]
 [ext_resource type="FontFile" uid="uid://0ndhcu0cdrox" path="res://ui/pilot-command-font/PilotCommandCondensed-x358r.otf" id="12_e2axg"]
 [ext_resource type="AudioStream" uid="uid://de2xed632gt3t" path="res://ui/sfx/ui_error.wav" id="12_kvqf3"]
+
+[sub_resource type="Animation" id="Animation_yjil3"]
+resource_name = "flash"
+length = 0.7
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_07qyc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ft7pv"]
+_data = {
+"RESET": SubResource("Animation_07qyc"),
+"flash": SubResource("Animation_yjil3")
+}
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -106,6 +144,12 @@ text = "Insert Credit to Start"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Prompt/Label"]
+libraries = {
+"": SubResource("AnimationLibrary_ft7pv")
+}
+autoplay = "flash"
+
 [node name="Control" type="Control" parent="Prompt"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -118,6 +162,12 @@ theme = ExtResource("5_85q3v")
 text = "Insert Credit to Start"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Prompt/Label2"]
+libraries = {
+"": SubResource("AnimationLibrary_ft7pv")
+}
+autoplay = "flash"
 
 [node name="Selection" type="HBoxContainer" parent="."]
 layout_mode = 1
