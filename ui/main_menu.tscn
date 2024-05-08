@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://djskn3te3j2kl"]
+[gd_scene load_steps=18 format=3 uid="uid://djskn3te3j2kl"]
 
 [ext_resource type="Texture2D" uid="uid://c87ojw4yeuuud" path="res://ui/right_arrow.svg" id="1_5rmpm"]
 [ext_resource type="Script" path="res://ui/main_menu.gd" id="1_qtlmi"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://tgs1xepeqnci" path="res://ui/scrapper_pilot.png" id="9_a76t2"]
 [ext_resource type="Texture2D" uid="uid://co4ts1yuohi6k" path="res://ui/gooper_pilot.png" id="10_0qnnm"]
 [ext_resource type="AudioStream" uid="uid://c6yf7nnlhdc5n" path="res://ui/sfx/ui_change_selection.wav" id="11_lwe4g"]
+[ext_resource type="FontFile" uid="uid://0ndhcu0cdrox" path="res://ui/pilot-command-font/PilotCommandCondensed-x358r.otf" id="12_e2axg"]
 [ext_resource type="AudioStream" uid="uid://de2xed632gt3t" path="res://ui/sfx/ui_error.wav" id="12_kvqf3"]
 
 [node name="MainMenu" type="Control"]
@@ -72,12 +73,28 @@ modulate = Color(0.941176, 0.941176, 0.941176, 1)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 45.0
-offset_bottom = 278.0
+offset_top = 2.0
+offset_bottom = 235.0
 grow_horizontal = 2
 texture = ExtResource("8_g467h")
 expand_mode = 2
 stretch_mode = 5
+
+[node name="Title2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 65.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.941176, 0.941176, 0.941176, 1)
+theme_override_colors/font_shadow_color = Color(0.827451, 0.756863, 0.788235, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("12_e2axg")
+theme_override_font_sizes/font_size = 73
+text = "Starship Showdown"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Prompt" type="HBoxContainer" parent="."]
 layout_mode = 1
