@@ -7,7 +7,7 @@
 
 [node name="StatPanel" type="NinePatchRect"]
 offset_right = 433.0
-offset_bottom = 227.0
+offset_bottom = 210.0
 texture = ExtResource("1_kuc3p")
 region_rect = Rect2(0, 0, 347, 176)
 patch_margin_left = 3
@@ -33,38 +33,44 @@ metadata/_edit_group_ = true
 layout_mode = 2
 size_flags_vertical = 6
 theme = ExtResource("2_jgoxv")
-theme_override_font_sizes/font_size = 28
-text = "Toughness"
+theme_override_font_sizes/font_size = 32
+text = "Health"
+uppercase = true
 
 [node name="Damage" type="Label" parent="Labels"]
 layout_mode = 2
 size_flags_vertical = 6
 theme = ExtResource("2_jgoxv")
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 32
 text = "Damage
 "
+uppercase = true
 
 [node name="RechargeRate" type="Label" parent="Labels"]
 layout_mode = 2
 size_flags_vertical = 6
 theme = ExtResource("2_jgoxv")
-theme_override_font_sizes/font_size = 28
-text = "Recharge Rate"
+theme_override_font_sizes/font_size = 32
+text = "Recharge"
+uppercase = true
 
 [node name="TopSpeed" type="Label" parent="Labels"]
 layout_mode = 2
 size_flags_vertical = 6
 theme = ExtResource("2_jgoxv")
-theme_override_font_sizes/font_size = 28
-text = "Top Speed"
+theme_override_font_sizes/font_size = 32
+text = "Speed"
+uppercase = true
 
 [node name="Acceleration" type="Label" parent="Labels"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 6
 theme = ExtResource("2_jgoxv")
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 32
 text = "Acceleration
 "
+uppercase = true
 
 [node name="Bars" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -74,9 +80,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -188.0
-offset_top = -105.5
+offset_top = -87.5
 offset_right = 102.0
-offset_bottom = 251.5
+offset_bottom = 207.5
 grow_horizontal = 0
 grow_vertical = 2
 scale = Vector2(0.585, 0.585)
@@ -112,6 +118,7 @@ step = 0.01
 value = 500.0
 
 [node name="Acceleration" parent="Bars" instance=ExtResource("3_bikkd")]
+visible = false
 layout_mode = 2
 size_flags_vertical = 6
 max_value = 600.0
