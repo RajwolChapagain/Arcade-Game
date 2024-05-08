@@ -21,7 +21,7 @@ offset_bottom = 750.0
 texture = ExtResource("5_e7ay6")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(-25, 0)
+offset = Vector2(-28, 0)
 anchor_mode = 0
 
 [node name="HUD" parent="." instance=ExtResource("4_kn60h")]
