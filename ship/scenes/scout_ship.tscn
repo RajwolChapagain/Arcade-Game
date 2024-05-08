@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dsgskm8hx8n3" path="res://ship/scenes/stock_ship.tscn" id="1_egwrg"]
 [ext_resource type="Resource" uid="uid://natcbjmon8y2" path="res://ship/stats/scout_ship_stats.tres" id="2_n54ks"]
 [ext_resource type="PackedScene" uid="uid://cm2ycv76trfh5" path="res://ship/super.tscn" id="3_dpwct"]
-[ext_resource type="Texture2D" uid="uid://w6al2c132doh" path="res://ship/Swordfish_Light.png" id="4_c8bfb"]
+[ext_resource type="Texture2D" uid="uid://deb4fh6ule8v3" path="res://ship/sprites/swordfish.png" id="3_w13bk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_57g46"]
 size = Vector2(80, 52)
@@ -14,7 +14,7 @@ bullet_origins = [NodePath("TopBulletOrigin")]
 SUPER_SCENE = ExtResource("3_dpwct")
 
 [node name="Sprite2D" parent="." index="1"]
-texture = ExtResource("4_c8bfb")
+texture = ExtResource("3_w13bk")
 
 [node name="CollisionShape2D" parent="." index="2"]
 shape = SubResource("RectangleShape2D_57g46")
