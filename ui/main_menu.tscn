@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://djskn3te3j2kl"]
+[gd_scene load_steps=21 format=3 uid="uid://djskn3te3j2kl"]
 
 [ext_resource type="Texture2D" uid="uid://c87ojw4yeuuud" path="res://ui/right_arrow.svg" id="1_5rmpm"]
 [ext_resource type="Script" path="res://ui/main_menu.gd" id="1_qtlmi"]
-[ext_resource type="Texture2D" uid="uid://deb4fh6ule8v3" path="res://ship/sprites/swordfish.png" id="2_058su"]
+[ext_resource type="Texture2D" uid="uid://cx5jv7ket5fqd" path="res://ship/sprites/cabinet_sprites/swordfish_light.png" id="2_0tt54"]
+[ext_resource type="Texture2D" uid="uid://cb8a4xyyns160" path="res://ship/sprites/cabinet_sprites/scrapper_light.png" id="3_ije5a"]
 [ext_resource type="Texture2D" uid="uid://dkhq62nq0hq12" path="res://ship/sprites/redtail.png" id="3_pisly"]
 [ext_resource type="Texture2D" uid="uid://btt50nabpvd5a" path="res://ship/sprites/hammerhead.png" id="4_ky7au"]
 [ext_resource type="Theme" uid="uid://h2qn3r626o1h" path="res://ui/ui_theme.tres" id="5_85q3v"]
@@ -16,6 +17,21 @@
 [ext_resource type="AudioStream" uid="uid://c6yf7nnlhdc5n" path="res://ui/sfx/ui_change_selection.wav" id="11_lwe4g"]
 [ext_resource type="FontFile" uid="uid://0ndhcu0cdrox" path="res://ui/pilot-command-font/PilotCommandCondensed-x358r.otf" id="12_e2axg"]
 [ext_resource type="AudioStream" uid="uid://de2xed632gt3t" path="res://ui/sfx/ui_error.wav" id="12_kvqf3"]
+
+[sub_resource type="Animation" id="Animation_07qyc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_yjil3"]
 resource_name = "flash"
@@ -34,21 +50,6 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_07qyc"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ft7pv"]
 _data = {
 "RESET": SubResource("Animation_07qyc"),
@@ -64,7 +65,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 4
 script = ExtResource("1_qtlmi")
-ships_sprites = [ExtResource("2_058su"), ExtResource("3_pisly"), ExtResource("4_ky7au")]
+ships_sprites = [ExtResource("2_0tt54"), ExtResource("3_ije5a"), ExtResource("4_ky7au")]
 ship_stats = [ExtResource("5_mf37f"), ExtResource("6_na07h"), ExtResource("7_scpje")]
 pilots = Array[Texture2D]([ExtResource("8_th1bv"), ExtResource("9_a76t2"), ExtResource("10_0qnnm")])
 
