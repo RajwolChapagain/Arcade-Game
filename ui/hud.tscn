@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://0uuiimj7834t"]
+[gd_scene load_steps=15 format=3 uid="uid://0uuiimj7834t"]
 
 [ext_resource type="Script" path="res://ui/hud.gd" id="1_2eusb"]
 [ext_resource type="PackedScene" uid="uid://fy7mejvsl646" path="res://ui/health_bar.tscn" id="2_7d51a"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bvruc8kcjdmrq" path="res://ui/timer_background.png" id="4_xeyvx"]
 [ext_resource type="PackedScene" uid="uid://c5bx8rtodfp1x" path="res://ui/win_indicator.tscn" id="6_p4tyy"]
 [ext_resource type="AudioStream" uid="uid://c3nyty4g6n3eh" path="res://ui/sfx/timer_beep.wav" id="7_hanu0"]
+[ext_resource type="FontFile" uid="uid://0ndhcu0cdrox" path="res://ui/pilot-command-font/PilotCommandCondensed-x358r.otf" id="7_lfuyb"]
 
 [sub_resource type="Animation" id="Animation_e5pec"]
 length = 0.001
@@ -300,6 +301,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_ainlw")
 theme_override_colors/font_color = Color(1, 0.717647, 0.0117647, 1)
+theme_override_fonts/font = ExtResource("7_lfuyb")
 theme_override_font_sizes/font_size = 37
 text = "90"
 horizontal_alignment = 1
