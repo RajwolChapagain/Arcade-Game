@@ -1,10 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://djskn3te3j2kl"]
+[gd_scene load_steps=20 format=3 uid="uid://djskn3te3j2kl"]
 
 [ext_resource type="Texture2D" uid="uid://c87ojw4yeuuud" path="res://ui/right_arrow.svg" id="1_5rmpm"]
 [ext_resource type="Script" path="res://ui/main_menu.gd" id="1_qtlmi"]
 [ext_resource type="Texture2D" uid="uid://cx5jv7ket5fqd" path="res://ship/sprites/cabinet_sprites/swordfish_light.png" id="2_0tt54"]
 [ext_resource type="Texture2D" uid="uid://cb8a4xyyns160" path="res://ship/sprites/cabinet_sprites/scrapper_light.png" id="3_ije5a"]
-[ext_resource type="Texture2D" uid="uid://dkhq62nq0hq12" path="res://ship/sprites/redtail.png" id="3_pisly"]
 [ext_resource type="Texture2D" uid="uid://btt50nabpvd5a" path="res://ship/sprites/hammerhead.png" id="4_ky7au"]
 [ext_resource type="Theme" uid="uid://h2qn3r626o1h" path="res://ui/ui_theme.tres" id="5_85q3v"]
 [ext_resource type="Resource" uid="uid://natcbjmon8y2" path="res://ship/stats/scout_ship_stats.tres" id="5_mf37f"]
@@ -199,7 +198,7 @@ size_flags_horizontal = 3
 
 [node name="LeftShip" type="TextureRect" parent="Selection/LeftItems"]
 layout_mode = 2
-texture = ExtResource("3_pisly")
+texture = ExtResource("3_ije5a")
 stretch_mode = 5
 
 [node name="Control2" type="Control" parent="Selection/LeftItems"]
@@ -232,7 +231,7 @@ size_flags_horizontal = 3
 
 [node name="RightShip" type="TextureRect" parent="Selection/RightItems"]
 layout_mode = 2
-texture = ExtResource("3_pisly")
+texture = ExtResource("3_ije5a")
 stretch_mode = 5
 flip_h = true
 
