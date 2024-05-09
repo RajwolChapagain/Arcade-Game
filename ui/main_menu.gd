@@ -11,8 +11,12 @@ var left_pointer = 1:
 		if value != -1 and value != ships_sprites.size():
 			$ChangeSelectionSound.play()
 		else:
-			$UIErrorSound.play()			
-		left_pointer = clamp(value, 0, ships_sprites.size() - 1)
+			if value == -1:
+				value = ships_sprites.size() - 1
+			elif value == ships_sprites.size():
+				value = 0
+		
+		left_pointer = value		
 		set_sprite(1, ships_sprites[left_pointer])
 		set_pilot_sprite(1, pilots[left_pointer])
 		$P1Stats.tween_to_stats(ship_stats[left_pointer])
@@ -23,8 +27,12 @@ var right_pointer = 1:
 		if value != -1 and value != ships_sprites.size():
 			$ChangeSelectionSound.play()
 		else:
-			$UIErrorSound.play()
-		right_pointer = clamp(value, 0, ships_sprites.size() - 1)
+			if value == -1:
+				value = ships_sprites.size() - 1
+			elif value == ships_sprites.size():
+				value = 0
+				
+		right_pointer = value
 		set_sprite(2, ships_sprites[right_pointer])		
 		set_pilot_sprite(2, pilots[right_pointer])		
 		$P2Stats.tween_to_stats(ship_stats[right_pointer])
