@@ -1,11 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1swy8bg5c3wn"]
+[gd_scene load_steps=2 format=3 uid="uid://d1swy8bg5c3wn"]
 
-[ext_resource type="Material" uid="uid://cvb3bn2nf0t0a" path="res://ship/materials/explosion_particles.tres" id="1_acjvb"]
 [ext_resource type="Texture2D" uid="uid://btfeypbd8rooq" path="res://ship/sprites/explosion_particle.png" id="1_fcpaj"]
 
-[node name="ExplosionParticles" type="GPUParticles2D" groups=["spawned_objects"]]
+[node name="ExplosionParticles" type="CPUParticles2D" groups=["spawned_objects"]]
 amount = 20
-process_material = ExtResource("1_acjvb")
-texture = ExtResource("1_fcpaj")
 lifetime = 6.0
 explosiveness = 1.0
+texture = ExtResource("1_fcpaj")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 800.0
+angular_velocity_min = 100.0
+angular_velocity_max = 360.0
+scale_amount_min = 0.5
